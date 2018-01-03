@@ -16,7 +16,7 @@ public class CurrencyConverterTest4 {
     }
 */
     @Test
-    public void generateExchangeRate_Generation_GenerationSuccessful() {
+    public void testgenerateExchangeRate_Generation_GenerationSuccessful() {
         //Arrange
 
         //Act
@@ -30,7 +30,7 @@ public class CurrencyConverterTest4 {
 
 
     @Test
-    public void readFile_ValidFileName_ListOfCurrencies() {
+    public void TestreadFile_ValidFileName_ListOfCurrencies() {
         //Arrange
 
         //Act
