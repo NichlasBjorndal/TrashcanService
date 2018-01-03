@@ -8,13 +8,13 @@ import static org.junit.Assert.*;
 
 
 public class CurrencyConverterTest4 {
-    private CurrencyConverter uut;
+    private CurrencyConverter uut  = new CurrencyConverter();
 
-    @Before
+   /*
     public void setUp() {
         uut = new CurrencyConverter();
     }
-
+*/
     @Test
     public void generateExchangeRate_Generation_GenerationSuccessful() {
         //Arrange

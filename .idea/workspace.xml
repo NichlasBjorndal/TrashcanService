@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e7bf2e-3309-4f3f-8570-fe1ac7af4580" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest4.java" />
+    <list default="true" id="27e7bf2e-3309-4f3f-8570-fe1ac7af4580" name="Default" comment="Currency converter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Main.iml" afterPath="$PROJECT_DIR$/Main.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java" afterPath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest4.java" afterPath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest4.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,12 +30,10 @@
       <file leaf-file-name="CurrencyConverterTest4.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/CurrencyConverterTest4.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="11" lean-forward="true" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
+            <state relative-caret-position="561">
+              <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#248#249#0" expanded="true" />
-                <element signature="e#293#294#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -400,7 +396,7 @@
       <updated>1514967085146</updated>
       <workItem from="1514967088550" duration="814000" />
       <workItem from="1514968021991" duration="926000" />
-      <workItem from="1514969167506" duration="10171000" />
+      <workItem from="1514969167506" duration="10278000" />
     </task>
     <task id="LOCAL-00001" summary="First Maven">
       <created>1514969242996</created>
@@ -451,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514989258441</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Currency converter">
+      <created>1514989925772</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1514989925772</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -473,8 +476,8 @@
     <history-entry file="CurrencyConverterTest4 - 2018.01.03 at 15h 31m 54s.xml">
       <configuration name="CurrencyConverterTest4" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CurrencyConverterTest_generateExchangeRate_DKKConversion_ConvertSuccessful - 2018.01.03 at 13h 39m 47s.xml">
-      <configuration name="CurrencyConverterTest.generateExchangeRate_DKKConversion_ConvertSuccessful" configurationId="JUnit" />
+    <history-entry file="CurrencyConverterTest4 - 2018.01.03 at 15h 33m 45s.xml">
+      <configuration name="CurrencyConverterTest4" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CurrencyConverterTest_generateExchangeRate_DKKConversion_ConvertSuccessful - 2018.01.03 at 13h 39m 53s.xml">
       <configuration name="CurrencyConverterTest.generateExchangeRate_DKKConversion_ConvertSuccessful" configurationId="JUnit" />
@@ -487,7 +490,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11911000" />
+    <option name="totallyTimeSpent" value="12018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -501,7 +504,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32608697" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -566,7 +569,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -674,16 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="64" column="3" lean-forward="false" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#1619#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -692,14 +685,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="64" column="3" lean-forward="false" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CurrencyConverterTest4.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="11" lean-forward="true" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
+        <state relative-caret-position="561">
+          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#248#249#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
           </folding>
         </state>
       </provider>
