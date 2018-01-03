@@ -16,7 +16,7 @@ public class CurrencyConverterTest {
     }
 */
     @Test
-    public void testgenerateExchangeRate_Generation_GenerationSuccessful() {
+    public void generateExchangeRate_Generation_GenerationSuccessful() {
         //Arrange
 
         //Act
@@ -30,7 +30,7 @@ public class CurrencyConverterTest {
 
 
     @Test
-    public void TestreadFile_ValidFileName_ListOfCurrencies() {
+    public void readFile_ValidFileName_ListOfCurrencies() {
         //Arrange
 
         //Act
@@ -42,7 +42,7 @@ public class CurrencyConverterTest {
     }
 
     @Test
-    public void testprocessStrings() {
+    public void processStrings() {
         // Arrange
         LinkedList<String> toProcessLinkedList = new LinkedList<>();
         toProcessLinkedList.add("DKK 100");
