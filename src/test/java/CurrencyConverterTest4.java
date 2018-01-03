@@ -42,7 +42,7 @@ public class CurrencyConverterTest4 {
     }
 
     @Test
-    public void processStrings() {
+    public void testprocessStrings() {
         // Arrange
         LinkedList<String> toProcessLinkedList = new LinkedList<>();
         toProcessLinkedList.add("DKK 100");
