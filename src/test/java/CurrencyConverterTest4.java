@@ -1,22 +1,22 @@
-/*import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 
-class CurrencyConverterTest {
-
+public class CurrencyConverterTest4 {
     private CurrencyConverter uut;
 
-    @org.junit.jupiter.api.BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         uut = new CurrencyConverter();
     }
 
     @Test
-    void generateExchangeRate_Generation_GenerationSuccessful() {
+    public void generateExchangeRate_Generation_GenerationSuccessful() {
         //Arrange
 
         //Act
@@ -30,7 +30,7 @@ class CurrencyConverterTest {
 
 
     @Test
-    void readFile_ValidFileName_ListOfCurrencies() {
+    public void readFile_ValidFileName_ListOfCurrencies() {
         //Arrange
 
         //Act
@@ -42,7 +42,7 @@ class CurrencyConverterTest {
     }
 
     @Test
-    void processStrings() {
+    public void processStrings() {
         // Arrange
         LinkedList<String> toProcessLinkedList = new LinkedList<>();
         toProcessLinkedList.add("DKK 100");
@@ -62,4 +62,4 @@ class CurrencyConverterTest {
         assertEquals(expectedLinkedList, generatedList);
     }
 
-}*/
+}
