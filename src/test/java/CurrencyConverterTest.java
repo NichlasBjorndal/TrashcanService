@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-public class CurrencyConverterTest4 {
+public class CurrencyConverterTest {
     private CurrencyConverter uut  = new CurrencyConverter();
 
    /*
