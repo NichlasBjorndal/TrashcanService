@@ -7,6 +7,9 @@ public class Main {
 
         List<String> strings = currencyConverter.ReadFile("currencies.txt");
         List<String> processedStings = currencyConverter.ProcessStrings(strings);
+        currencyConverter.printConvertedValues(processedStings, MyLittlePrinter.CONSOLE);
+        currencyConverter.printConvertedValues(processedStings, MyLittlePrinter.FILE);
+        int i = 0;
 
     }
 }

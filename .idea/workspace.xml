@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e7bf2e-3309-4f3f-8570-fe1ac7af4580" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/currencies.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/CurrencyConverter.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MyLittlePrinter.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Main.iml" afterPath="$PROJECT_DIR$/Main.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -36,26 +29,19 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state relative-caret-position="187">
+              <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CurrencyConverter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CurrencyConverter.java">
+      <file leaf-file-name="convertedCurrencies.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convertedCurrencies.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#398#399#0" expanded="true" />
-                <element signature="e#452#453#0" expanded="true" />
-                <element signature="e#572#588#0" expanded="true" />
-                <element signature="e#757#758#0" expanded="true" />
-                <element signature="e#793#794#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -234,7 +220,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CurrencyConverterTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -419,11 +405,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest.processStrings" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest.readFile_ValidFileName_ListOfCurrencies" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest.generateExchangeRate_DKKConversion_ConvertSuccessful" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest.processStrings" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest.readFile_ValidFileName_ListOfCurrencies" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.CurrencyConverterTest.generateExchangeRate_DKKConversion_ConvertSuccessful" />
       </list>
     </recent_temporary>
   </component>
@@ -442,7 +428,7 @@
       <updated>1514967085146</updated>
       <workItem from="1514967088550" duration="814000" />
       <workItem from="1514968021991" duration="926000" />
-      <workItem from="1514969167506" duration="7785000" />
+      <workItem from="1514969167506" duration="8359000" />
     </task>
     <task id="LOCAL-00001" summary="First Maven">
       <created>1514969242996</created>
@@ -465,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514974140845</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Currency converter">
+      <created>1514987554419</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1514987554419</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -495,7 +488,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9525000" />
+    <option name="totallyTimeSpent" value="10099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -539,7 +532,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Maven" />
+    <MESSAGE value="Currency converter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Currency converter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -647,6 +641,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convertedCurrencies.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MyLittlePrinter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -657,8 +667,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        <state relative-caret-position="187">
+          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
           <folding />
         </state>
       </provider>
