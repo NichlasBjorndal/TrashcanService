@@ -8,6 +8,5 @@ public class Main {
                 contents) {
             System.out.println(cc.convert(s));
         }
-
     }
 }
