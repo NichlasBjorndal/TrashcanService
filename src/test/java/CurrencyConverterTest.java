@@ -42,7 +42,7 @@ public class CurrencyConverterTest {
     }
 
     @Test
-    public void xprocessStrings() {
+    public void processStrings() {
         // Arrange
         LinkedList<String> toProcessLinkedList = new LinkedList<>();
         toProcessLinkedList.add("DKK 100");
@@ -60,6 +60,26 @@ public class CurrencyConverterTest {
 
         // Assert
         assertEquals(expectedLinkedList, generatedList);
+    }
+
+    @Test
+    public void ConvertCurrencyFile() {
+        //Arrange
+        String originalFileName = "currencies.txt";
+        String outputFileName = "result.txt";
+
+        LinkedList<String> expectedConvertedNumbers = new LinkedList<>();
+        expectedConvertedNumbers.add("750.0");
+        expectedConvertedNumbers.add("600.0");
+
+        //Act
+        uut.ConvertCurrencyFile(originalFileName, outputFileName);
+
+
+        List<String> convertedNumbers = uut.ReadFile(outputFileName);
+
+        //Assert
+        assertEquals(expectedConvertedNumbers, convertedNumbers);
     }
 
 }

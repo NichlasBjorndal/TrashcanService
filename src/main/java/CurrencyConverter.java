@@ -68,7 +68,7 @@ public class CurrencyConverter {
         return processedList;
     }
 
-    public void printConvertedValues(List<String> values, MyLittlePrinter enumType){
+    public void printConvertedValues(List<String> values, String outFileName){
         StringBuilder builder = new StringBuilder();
 
         for (String element: values) {
@@ -77,20 +77,16 @@ public class CurrencyConverter {
 
         String builtString = builder.toString();
 
-        switch (enumType) {
-            case CONSOLE:
-                System.out.println(builtString);
-                break;
-
-            case FILE:
-                try {
-                    Files.write(Paths.get("convertedCurrencies.txt"), builtString.getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
+        try {
+            Files.write(Paths.get(outFileName), builtString.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 
+    public void ConvertCurrencyFile(String OriginalFileName, String outputFileName){
+        List<String> strings = ReadFile(OriginalFileName);
+        List<String> processedStings = ProcessStrings(strings);
+        printConvertedValues(processedStings, outputFileName);
+    }
 }
