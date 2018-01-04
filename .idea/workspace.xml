@@ -4,7 +4,6 @@
     <list default="true" id="27e7bf2e-3309-4f3f-8570-fe1ac7af4580" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CurrencyConverter.java" afterPath="$PROJECT_DIR$/src/main/java/CurrencyConverter.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java" afterPath="$PROJECT_DIR$/src/test/java/CurrencyConverterTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="CurrencyConverter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/CurrencyConverter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            <state relative-caret-position="272">
+              <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -435,7 +434,7 @@
       <updated>1514967085146</updated>
       <workItem from="1514967088550" duration="814000" />
       <workItem from="1514968021991" duration="926000" />
-      <workItem from="1514969167506" duration="12178000" />
+      <workItem from="1514969167506" duration="12386000" />
     </task>
     <task id="LOCAL-00001" summary="First Maven">
       <created>1514969242996</created>
@@ -535,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514991050610</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Currency converter">
+      <created>1515053917362</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1515053917362</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -571,7 +577,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13918000" />
+    <option name="totallyTimeSpent" value="14126000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -771,8 +777,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/CurrencyConverter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
           <folding />
         </state>
       </provider>
