@@ -3,8 +3,8 @@ package Barcode.Model;
 import java.io.File;
 
 public class Barcode {
-    File barcodeFile;
-    String uuid;
+    private File barcodeFile;
+    private String uuid;
 
     public Barcode(File barcodeFile, String uuid){
         this.uuid = uuid;

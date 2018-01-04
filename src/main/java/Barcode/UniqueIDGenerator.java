@@ -1,14 +1,15 @@
 package Barcode;
 
-
 import java.nio.ByteBuffer;
 import java.util.Base64;
 import java.util.UUID;
 
+/**
+ * Generates UUIDs.
+ */
+class UniqueIDGenerator {
 
-public class UniqueIDGenerator {
-
-    public String generateUUID() {
+    String generateUUIDToBase64() {
         UUID uuid = UUID.randomUUID();
 
         Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -18,6 +19,7 @@ public class UniqueIDGenerator {
         bb.putLong(uuid.getMostSignificantBits());
         bb.putLong(uuid.getLeastSignificantBits());
 
+        //Encode UUID array to string.
         return encoder.withoutPadding().encodeToString(bb.array());
     }
 }

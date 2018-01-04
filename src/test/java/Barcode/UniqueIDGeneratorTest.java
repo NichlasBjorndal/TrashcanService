@@ -2,8 +2,6 @@ package Barcode;
 
 import org.junit.Test;
 
-import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 public class UniqueIDGeneratorTest {
@@ -20,7 +18,7 @@ public class UniqueIDGeneratorTest {
 
     @Test
     public void generateUUID() throws Exception {
-        String UUID = idGenerator.generateUUID();
+        String UUID = idGenerator.generateUUIDToBase64();
 
         assertEquals(22,UUID.length());
     }
