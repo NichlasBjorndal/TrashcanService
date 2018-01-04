@@ -3,11 +3,11 @@ import java.util.HashMap;
 /**
  * Converts valuta to USD.
  */
-public class CurrencyConverter {
+class CurrencyConverter {
 
     private HashMap<String,Double> conversionRates;
 
-    public CurrencyConverter(){
+    CurrencyConverter(){
         conversionRates = FileIO.getConversionRates();
     }
 
@@ -15,7 +15,7 @@ public class CurrencyConverter {
      * @param s String containing currency and amount.
      * @return Returns conversion to USD.
      */
-    public double convert(String s) {
+    double convert(String s) {
         String[] value = s.split(" ");
         double rate = conversionRates.get(value[0]);
 
