@@ -1,9 +1,6 @@
-import org.junit.Ignore;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-@Ignore
 public class Main {
     public static void main(String[] args) {
         try {
