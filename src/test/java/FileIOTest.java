@@ -9,7 +9,6 @@ import static java.nio.file.Files.readAllLines;
 import static org.junit.Assert.*;
 
 public class FileIOTest {
-    private FileIO fileIO;
     private ArrayList<String> fileContents;
     private HashMap<String,Double> conversionRates;
     private ArrayList<String> expectedFileContents;
@@ -18,19 +17,18 @@ public class FileIOTest {
 
     @Before
     public void setUp() throws Exception {
-        fileIO = new FileIO();
         fileContents = null;
 
         FileIO.clearOutputFile();
 
-        expectedFileContents = new ArrayList<String>();
+        expectedFileContents = new ArrayList<>();
         expectedFileContents.add("EUR 1000");
         expectedFileContents.add("DKK 500");
         expectedFileContents.add("EUR 1284");
         expectedFileContents.add("DKK 9587");
         expectedFileContents.add("DKK 239");
 
-        expectedConversionRates = new HashMap<String, Double>();
+        expectedConversionRates = new HashMap<>();
         expectedConversionRates.put("EUR", 0.42);
         expectedConversionRates.put("DKK", 0.69);
     }
@@ -39,7 +37,7 @@ public class FileIOTest {
     public void readInputFileContents() throws Exception {
         assertNull(fileContents);
 
-        fileContents = fileIO.getInput();
+        fileContents = FileIO.getInput();
 
         assertNotNull(fileContents);
     }
@@ -58,7 +56,7 @@ public class FileIOTest {
     public void checkInputFileContents() throws Exception {
         assertNull(fileContents);
 
-        fileContents = fileIO.getInput();
+        fileContents = FileIO.getInput();
 
         assertEquals(expectedFileContents,fileContents);
     }
@@ -67,7 +65,7 @@ public class FileIOTest {
     public void readConversionRates() throws Exception {
         assertNull(conversionRates);
 
-        conversionRates = fileIO.getConversionRates();
+        conversionRates = FileIO.getConversionRates();
 
         assertNotNull(conversionRates);
     }
@@ -76,7 +74,7 @@ public class FileIOTest {
     public void checkConversionRates() throws Exception {
         assertNull(conversionRates);
 
-        conversionRates = fileIO.getConversionRates();
+        conversionRates = FileIO.getConversionRates();
 
         assertEquals(expectedConversionRates,conversionRates);
     }

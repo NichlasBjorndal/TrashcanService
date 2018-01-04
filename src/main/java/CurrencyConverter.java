@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -7,7 +8,7 @@ class CurrencyConverter {
 
     private HashMap<String,Double> conversionRates;
 
-    CurrencyConverter(){
+    CurrencyConverter() throws IOException {
         conversionRates = FileIO.getConversionRates();
     }
 

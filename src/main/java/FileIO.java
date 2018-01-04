@@ -21,59 +21,42 @@ class FileIO {
     /**
      * @return Each line contained in a list as a string.
      */
-    static ArrayList<String> getInput() {
-        try {
-            return (ArrayList<String>) readAllLines(new File(INPUT_FILE_NAME).toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    static ArrayList<String> getInput() throws IOException {
+        return (ArrayList<String>) readAllLines(new File(INPUT_FILE_NAME).toPath());
     }
 
     /**
      * @param s conversion to be written to output file.
      */
-    static void writeConversion(String s) {
+    static void writeConversion(String s) throws IOException {
         File file = new File(OUTPUT_FILE_NAME);
-
-        try {
-            write(file.toPath(), (s+"\n").getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        write(file.toPath(), (s + "\n").getBytes(), StandardOpenOption.APPEND);
     }
 
     /**
      * Clears output file contents.
      */
-    static void clearOutputFile() {
+    static void clearOutputFile() throws IOException {
         File file = new File(OUTPUT_FILE_NAME);
 
-        try {
-            OutputStream os = newOutputStream(file.toPath());
-            os.write(("").getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        OutputStream os = newOutputStream(file.toPath());
+        os.write(("").getBytes());
     }
 
     /**
      * @return Conversion rates in a specified file.
      */
-    static HashMap<String,Double> getConversionRates() {
-        HashMap<String,Double> conversionRates = new HashMap<>();
-        try {
-            List<String> input = readAllLines(new File(CONVERSION_RATE_FILE_NAME).toPath());
+    static HashMap<String, Double> getConversionRates() throws IOException {
+        HashMap<String, Double> conversionRates = new HashMap<>();
 
-            for (String s : input) {
-                String[] rate = s.split(" ");
+        List<String> input = readAllLines(new File(CONVERSION_RATE_FILE_NAME).toPath());
 
-                conversionRates.put(rate[0],Double.parseDouble(rate[1]));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (String s : input) {
+            String[] rate = s.split(" ");
+
+            conversionRates.put(rate[0], Double.parseDouble(rate[1]));
         }
+
         return conversionRates;
     }
 }
