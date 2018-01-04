@@ -16,8 +16,8 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <excludes>
-                        <exclude>Main.class</exclude>
-                        <exclude>MyLittlePrinter.*</exclude>
+                        <exclude>**/Main.class</exclude>
+                        <exclude>**/MyLittlePrinter.*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
