@@ -29,7 +29,7 @@ public class BarcodeGeneratorTest {
 
         assertTrue(barcodeResult.getFile().getName().length() > 0);
 
-        assertEquals(36,barcodeResult.getUUID().length());
+        assertEquals(22,barcodeResult.getUUID().length());
 
         assertTrue(barcodeResult.getFile().exists());
 

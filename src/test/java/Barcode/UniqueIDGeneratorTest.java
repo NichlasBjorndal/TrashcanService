@@ -22,6 +22,6 @@ public class UniqueIDGeneratorTest {
     public void generateUUID() throws Exception {
         String UUID = idGenerator.generateUUID();
 
-        assertEquals(36,UUID.length());
+        assertEquals(22,UUID.length());
     }
 }
