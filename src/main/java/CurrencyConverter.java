@@ -13,13 +13,13 @@ class CurrencyConverter {
     }
 
     /**
-     * @param s String containing currency and amount.
+     * @param currencyAmountString String containing currency and amount separated by whitespace..
      * @return Returns conversion to USD.
      */
-    double convert(String s) {
-        String[] value = s.split(" ");
-        double rate = conversionRates.get(value[0]);
+    double convert(String currencyAmountString) {
+        String[] currencyAmountPair = currencyAmountString.split(" ");
+        double conversionRate = conversionRates.get(currencyAmountPair[0]);
 
-        return  rate * Double.parseDouble( value[1]);
+        return  conversionRate * Double.parseDouble( currencyAmountPair[1]);
     }
 }
