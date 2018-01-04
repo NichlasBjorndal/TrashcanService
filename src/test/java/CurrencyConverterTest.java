@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class CurrencyConverterTest {
     private CurrencyConverter currencyConverter;
-    private FileReader fileReader;
+    private FileIO fileIO;
 
     private ArrayList<String> fileContents;
 
@@ -17,19 +17,16 @@ public class CurrencyConverterTest {
 
     @Before
     public void setUp() throws Exception {
-        fileReader = new FileReader();
+        fileIO = new FileIO();
 
         expectedConversionResults = new Double[]{1000*0.42,500*0.69,1284*0.42,9587*0.69,239*0.69};
 
         currencyConverter = new CurrencyConverter();
-
-
-
     }
 
     @Test
     public void dkkConvertion() throws Exception {
-        fileContents = fileReader.getInput();
+        fileContents = fileIO.getInput();
 
         assertNotNull(fileContents);
 
@@ -40,7 +37,7 @@ public class CurrencyConverterTest {
 
     @Test
     public void eurConvertion() throws Exception {
-        fileContents = fileReader.getInput();
+        fileContents = fileIO.getInput();
 
         assertNotNull(fileContents);
 
@@ -51,7 +48,7 @@ public class CurrencyConverterTest {
 
     @Test
     public void convertAll() throws Exception {
-        fileContents = fileReader.getInput();
+        fileContents = fileIO.getInput();
 
         assertNotNull(fileContents);
 
@@ -62,6 +59,5 @@ public class CurrencyConverterTest {
             assertEquals(conversionResult,expectedConversionResults[i],0.5);
             i++;
         }
-
     }
 }

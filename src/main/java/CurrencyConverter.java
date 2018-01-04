@@ -1,14 +1,20 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Converts valuta to USD.
+ */
 public class CurrencyConverter {
 
     private HashMap<String,Double> conversionRates;
 
     public CurrencyConverter(){
-        conversionRates = FileReader.getConversionRates();
+        conversionRates = FileIO.getConversionRates();
     }
 
+    /**
+     * @param s String containing currency and amount.
+     * @return Returns conversion to USD.
+     */
     public double convert(String s) {
         String[] value = s.split(" ");
         double rate = conversionRates.get(value[0]);

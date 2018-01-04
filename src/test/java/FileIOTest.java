@@ -1,22 +1,27 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.nio.file.Files.readAllLines;
 import static org.junit.Assert.*;
 
-public class FileReaderTest {
-    private FileReader fileReader;
+public class FileIOTest {
+    private FileIO fileIO;
     private ArrayList<String> fileContents;
     private HashMap<String,Double> conversionRates;
     private ArrayList<String> expectedFileContents;
     private HashMap<String,Double> expectedConversionRates;
+    private String output;
 
     @Before
     public void setUp() throws Exception {
-        fileReader = new FileReader();
+        fileIO = new FileIO();
         fileContents = null;
+
+        FileIO.clearOutputFile();
 
         expectedFileContents = new ArrayList<String>();
         expectedFileContents.add("EUR 1000");
@@ -34,16 +39,26 @@ public class FileReaderTest {
     public void readInputFileContents() throws Exception {
         assertNull(fileContents);
 
-        fileContents = fileReader.getInput();
+        fileContents = fileIO.getInput();
 
         assertNotNull(fileContents);
+    }
+
+    @Test
+    public void writeOutput() throws Exception {
+        assertNull(output);
+        output = "EUR 239";
+
+        FileIO.writeConversion(output);
+
+        assertEquals(output,readAllLines(new File(FileIO.OUTPUT_FILE_NAME).toPath()).get(0));
     }
 
     @Test
     public void checkInputFileContents() throws Exception {
         assertNull(fileContents);
 
-        fileContents = fileReader.getInput();
+        fileContents = fileIO.getInput();
 
         assertEquals(expectedFileContents,fileContents);
     }
@@ -52,7 +67,7 @@ public class FileReaderTest {
     public void readConversionRates() throws Exception {
         assertNull(conversionRates);
 
-        conversionRates = fileReader.getConversionRates();
+        conversionRates = fileIO.getConversionRates();
 
         assertNotNull(conversionRates);
     }
@@ -61,7 +76,7 @@ public class FileReaderTest {
     public void checkConversionRates() throws Exception {
         assertNull(conversionRates);
 
-        conversionRates = fileReader.getConversionRates();
+        conversionRates = fileIO.getConversionRates();
 
         assertEquals(expectedConversionRates,conversionRates);
     }
