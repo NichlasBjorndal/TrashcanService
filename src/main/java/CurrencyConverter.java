@@ -22,7 +22,7 @@ public class CurrencyConverter {
         HashMap<String, Double> exchangeMap = new HashMap<String, Double>();
 
         exchangeMap.put("DKK", 7.5);
-        exchangeMap.put("EUR", 1.2);
+        exchangeMap.put("EUR", 1.2);d
 
         return exchangeMap;
     }
