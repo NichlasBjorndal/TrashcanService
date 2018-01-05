@@ -1,11 +1,11 @@
-package Barcode;
+package Core.Barcode;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import Barcode.Model.Barcode;
+import Core.Barcode.Model.Barcode;
 
 public class BarcodeGeneratorTest {
     private BarcodeGenerator barcodeGenerator;

@@ -1,4 +1,4 @@
-package Barcode;
+package Core.Barcode;
 
 import java.nio.ByteBuffer;
 import java.util.Base64;
@@ -7,7 +7,7 @@ import java.util.UUID;
 /**
  * Generates UUIDs.
  */
-class UniqueIDGenerator {
+public class UniqueIDGenerator {
 
     String generateUUIDToBase64() {
         UUID uuid = UUID.randomUUID();

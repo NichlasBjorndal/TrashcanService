@@ -1,6 +1,6 @@
-package Barcode;
+package Core.Barcode;
 
-import Barcode.Model.Barcode;
+import Core.Barcode.Model.Barcode;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code128.Code128Constants;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
@@ -11,15 +11,15 @@ import java.io.*;
 /**
  * Generates 128 code barcodes based on Base64 UUIDs.
  */
-class BarcodeGenerator {
+public class BarcodeGenerator implements BarcodeGeneratorInterface{
 
     private UniqueIDGenerator uniqueIDGenerator;
 
-    BarcodeGenerator(){
+    public BarcodeGenerator(){
         uniqueIDGenerator = new UniqueIDGenerator();
     }
 
-    Barcode generateBarcode() throws IOException {
+    public Barcode generateBarcode() throws IOException {
         String uuid = uniqueIDGenerator.generateUUIDToBase64();
         Code128Bean barcode128Bean = new Code128Bean();
 
