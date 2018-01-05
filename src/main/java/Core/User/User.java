@@ -12,10 +12,6 @@ public class User {
 
     private Barcode barcode;
 
-    public BarcodeGeneratorInterface getBarcodeGenerator() {
-        return barcodeGenerator;
-    }
-
     public void setBarcodeGenerator(BarcodeGeneratorInterface barcodeGenerator) {
         this.barcodeGenerator = barcodeGenerator;
     }
@@ -26,12 +22,10 @@ public class User {
         barcodeGenerator = new BarcodeGenerator();
     }
 
-    public void requestBarcode(){
-        try {
+    public void requestBarcode() throws IOException {
+
             barcode = barcodeGenerator.generateBarcode();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public Barcode getBarcode() {
