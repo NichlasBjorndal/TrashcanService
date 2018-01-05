@@ -15,8 +15,8 @@ public class UserTest {
 
     private  User user;
     @Before
-    public void setUp() throws Exception {
-        user = new User();
+    public void setUp() {
+        user = new User("boris");
     }
 
     @Test
@@ -48,5 +48,17 @@ public class UserTest {
         user.requestBarcode();
 
         //Assert
+    }
+
+    @Test
+    public void checkUserProperties(){
+        //Arrange
+
+        //Act
+
+        //Assert
+        assertTrue(user.getName().length() > 0);
+        assertNull(user.getBarcode());
+        assertEquals(user.getUserID().toString().length(),36);
     }
 }
