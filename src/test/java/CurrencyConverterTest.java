@@ -43,7 +43,6 @@ public class CurrencyConverterTest {
 
         OutputStream os = newOutputStream(inputFile.toPath());
         os.write(("").getBytes());
-
         assertNotNull(inputFile);
 
         Double[] expectedConversionResults = new Double[]{1000*0.42,500*0.69,420*0.42,230*0.69};
