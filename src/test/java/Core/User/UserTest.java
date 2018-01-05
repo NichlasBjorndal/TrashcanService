@@ -16,7 +16,7 @@ public class UserTest {
     private  User user;
     @Before
     public void setUp() {
-        user = new User("boris");
+        user = new User("boris", "2412000001");
     }
 
     @Test
@@ -58,6 +58,7 @@ public class UserTest {
 
         //Assert
         assertTrue(user.getName().length() > 0);
+        assertEquals(user.getCpr().length(), 10 );
         assertNull(user.getBarcode());
         assertEquals(user.getUserID().toString().length(),36);
     }
