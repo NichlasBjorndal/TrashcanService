@@ -26,7 +26,6 @@ public class CurrencyConverterTest {
     @Test
     public void dkkConversion() throws Exception {
         conversionResult = currencyConverter.convert("EUR 1000");
-
         assertEquals(1000*0.42,conversionResult,0.5);
     }
 
