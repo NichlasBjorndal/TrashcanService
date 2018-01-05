@@ -19,7 +19,6 @@ public class UniqueIDGeneratorTest {
     @Test
     public void generateUUID() throws Exception {
         String UUID = idGenerator.generateUUIDToBase64();
-
         assertEquals(22,UUID.length());
     }
 }
