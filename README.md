@@ -1,5 +1,6 @@
 # TrashcanService
 [![Build Status](http://159.89.16.70:8080/buildStatus/icon?job=TrashcanServiceMaster)](http://159.89.16.70:8080/job/TrashcanServiceMaster)
+[![Build Status](http://159.89.16.70:8080/job/TrashcanServiceMaster/badge/icon)](http://159.89.16.70:8080/job/TrashcanServiceMaster/)
 The repo for our Web Services class
 
 ## Development
