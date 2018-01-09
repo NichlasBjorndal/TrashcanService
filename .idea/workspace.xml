@@ -7,20 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27e7bf2e-3309-4f3f-8570-fe1ac7af4580" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/TrashcanService_ear.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/TrashcanService_ear_exploded.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/TrashcanService_war.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/TrashcanService_war_exploded.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/META-INF/application.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldQueueMDB.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldTopicMDB.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Core/servlet/HelloWorldMDBServletClient.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Main_war.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Main_war_exploded.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Main.iml" afterPath="$PROJECT_DIR$/Main.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldQueueMDB.java" afterPath="$PROJECT_DIR$/src/main/java/mdb/HelloWorldQueueMDB.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldTopicMDB.java" afterPath="$PROJECT_DIR$/src/main/java/mdb/HelloWorldTopicMDB.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Core/servlet/HelloWorldMDBServletClient.java" afterPath="$PROJECT_DIR$/src/main/java/servlet/HelloWorldMDBServletClient.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -62,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloWorldMDBServletClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Core/servlet/HelloWorldMDBServletClient.java">
+      <file leaf-file-name="HelloWorldMDBServletClient.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/servlet/HelloWorldMDBServletClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-45">
-              <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="33" />
+            <state relative-caret-position="212">
+              <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloWorldTopicMDB.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldTopicMDB.java">
+      <file leaf-file-name="HelloWorldTopicMDB.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mdb/HelloWorldTopicMDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="34" column="33" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="33" />
+            <state relative-caret-position="420">
+              <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -144,6 +133,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Core/servlet/HelloWorldMDBServletClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/servlet/HelloWorldMDBServletClient.java" />
       </list>
     </option>
   </component>
@@ -259,6 +249,14 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Core" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrashcanService" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrashcanService" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="mdb" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -267,17 +265,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
               <item name="servlet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrashcanService" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrashcanService" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TrashcanService" type="b2602c69:ProjectViewProjectNode" />
@@ -358,7 +346,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JBoss Server.Web Local">
+  <component name="RunManager" selected="Cucumber java.All Features in: test">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -660,8 +648,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.All in Main" />
-        <item index="1" class="java.lang.String" itemvalue="Cucumber java.All Features in: test" />
+        <item index="0" class="java.lang.String" itemvalue="Cucumber java.All Features in: test" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in Main" />
         <item index="2" class="java.lang.String" itemvalue="Cucumber java.Feature: UserTest" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.All in Main (1)" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.Barcode in Main" />
@@ -689,7 +677,7 @@
       <workItem from="1515416980082" duration="1370000" />
       <workItem from="1515419476044" duration="2813000" />
       <workItem from="1515492071008" duration="168000" />
-      <workItem from="1515492260064" duration="8542000" />
+      <workItem from="1515492260064" duration="10254000" />
     </task>
     <task id="LOCAL-00001" summary="First Maven">
       <created>1514969242996</created>
@@ -709,11 +697,11 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_Features_in__test - 2018.01.08 at 14h 13m 18s.xml">
+    <history-entry file="All_Features_in__test - 2018.01.09 at 13h 54m 25s.xml">
       <configuration name="All Features in: test" configurationId="CucumberJavaRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Main - 2018.01.08 at 14h 13m 56s.xml">
-      <configuration name="All in Main" configurationId="JUnit" />
+    <history-entry file="All_Features_in__test - 2018.01.09 at 14h 01m 41s.xml">
+      <configuration name="All Features in: test" configurationId="CucumberJavaRunConfigurationType" />
     </history-entry>
     <history-entry file="All_in_Main_(1) - 2018.01.08 at 14h 12m 07s.xml">
       <configuration name="All in Main (1)" configurationId="JUnit" />
@@ -741,10 +729,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21597000" />
+    <option name="totallyTimeSpent" value="23309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="971" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -763,10 +752,10 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6151279" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14015573" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19940476" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19940476" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -796,8 +785,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Core/servlet/HelloWorldMDBServletClient.java</url>
-          <line>90</line>
+          <url>file://$PROJECT_DIR$/src/main/java/servlet/HelloWorldMDBServletClient.java</url>
+          <line>89</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -919,7 +908,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldQueueMDB.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mdb/HelloWorldQueueMDB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -986,21 +975,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Core/servlet/HelloWorldMDBServletClient.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mdb/HelloWorldTopicMDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="420">
+          <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Core/mdb/HelloWorldTopicMDB.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlet/HelloWorldMDBServletClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="34" column="33" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="212">
+          <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

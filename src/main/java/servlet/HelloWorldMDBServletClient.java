@@ -14,10 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package Core.servlet;
+package servlet;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.jms.*;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

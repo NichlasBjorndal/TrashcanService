@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package Core.mdb;
+package mdb;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -26,18 +26,18 @@ import java.util.logging.Logger;
 
 /**
  * <p>
- * A simple Message Driven Bean that asynchronously receives and processes the messages that are sent to the queue.
+ * A simple Message Driven Bean that asynchronously receives and processes the messages that are sent to the topic.
  * </p>
  *
  * @author Serge Pagop (spagop@redhat.com)
  */
-@MessageDriven(name = "HelloWorldQueueMDB", activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/HELLOWORLDMDBQueue"),
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+@MessageDriven(name = "HelloWorldQTopicMDB", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "topic/HELLOWORLDMDBTopic"),
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
-public class HelloWorldQueueMDB implements MessageListener {
+public class HelloWorldTopicMDB implements MessageListener {
 
-    private static final Logger LOGGER = Logger.getLogger(HelloWorldQueueMDB.class.toString());
+    private static final Logger LOGGER = Logger.getLogger(HelloWorldTopicMDB.class.toString());
 
     /**
      * @see MessageListener#onMessage(Message)
@@ -47,7 +47,7 @@ public class HelloWorldQueueMDB implements MessageListener {
         try {
             if (rcvMessage instanceof TextMessage) {
                 msg = (TextMessage) rcvMessage;
-                LOGGER.info("Received Message from queue: " + msg.getText());
+                LOGGER.info("Received Message from topic: " + msg.getText());
             } else {
                 LOGGER.warning("Message of wrong type: " + rcvMessage.getClass().getName());
             }
