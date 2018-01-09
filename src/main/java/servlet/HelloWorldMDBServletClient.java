@@ -68,6 +68,10 @@ public class HelloWorldMDBServletClient extends HttpServlet {
 
     private static final int MSG_COUNT = 5;
 
+    //@Inject
+    //@JMSConnectionFactory("java:jboss/exported/jms/RemoteConnectionFactory")
+    //private JMSContext context;
+
     @Resource(lookup = "java:/queue/HELLOWORLDMDBQueue")
     private Queue queue;
 
