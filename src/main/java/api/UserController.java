@@ -19,15 +19,14 @@ public class UserController {
     public JsonArray getAll() {
 
         JmsProvider jmsProvider = new JmsProvider();
-
+        String response = null;
         try {
-            jmsProvider.SendMessage(CREATE_QUEUE, "Hej far");
+            response = jmsProvider.sendMessage(CREATE_QUEUE, "Hej far");
         } catch (JMSException e) {
             e.printStackTrace();
         }
-
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 
-        return arrayBuilder.add("hej mor").build();
+        return arrayBuilder.add(response).build();
     }
 }

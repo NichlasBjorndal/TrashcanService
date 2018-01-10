@@ -16,12 +16,12 @@
  */
 package mdb;
 
+import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
+import javax.jms.*;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.util.logging.Logger;
 
 @MessageDriven(name = "UserQueueMDB", activationConfig = {
@@ -31,22 +31,34 @@ import java.util.logging.Logger;
 
 public class UserQueueMDB implements MessageListener {
 
-    private static final Logger LOGGER = Logger.getLogger(UserQueueMDB.class.toString());
+    @Resource(lookup = "java:/ConnectionFactory")
+    protected ConnectionFactory cf;
+
+    public UserQueueMDB(){
+
+    }
 
     /**
      * @see MessageListener#onMessage(Message)
      */
     public void onMessage(Message rcvMessage) {
-        TextMessage msg = null;
+        TextMessage msg;
+
+        Session jmsSession = JMSSessionFactory.createJmsSession();
         try {
-            if (rcvMessage instanceof TextMessage) {
+            TextMessage response = jmsSession.createTextMessage();
+
+            if(rcvMessage instanceof TextMessage) {
                 msg = (TextMessage) rcvMessage;
-                LOGGER.info("Received Message from queue: " + msg.getText());
-            } else {
-                LOGGER.warning("Message of wrong type: " + rcvMessage.getClass().getName());
+                String rcvMsgText = msg.getText();
+                //TODO: Process received text
+
+                response.setText("Read you loud and clear, over.");
             }
+            response.setJMSCorrelationID(rcvMessage.getJMSCorrelationID());
+            jmsSession.createProducer(rcvMessage.getJMSReplyTo()).send(response);
         } catch (JMSException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
