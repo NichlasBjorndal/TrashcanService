@@ -39,11 +39,6 @@ import java.io.PrintWriter;
             name = "java:/queue/HELLOWORLDMDBQueue",
             interfaceName = "javax.jms.Queue",
             destinationName = "HelloWorldMDBQueue"
-        ),
-        @JMSDestinationDefinition(
-            name = "java:/topic/HELLOWORLDMDBTopic",
-            interfaceName = "javax.jms.Topic",
-            destinationName = "HelloWorldMDBTopic"
         )
     }
 )
@@ -74,9 +69,6 @@ public class HelloWorldMDBServletClient extends HttpServlet {
 
     @Resource(lookup = "java:/queue/HELLOWORLDMDBQueue")
     private Queue queue;
-
-    @Resource(lookup = "java:/topic/HELLOWORLDMDBTopic")
-    private Topic topic;
 
     @Resource(lookup = "java:/ConnectionFactory")
     ConnectionFactory cf;
@@ -125,12 +117,14 @@ public class HelloWorldMDBServletClient extends HttpServlet {
                 }
                 out.write("Message (" + i + "): " + text + "</br>");
             }
+
             out.write("<p><i>Go to your JBoss EAP server console or server log to see the result of messages processing.</i></p>");
         } finally {
             if (out != null) {
                 out.close();
             }
         }
+
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
