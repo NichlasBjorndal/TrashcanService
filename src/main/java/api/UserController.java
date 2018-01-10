@@ -50,7 +50,7 @@ public class UserController {
 
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 
-        return arrayBuilder.add("hej").build();
+        return arrayBuilder.add("hej mor").build();
     }
 
 

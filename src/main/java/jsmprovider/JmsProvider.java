@@ -5,9 +5,14 @@ import javax.jms.*;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+
+
 public abstract class JmsProvider {
     @Resource(lookup = "java:/ConnectionFactory")
     protected ConnectionFactory cf;
+
+    @Resource(lookup = "java:/queue/CreateUserQueue")
+    private Queue createQueue;
 
     public JmsProvider(){
 
@@ -32,13 +37,15 @@ public abstract class JmsProvider {
         return session;
     }
 
-    public void SendMessage(Destination dest, String msg) throws JMSException {
+    public void SendMessage(String qName, String msg) throws JMSException {
         Session session = GetSession();
+
+
+        Destination dest = session.createQueue(qName);
 
         Message message = session.createTextMessage(msg);
         session.createProducer(dest).send(message);
     }
-
 
 
 }

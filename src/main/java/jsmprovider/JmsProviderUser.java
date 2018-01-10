@@ -1,27 +1,18 @@
 package jsmprovider;
 
 import javax.annotation.Resource;
-import javax.jms.JMSDestinationDefinition;
-import javax.jms.JMSDestinationDefinitions;
 import javax.jms.Queue;
 
-@JMSDestinationDefinitions(
-        value = {
-                @JMSDestinationDefinition(
-                        name = "java:/queue/CreateUserQueue",
-                        interfaceName = "javax.jms.Queue",
-                        destinationName = "CreateUserQueue"
-                )
-        }
-)
+
+
 
 public class JmsProviderUser extends JmsProvider {
 
-    @Resource(lookup = "java:/queue/CreateUserQueue")
-    private Queue createQueue;
+    private final String CREATE_QUEUE = "CreateUserQueue";
 
-    public Queue getCreateQueue() {
-        return createQueue;
+
+    public String getCreateQueue() {
+        return CREATE_QUEUE;
     }
 
 }
