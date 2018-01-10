@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="ear" name="TrashcanService:ear">
-    <output-path>$PROJECT_DIR$/out/artifacts/TrashcanService_ear</output-path>
-    <root id="archive" name="TrashcanService_ear.ear">
-      <element id="artifact" artifact-name="TrashcanService:ear exploded" />
-    </root>
-  </artifact>
-</component>
