@@ -20,9 +20,6 @@ import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.jms.*;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import java.util.logging.Logger;
 
 @MessageDriven(name = "UserQueueMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateUserQueue"),
@@ -34,9 +31,6 @@ public class UserQueueMDB implements MessageListener {
     @Resource(lookup = "java:/ConnectionFactory")
     protected ConnectionFactory cf;
 
-    public UserQueueMDB(){
-
-    }
 
     /**
      * @see MessageListener#onMessage(Message)
@@ -44,19 +38,26 @@ public class UserQueueMDB implements MessageListener {
     public void onMessage(Message rcvMessage) {
         TextMessage msg;
 
+        try {
+            System.out.println("Received message: " + ((TextMessage)rcvMessage).getText());
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+
         Session jmsSession = JMSSessionFactory.createJmsSession();
         try {
             TextMessage response = jmsSession.createTextMessage();
 
-            if(rcvMessage instanceof TextMessage) {
-                msg = (TextMessage) rcvMessage;
-                String rcvMsgText = msg.getText();
-                //TODO: Process received text
+            msg = (TextMessage) rcvMessage;
+            String rcvMsgText = msg.getText();
+            //TODO: Process received text
 
-                response.setText("Read you loud and clear, over.");
-            }
+            response.setText("Read you loud and clear, over.");
             response.setJMSCorrelationID(rcvMessage.getJMSCorrelationID());
-            jmsSession.createProducer(rcvMessage.getJMSReplyTo()).send(response);
+
+
+            MessageProducer producer = jmsSession.createProducer(null);
+            producer.send(rcvMessage.getJMSReplyTo(),response);
         } catch (JMSException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,9 @@
 package jsmprovider;
 
+import mdb.JMSSessionFactory;
+
 import javax.annotation.Resource;
 import javax.jms.*;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import java.util.UUID;
 
 public class JmsProvider {
@@ -13,27 +13,21 @@ public class JmsProvider {
     @Resource(lookup = "java:/queue/CreateUserQueue")
     private Queue createQueue;
 
-    public JmsProvider(){
+    public String sendMessage(String qName, String msg) throws JMSException {
+        Session session = JMSSessionFactory.createJmsSession();
+        Destination dest = session.createQueue(qName);
 
-        InitialContext jndiContext = null;
-        try {
-            jndiContext = new InitialContext();
-            cf = (ConnectionFactory) jndiContext.lookup("java:/ConnectionFactory");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
+        Destination tempDest = session.createTemporaryQueue();
+        MessageConsumer reponseConsumer = session.createConsumer(tempDest);
 
-    private Session getSession() {
-        Connection connection;
-        Session session = null;
-        try {
-            connection = cf.createConnection();
-            session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-        return session;
+        Message message = session.createTextMessage(msg);
+        message.setJMSReplyTo(tempDest);
+        message.setJMSCorrelationID(UUID.randomUUID().toString());
+        session.createProducer(dest).send(message);
+
+        Message receive = reponseConsumer.receive();
+        return handleResponse(receive);
+        //return "";
     }
 
     private String handleResponse(Message response) {
@@ -48,22 +42,5 @@ public class JmsProvider {
             }
         }
         return messageText;
-    }
-
-    public String sendMessage(String qName, String msg) throws JMSException {
-        Session session = getSession();
-        Destination dest = session.createQueue(qName);
-
-        Destination tempDest = session.createTemporaryQueue();
-        MessageConsumer reponseConsumer = session.createConsumer(tempDest);
-
-        Message message = session.createTextMessage(msg);
-        message.setJMSReplyTo(tempDest);
-        message.setJMSCorrelationID(UUID.randomUUID().toString());
-        session.createProducer(dest).send(message);
-
-        Message receive = reponseConsumer.receive();
-
-        return handleResponse(receive);
     }
 }

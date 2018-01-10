@@ -11,7 +11,7 @@ public class JMSSessionFactory {
 
     public static Session createJmsSession() {
         ConnectionFactory cf = null;
-        InitialContext jndiContext = null;
+        InitialContext jndiContext;
         try {
             jndiContext = new InitialContext();
             cf = (ConnectionFactory) jndiContext.lookup("java:/ConnectionFactory");
