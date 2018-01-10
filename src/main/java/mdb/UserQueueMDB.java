@@ -24,12 +24,11 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 import java.util.logging.Logger;
 
-
-
 @MessageDriven(name = "UserQueueMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateUserQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
+
 public class UserQueueMDB implements MessageListener {
 
     private static final Logger LOGGER = Logger.getLogger(UserQueueMDB.class.toString());

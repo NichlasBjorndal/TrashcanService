@@ -5,9 +5,7 @@ import javax.jms.*;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-
-
-public abstract class JmsProvider {
+public class JmsProvider {
     @Resource(lookup = "java:/ConnectionFactory")
     protected ConnectionFactory cf;
 
@@ -26,7 +24,7 @@ public abstract class JmsProvider {
     }
 
     private Session GetSession(){
-        Connection connection = null;
+        Connection connection;
         Session session = null;
         try {
             connection = cf.createConnection();
@@ -39,13 +37,8 @@ public abstract class JmsProvider {
 
     public void SendMessage(String qName, String msg) throws JMSException {
         Session session = GetSession();
-
-
         Destination dest = session.createQueue(qName);
-
         Message message = session.createTextMessage(msg);
         session.createProducer(dest).send(message);
     }
-
-
 }

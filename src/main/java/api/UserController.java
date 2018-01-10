@@ -1,8 +1,6 @@
 package api;
 
-import Core.User.User;
-import jsmprovider.JmsProviderUser;
-
+import jsmprovider.JmsProvider;
 import javax.jms.JMSException;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -13,37 +11,17 @@ import javax.ws.rs.Produces;
 
 @Path("/users")
 public class UserController {
-    private User user;
-
-
-   /* @Path("/all")
-    @GET
-    @Produces("application/json")
-    public JsonArray getAll(){
-
-        user = new User("Karl", "1234567891");
-
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-
-        arrayBuilder.add(Json.createObjectBuilder().add("name", user.getName()));
-        arrayBuilder.add(Json.createObjectBuilder().add("name", "Bobby"));
-        arrayBuilder.add(Json.createObjectBuilder().add("name", "Sven"));
-
-
-        user = new User("Name", "4201234");
-
-        return arrayBuilder.build();
-    }*/
+    private static final String CREATE_QUEUE = "CreateUserQueue";
 
     @Path("/all")
     @GET
     @Produces("application/json")
-    public JsonArray getAll(){
+    public JsonArray getAll() {
 
-        JmsProviderUser jmsProviderUser = new JmsProviderUser();
+        JmsProvider jmsProvider = new JmsProvider();
 
         try {
-            jmsProviderUser.SendMessage(jmsProviderUser.getCreateQueue(), "Hej far");
+            jmsProvider.SendMessage(CREATE_QUEUE, "Hej far");
         } catch (JMSException e) {
             e.printStackTrace();
         }
@@ -52,6 +30,4 @@ public class UserController {
 
         return arrayBuilder.add("hej mor").build();
     }
-
-
 }
