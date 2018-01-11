@@ -12,6 +12,7 @@ import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 @Stateless
 @JMSDestinationDefinitions(
@@ -36,20 +37,22 @@ public class UserController {
     @Path("/all")
     @GET
     @Produces("application/json")
-    public JsonArray getAll() {
+    public Response getAll() {
 
         JmsProvider jmsProvider = new JmsProvider();
         String response = null;
         try {
-            String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"1234567\"}";
+            String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"" +
+                    "\"}";
             response = jmsProvider.sendMessage(CREATE_QUEUE, jsonmsg);
         } catch (Exception e) {
             e.printStackTrace();
             response = "error";
         }
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 
-        return arrayBuilder.add(response).build();
+        Response res = Response.ok().entity(response).build();
+
+        return res;
     }
 
     @Path("/testIBC")
