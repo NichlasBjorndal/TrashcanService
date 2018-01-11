@@ -5,10 +5,13 @@ import java.util.Base64;
 import java.util.UUID;
 
 /**
- * Generates UUIDs.
+ * Generates UUIDs to be used when generating barcodes.
  */
 public class UniqueIDGenerator {
 
+    /**
+     * @return Returns a UUID encoded using Base64 which will be used when generating barcodes.
+     */
     String generateUUIDToBase64() {
         UUID uuid = UUID.randomUUID();
 
