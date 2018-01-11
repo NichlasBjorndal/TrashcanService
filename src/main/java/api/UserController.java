@@ -21,11 +21,17 @@ import javax.ws.rs.Produces;
                         interfaceName = "javax.jms.Queue",
                         destinationName = "CreateUserQueue"
                 ),
+                @JMSDestinationDefinition(
+                        name = "java:/queue/IBCMDB",
+                        interfaceName = "javax.jms.Queue",
+                        destinationName = "IBCQueue"
+        )
         }
 )
 @Path("/users")
 public class UserController {
     private static final String CREATE_QUEUE = "CreateUserQueue";
+    private static final String IBC_QUEUE = "IBCQueue";
 
     @Path("/all")
     @GET
@@ -37,6 +43,25 @@ public class UserController {
         try {
             String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"1234567\"}";
             response = jmsProvider.sendMessage(CREATE_QUEUE, jsonmsg);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = "error";
+        }
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+
+        return arrayBuilder.add(response).build();
+    }
+
+    @Path("/testIBC")
+    @GET
+    @Produces("application/json")
+    public JsonArray getTestIBC() {
+
+        JmsProvider jmsProvider = new JmsProvider();
+        String response = null;
+        try {
+            String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"1234567\"}";
+            response = jmsProvider.sendMessage(IBC_QUEUE, jsonmsg);
         } catch (Exception e) {
             e.printStackTrace();
             response = "error";

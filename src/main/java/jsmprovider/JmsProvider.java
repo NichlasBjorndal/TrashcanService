@@ -1,5 +1,6 @@
 package jsmprovider;
 
+import mdb.utils.GsonWrapper;
 import mdb.utils.JMSSessionFactory;
 
 import javax.jms.*;
@@ -60,6 +61,18 @@ public class JmsProvider {
      */
     public String sendMessage(String queueName, String msg) throws Exception {
         return sendMessage(queueName,msg,5000);
+    }
+
+    /**
+     * Sends a message containing an object in json format.
+     * @param queueName Name of the JMS queue.
+     * @param msgObj An object to be converted to JSON and sent.
+     * @return The reply from the consumer in JSON format.
+     * @throws Exception Thrown if the timeout limit is exceeded.
+     */
+    public String sendMessage(String queueName, Object msgObj) throws Exception {
+        String jsonString = GsonWrapper.toJson(msgObj);
+        return sendMessage(queueName,jsonString,5000);
     }
 
     private String getTextFromReceivedMessage(Message response) {
