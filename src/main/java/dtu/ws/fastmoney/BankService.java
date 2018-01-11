@@ -29,6 +29,23 @@ public interface BankService {
 
     /**
      * 
+     * @param arg0
+     * @throws BankServiceException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "retireAccount", targetNamespace = "http://fastmoney.ws.dtu/", className = "dtu.ws.fastmoney.RetireAccount")
+    @ResponseWrapper(localName = "retireAccountResponse", targetNamespace = "http://fastmoney.ws.dtu/", className = "dtu.ws.fastmoney.RetireAccountResponse")
+    @Action(input = "http://fastmoney.ws.dtu/BankService/retireAccountRequest", output = "http://fastmoney.ws.dtu/BankService/retireAccountResponse", fault = {
+        @FaultAction(className = BankServiceException_Exception.class, value = "http://fastmoney.ws.dtu/BankService/retireAccount/Fault/BankServiceException")
+    })
+    public void retireAccount(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws BankServiceException_Exception
+    ;
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg1
@@ -75,6 +92,26 @@ public interface BankService {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns dtu.ws.fastmoney.Account
+     * @throws BankServiceException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAccountByCprNumber", targetNamespace = "http://fastmoney.ws.dtu/", className = "dtu.ws.fastmoney.GetAccountByCprNumber")
+    @ResponseWrapper(localName = "getAccountByCprNumberResponse", targetNamespace = "http://fastmoney.ws.dtu/", className = "dtu.ws.fastmoney.GetAccountByCprNumberResponse")
+    @Action(input = "http://fastmoney.ws.dtu/BankService/getAccountByCprNumberRequest", output = "http://fastmoney.ws.dtu/BankService/getAccountByCprNumberResponse", fault = {
+        @FaultAction(className = BankServiceException_Exception.class, value = "http://fastmoney.ws.dtu/BankService/getAccountByCprNumber/Fault/BankServiceException")
+    })
+    public Account getAccountByCprNumber(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws BankServiceException_Exception
+    ;
+
+    /**
+     * 
      * @return
      *     returns java.util.List<dtu.ws.fastmoney.AccountInfo>
      */
@@ -105,23 +142,6 @@ public interface BankService {
         User arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         BigDecimal arg1)
-        throws BankServiceException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws BankServiceException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "retireAccount", targetNamespace = "http://fastmoney.ws.dtu/", className = "dtu.ws.fastmoney.RetireAccount")
-    @ResponseWrapper(localName = "retireAccountResponse", targetNamespace = "http://fastmoney.ws.dtu/", className = "dtu.ws.fastmoney.RetireAccountResponse")
-    @Action(input = "http://fastmoney.ws.dtu/BankService/retireAccountRequest", output = "http://fastmoney.ws.dtu/BankService/retireAccountResponse", fault = {
-        @FaultAction(className = BankServiceException_Exception.class, value = "http://fastmoney.ws.dtu/BankService/retireAccount/Fault/BankServiceException")
-    })
-    public void retireAccount(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
         throws BankServiceException_Exception
     ;
 
