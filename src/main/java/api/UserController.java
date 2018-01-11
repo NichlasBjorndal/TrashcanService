@@ -1,7 +1,11 @@
 package api;
 
-import Core.User.User;
+import jsmprovider.JmsProvider;
 
+import javax.ejb.Stateless;
+import javax.jms.JMSDestinationDefinition;
+import javax.jms.JMSDestinationDefinitions;
+import javax.jms.JMSException;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -9,29 +13,35 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+@Stateless
+@JMSDestinationDefinitions(
+        value = {
+                @JMSDestinationDefinition(
+                        name = "java:/queue/CreateUserMDB",
+                        interfaceName = "javax.jms.Queue",
+                        destinationName = "CreateUserQueue"
+                ),
+        }
+)
 @Path("/users")
 public class UserController {
-    private User user;
-
+    private static final String CREATE_QUEUE = "CreateUserQueue";
 
     @Path("/all")
     @GET
     @Produces("application/json")
-    public JsonArray getAll(){
+    public JsonArray getAll() {
 
-        user = new User("Karl", "1234567891");
-
+        JmsProvider jmsProvider = new JmsProvider();
+        String response = null;
+        try {
+            response = jmsProvider.sendMessage(CREATE_QUEUE, "Hej far");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = "error";
+        }
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 
-        arrayBuilder.add(Json.createObjectBuilder().add("name", user.getName()));
-        arrayBuilder.add(Json.createObjectBuilder().add("name", "Bobby"));
-        arrayBuilder.add(Json.createObjectBuilder().add("name", "Sven"));
-
-
-        user = new User("Name", "4201234");
-
-        return arrayBuilder.build();
-
-
+        return arrayBuilder.add(response).build();
     }
 }
