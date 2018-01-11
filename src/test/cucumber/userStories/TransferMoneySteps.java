@@ -1,41 +1,37 @@
 import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 
-public class CreateAccountSteps implements En {
-    public CreateAccountSteps() {
-        When("^I ask the DTU-pay service to create me an Account$", () -> {
+public class TransferMoneySteps implements En {
+    public TransferMoneySteps() {
+        Given("^a client and merchant exists$", () -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        Then("^I receive a UUID$", () -> {
+        When("^transferring (\\d+) money from client to merchant$", (Integer arg0) -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        And("^the account is created$", () -> {
+        Then("^client will have (\\d+) money$", (Integer arg0) -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        Given("^I already have an account$", () -> {
+        And("^merchant will have (\\d+) money$", (Integer arg0) -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        Then("^I receive an error from the system$", () -> {
+        Given("^a client and a merchant exists$", () -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        Given("^That my CPR-number is invalid$", () -> {
+        And("^client have (\\d+) money$", (Integer arg0) -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        Then("^I recieve an error from the system$", () -> {
+        And("^merchant have (\\d+) money$", (Integer arg0) -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        And("^the account is not created$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        Given("^That my last or first name contains errors$", () -> {
+        When("^transferring -(\\d+) money from client to merchant$", (Integer arg0) -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
