@@ -1,6 +1,7 @@
 package jsmprovider;
 
 import mdb.utils.JMSSessionFactory;
+
 import javax.jms.*;
 import java.util.Random;
 
@@ -31,6 +32,9 @@ public class JmsProvider {
         String correlationID = createRandomString();
 
         TextMessage message = session.createTextMessage();
+
+        //String jsonMsg = GsonWrapper.toJson(msg)
+
         message.setText(msg);
         message.setJMSReplyTo(tempDest);
         message.setJMSCorrelationID(correlationID);
