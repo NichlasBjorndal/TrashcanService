@@ -1,23 +1,29 @@
 package jsmprovider;
 
 import mdb.JMSSessionFactory;
-
-import javax.annotation.Resource;
 import javax.jms.*;
-import javax.xml.soap.Text;
 import java.util.Random;
-import java.util.UUID;
 
+/**
+ * A wrapper for sending messages over JMS.
+ */
 public class JmsProvider {
-    @Resource(lookup = "java:/ConnectionFactory")
-    protected ConnectionFactory cf;
 
-    @Resource(lookup = "java:/queue/CreateUserQueue")
-    private Queue createQueue;
+    private Session session;
 
-    public String sendMessage(String qName, String msg) throws JMSException {
-        Session session = JMSSessionFactory.createJmsSession();
-        Destination dest = session.createQueue(qName);
+    public JmsProvider() {
+        session = JMSSessionFactory.createJmsSession();
+    }
+
+    /**
+     * @param queueName Name of the JMS queue.
+     * @param msg A message in JSON format to be sent over JMS.
+     * @param timeout The timout limit in milliseconds.
+     * @return The reply from the consumer in JSON format.
+     * @throws Exception Thrown if the timeout limit is exceeded.
+     */
+    public String sendMessage(String queueName, String msg, int timeout) throws Exception {
+        Destination dest = session.createQueue(queueName);
 
         Destination tempDest = session.createTemporaryQueue();
         MessageConsumer responseConsumer = session.createConsumer(tempDest);
@@ -33,17 +39,32 @@ public class JmsProvider {
         msgProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
         msgProducer.send(message);
 
-        Message receive = responseConsumer.receive();
-        return handleResponse(receive);
+        Message receive = responseConsumer.receive(timeout);
+
+        if (receive == null)
+            throw new Exception("No message received. Timeout limit reached.");
+
+        return getTextFromReceivedMessage(receive);
     }
 
-    private String handleResponse(Message response) {
+    /**
+     * Sends a message with a default timeout of 5000 milliseconds.
+     * @param queueName Name of the JMS queue.
+     * @param msg A message in JSON format to be sent over JMS.
+     * @return The reply from the consumer in JSON format.
+     * @throws Exception Thrown if the timeout limit is exceeded.
+     */
+    public String sendMessage(String queueName, String msg) throws Exception {
+        return sendMessage(queueName,msg,5000);
+    }
+
+    private String getTextFromReceivedMessage(Message response) {
         String messageText = null;
         if(response instanceof TextMessage) {
             TextMessage textMessage = (TextMessage) response;
+
             try {
                 messageText = textMessage.getText();
-                System.out.println("Received message from temp queue: " + messageText);
             } catch (JMSException e) {
                 e.printStackTrace();
             }

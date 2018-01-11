@@ -37,8 +37,9 @@ public class UserController {
         String response = null;
         try {
             response = jmsProvider.sendMessage(CREATE_QUEUE, "Hej far");
-        } catch (JMSException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            response = "error";
         }
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 

@@ -16,7 +16,6 @@
  */
 package mdb;
 
-import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.jms.*;
@@ -27,38 +26,20 @@ import javax.jms.*;
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 public class UserQueueMDB implements MessageListener {
 
-    @Resource(lookup = "java:/ConnectionFactory")
-    protected ConnectionFactory cf;
-
-
     /**
      * @see MessageListener#onMessage(Message)
      */
     public void onMessage(Message rcvMessage) {
-        TextMessage msg;
 
-        try {
-            System.out.println("Received message: " + ((TextMessage)rcvMessage).getText());
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-
-        Session jmsSession = JMSSessionFactory.createJmsSession();
-        try {
-            TextMessage response = jmsSession.createTextMessage();
-
-            msg = (TextMessage) rcvMessage;
-            String rcvMsgText = msg.getText();
+        String receivedText = OnMessageUtil.getTextFromMessage(rcvMessage);
             //TODO: Process received text
 
-            response.setText("Read you loud and clear, over.");
-            response.setJMSCorrelationID(rcvMessage.getJMSCorrelationID());
+        String responseMessageText = ProccessMsg(receivedText);
 
-            MessageProducer producer = jmsSession.createProducer(null);
-            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-            producer.send(rcvMessage.getJMSReplyTo(),response);
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
+        OnMessageUtil.Reply(rcvMessage, responseMessageText);
+    }
+
+    protected String ProccessMsg(String receivedText) {
+        return "Read you loud and clear, BOIIII, over.";
     }
 }

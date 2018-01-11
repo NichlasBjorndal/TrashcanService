@@ -7,8 +7,14 @@ import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+/**
+ * Factory for creating sessions to be used when communicating over JMS.
+ */
 public class JMSSessionFactory {
 
+    /**
+     * @return A Session object (@see javax.jms.Session) to be used when sending messages.
+     */
     public static Session createJmsSession() {
         ConnectionFactory cf = null;
         InitialContext jndiContext;
