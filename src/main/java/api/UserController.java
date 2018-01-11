@@ -35,7 +35,8 @@ public class UserController {
         JmsProvider jmsProvider = new JmsProvider();
         String response = null;
         try {
-            response = jmsProvider.sendMessage(CREATE_QUEUE, "Hej far");
+            String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"1234567\"}";
+            response = jmsProvider.sendMessage(CREATE_QUEUE, jsonmsg);
         } catch (Exception e) {
             e.printStackTrace();
             response = "error";

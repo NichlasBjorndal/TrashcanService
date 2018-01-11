@@ -13,7 +13,7 @@ public class User {
     private Barcode barcode;
     private String name;
     private UUID userID;
-    private BarcodeGeneratorInterface barcodeGenerator;
+    private transient BarcodeGeneratorInterface barcodeGenerator;
     private String cpr;
 
     public User(String name, String cpr){
@@ -21,6 +21,12 @@ public class User {
         this.barcodeGenerator = new BarcodeGenerator();
         this.userID = UUID.randomUUID();
         this.name = name;
+    }
+
+    //Used for GSON
+    public User(){
+        this.barcodeGenerator = new BarcodeGenerator();
+        this.userID = UUID.randomUUID();
     }
 
     public void requestBarcode() throws IOException {
