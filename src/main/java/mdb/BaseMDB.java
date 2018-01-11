@@ -16,30 +16,20 @@
  */
 package mdb;
 
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.MessageDriven;
+import mdb.utils.OnMessageUtil;
+
 import javax.jms.*;
 
-@MessageDriven(name = "UserQueueMDB", activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateUserQueue"),
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
-public class UserQueueMDB implements MessageListener {
+public abstract class BaseMDB implements MessageListener {
 
     /**
      * @see MessageListener#onMessage(Message)
      */
     public void onMessage(Message rcvMessage) {
-
         String receivedText = OnMessageUtil.getTextFromMessage(rcvMessage);
-            //TODO: Process received text
-
-        String responseMessageText = ProccessMsg(receivedText);
-
+        String responseMessageText = processMessage(receivedText);
         OnMessageUtil.Reply(rcvMessage, responseMessageText);
     }
 
-    protected String ProccessMsg(String receivedText) {
-        return "Read you loud and clear, BOIIII, over.";
-    }
+    protected abstract String processMessage(String receivedText);
 }

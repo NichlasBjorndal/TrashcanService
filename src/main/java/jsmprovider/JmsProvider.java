@@ -1,6 +1,6 @@
 package jsmprovider;
 
-import mdb.JMSSessionFactory;
+import mdb.utils.JMSSessionFactory;
 import javax.jms.*;
 import java.util.Random;
 

@@ -17,13 +17,12 @@ import javax.ws.rs.Produces;
 @JMSDestinationDefinitions(
         value = {
                 @JMSDestinationDefinition(
-                        name = "java:/queue/UserQueueMDB",
+                        name = "java:/queue/CreateUserMDB",
                         interfaceName = "javax.jms.Queue",
                         destinationName = "CreateUserQueue"
                 ),
         }
 )
-
 @Path("/users")
 public class UserController {
     private static final String CREATE_QUEUE = "CreateUserQueue";

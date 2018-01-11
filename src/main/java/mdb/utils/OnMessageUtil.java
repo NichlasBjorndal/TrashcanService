@@ -1,6 +1,4 @@
-package mdb;
-
-
+package mdb.utils;
 
 import javax.jms.*;
 
@@ -33,5 +31,4 @@ public class OnMessageUtil {
             e.printStackTrace();
         }
     }
-
 }

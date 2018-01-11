@@ -1,4 +1,4 @@
-package mdb;
+package mdb.utils;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
