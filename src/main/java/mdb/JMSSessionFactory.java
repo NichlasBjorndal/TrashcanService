@@ -23,6 +23,7 @@ public class JMSSessionFactory {
         Session session = null;
         try {
             connection = cf.createConnection();
+            connection.start();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         } catch (JMSException e) {
             e.printStackTrace();

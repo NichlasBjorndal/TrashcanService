@@ -25,7 +25,6 @@ import javax.jms.*;
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateUserQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
-
 public class UserQueueMDB implements MessageListener {
 
     @Resource(lookup = "java:/ConnectionFactory")
@@ -55,8 +54,8 @@ public class UserQueueMDB implements MessageListener {
             response.setText("Read you loud and clear, over.");
             response.setJMSCorrelationID(rcvMessage.getJMSCorrelationID());
 
-
             MessageProducer producer = jmsSession.createProducer(null);
+            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
             producer.send(rcvMessage.getJMSReplyTo(),response);
         } catch (JMSException e) {
             e.printStackTrace();

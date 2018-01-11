@@ -4,6 +4,8 @@ import mdb.JMSSessionFactory;
 
 import javax.annotation.Resource;
 import javax.jms.*;
+import javax.xml.soap.Text;
+import java.util.Random;
 import java.util.UUID;
 
 public class JmsProvider {
@@ -18,16 +20,21 @@ public class JmsProvider {
         Destination dest = session.createQueue(qName);
 
         Destination tempDest = session.createTemporaryQueue();
-        MessageConsumer reponseConsumer = session.createConsumer(tempDest);
+        MessageConsumer responseConsumer = session.createConsumer(tempDest);
 
-        Message message = session.createTextMessage(msg);
+        String correlationID = createRandomString();
+
+        TextMessage message = session.createTextMessage();
+        message.setText(msg);
         message.setJMSReplyTo(tempDest);
-        message.setJMSCorrelationID(UUID.randomUUID().toString());
-        session.createProducer(dest).send(message);
+        message.setJMSCorrelationID(correlationID);
 
-        Message receive = reponseConsumer.receive();
+        MessageProducer msgProducer = session.createProducer(dest);
+        msgProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+        msgProducer.send(message);
+
+        Message receive = responseConsumer.receive();
         return handleResponse(receive);
-        //return "";
     }
 
     private String handleResponse(Message response) {
@@ -42,5 +49,11 @@ public class JmsProvider {
             }
         }
         return messageText;
+    }
+
+    private String createRandomString() {
+        Random random = new Random(System.currentTimeMillis());
+        long randomLong = random.nextLong();
+        return Long.toHexString(randomLong);
     }
 }
