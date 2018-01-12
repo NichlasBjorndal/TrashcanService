@@ -21,12 +21,6 @@
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
         </dependency>
-
-        <dependency>
-            <groupId>Trashcan</groupId>
-            <artifactId>DTUPay</artifactId>
-            <version>0.5</version>
-        </dependency>
     </dependencies>
 
 
