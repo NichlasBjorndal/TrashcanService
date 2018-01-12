@@ -1,8 +1,10 @@
 package simulator;
 
 import Core.User.User;
+import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import mdb.utils.GsonWrapper;
 
 public class ClientSimulator {
 
@@ -15,7 +17,7 @@ public class ClientSimulator {
     public String createAccount() throws UnirestException {
 
         //make json
-        Unirest.post(endpoint + "/accounts").header("Content-Type", "application/json").body(new User("","")).asString();
+        HttpResponse<String> r = Unirest.post(endpoint + "/accounts").header("Content-Type", "application/json").body(GsonWrapper.toJson(new User("",""))).asString();
 
         return "123412341234123412341234123412341234";
     }
