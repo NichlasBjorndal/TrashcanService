@@ -1,4 +1,4 @@
-package Core.Barcode;
+package core.barcode;
 
 import java.nio.ByteBuffer;
 import java.util.Base64;

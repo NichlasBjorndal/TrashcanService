@@ -1,6 +1,6 @@
-package Core.Barcode;
+package core.barcode;
 
-import Core.Barcode.Model.Barcode;
+import core.barcode.Model.Barcode;
 
 import java.io.IOException;
 

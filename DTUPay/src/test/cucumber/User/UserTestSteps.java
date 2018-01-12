@@ -1,7 +1,7 @@
 package User;
 
-import Core.Barcode.Model.Barcode;
-import Core.User.User;
+import core.barcode.Model.Barcode;
+import core.user.User;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
