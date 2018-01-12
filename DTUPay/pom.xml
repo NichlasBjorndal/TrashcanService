@@ -10,6 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <groupId>Trashcan</groupId>
     <artifactId>DTUPay</artifactId>
     <version>0.5</version>
     <packaging>war</packaging>

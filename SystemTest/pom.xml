@@ -9,12 +9,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+
+
+    <groupId>Trashcan</groupId>
     <artifactId>SystemTest</artifactId>
+
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>Trashcan</groupId>
+            <artifactId>DTUPay</artifactId>
+            <version>0.5</version>
         </dependency>
     </dependencies>
 
