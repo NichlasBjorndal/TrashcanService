@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 /**
- * Generates 128 code barcodes based on Base64 UUIDs.
+ * Generates 128-code barcodes based on Base64 UUIDs.
  */
 public class BarcodeGenerator implements BarcodeGeneratorInterface{
 
@@ -19,6 +19,10 @@ public class BarcodeGenerator implements BarcodeGeneratorInterface{
         uniqueIDGenerator = new UniqueIDGenerator();
     }
 
+    /**
+     * @return A 128-code barcode.
+     * @throws IOException
+     */
     public Barcode generateBarcode() throws IOException {
         String uuid = uniqueIDGenerator.generateUUIDToBase64();
         Code128Bean barcode128Bean = new Code128Bean();
