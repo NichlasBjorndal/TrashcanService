@@ -1,5 +1,6 @@
 package mdb;
 
+import core.user.Customer;
 import core.user.User;
 import mdb.utils.GsonWrapper;
 import persistence.UserStore;
@@ -17,10 +18,10 @@ public class CreateUserMDB extends BaseMDB {
 
     @Override
     protected String processMessage(String receivedText) {
-        User user = (User) GsonWrapper.fromJson(receivedText, User.class);
+        Customer cust = (Customer) GsonWrapper.fromJson(receivedText, Customer.class);
 
-        userStore.saveUser(user);
-        return GsonWrapper.toJson(user);
+        userStore.saveUser(cust);
+        return GsonWrapper.toJson(cust);
 
     }
 }

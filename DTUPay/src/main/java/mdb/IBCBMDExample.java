@@ -1,5 +1,6 @@
 package mdb;
 
+import core.user.Customer;
 import core.user.User;
 import jsmprovider.JmsProvider;
 
@@ -16,11 +17,11 @@ public class IBCBMDExample extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
         String response = null;
-        User user = new User("bob","2982389-1234");
+        Customer customer = new Customer("bob","2982389-1234");
 
         JmsProvider provider = new JmsProvider();
         try {
-            response = provider.sendMessage("CreateUserQueue",user);
+            response = provider.sendMessage("CreateUserQueue",customer);
         } catch (Exception e) {
             e.printStackTrace();
         }
