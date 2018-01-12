@@ -13,6 +13,8 @@ public class ClientSimulator {
 
 
     public String createAccount() throws UnirestException {
+
+        //make json
         Unirest.post(endpoint + "/accounts").header("Content-Type", "application/json").body(new User("","")).asString();
 
         return "123412341234123412341234123412341234";
