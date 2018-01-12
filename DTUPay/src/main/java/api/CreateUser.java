@@ -57,7 +57,7 @@ public class CreateUser {
 
         try {
             for (int i = 0; i < 5; i++) {
-                String text = "Create User: " + i;
+                String text = "Create user: " + i;
 
                 try {
                     Message message = session.createTextMessage(text);

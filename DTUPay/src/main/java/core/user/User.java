@@ -1,9 +1,9 @@
-package Core.User;
+package core.user;
 
 
-import Core.Barcode.BarcodeGenerator;
-import Core.Barcode.BarcodeGeneratorInterface;
-import Core.Barcode.Model.Barcode;
+import core.barcode.BarcodeGenerator;
+import core.barcode.BarcodeGeneratorInterface;
+import core.barcode.Model.Barcode;
 
 import java.io.IOException;
 import java.util.UUID;

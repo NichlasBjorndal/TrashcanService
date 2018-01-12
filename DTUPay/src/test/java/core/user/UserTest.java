@@ -1,7 +1,7 @@
-package Core.User;
+package core.user;
 import static org.mockito.Mockito.*;
 
-import Core.Barcode.BarcodeGeneratorInterface;
+import core.barcode.BarcodeGeneratorInterface;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

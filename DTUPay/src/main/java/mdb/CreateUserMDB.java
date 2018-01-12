@@ -1,12 +1,11 @@
 package mdb;
 
-import Core.User.User;
+import core.user.User;
 import mdb.utils.GsonWrapper;
 import persistence.UserStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-import java.util.List;
 
 @MessageDriven(name = "CreateUserMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateUserQueue"),

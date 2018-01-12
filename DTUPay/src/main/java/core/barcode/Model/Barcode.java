@@ -1,4 +1,4 @@
-package Core.Barcode.Model;
+package core.barcode.Model;
 
 import java.io.File;
 

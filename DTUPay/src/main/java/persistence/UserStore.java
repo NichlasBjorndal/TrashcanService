@@ -1,6 +1,6 @@
 package persistence;
 
-import Core.User.User;
+import core.user.User;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package Core.Barcode;
+package core.barcode;
 
 import org.junit.Test;
 

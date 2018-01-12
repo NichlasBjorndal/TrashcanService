@@ -1,6 +1,6 @@
 package mdb;
 
-import Core.User.User;
+import core.user.User;
 import jsmprovider.JmsProvider;
 
 import javax.ejb.ActivationConfigProperty;

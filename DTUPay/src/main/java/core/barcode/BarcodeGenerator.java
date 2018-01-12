@@ -1,6 +1,6 @@
-package Core.Barcode;
+package core.barcode;
 
-import Core.Barcode.Model.Barcode;
+import core.barcode.Model.Barcode;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code128.Code128Constants;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
