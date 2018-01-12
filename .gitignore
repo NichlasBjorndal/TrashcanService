@@ -9,7 +9,7 @@
 .idea/dictionaries
 *.png
 *.jpg
-target/**
+**/target/**
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
