@@ -1,10 +1,8 @@
-package io.swagger.model;
+package io.swagger.api.model;
 
 import java.util.Objects;
-import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 

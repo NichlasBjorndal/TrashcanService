@@ -12,6 +12,7 @@
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/gen/java" />
+          <root url="file://$MODULE_DIR$/src/gen/java" />
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>

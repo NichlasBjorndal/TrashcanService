@@ -1,25 +1,15 @@
 package io.swagger.api;
 
-import io.swagger.model.*;
-import io.swagger.api.MerchantApiService;
 import io.swagger.api.factories.MerchantApiServiceFactory;
 
 import io.swagger.annotations.ApiParam;
-import io.swagger.jaxrs.*;
 
-import io.swagger.model.Merchant;
-
-import java.util.Map;
-import java.util.List;
-import io.swagger.api.NotFoundException;
-
-import java.io.InputStream;
+import io.swagger.api.model.Merchant;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.*;
-import javax.validation.constraints.*;
 
 @Path("/merchant")
 
