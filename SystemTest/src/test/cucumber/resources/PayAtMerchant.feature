@@ -1,13 +1,17 @@
 Feature: Pay at merchant
-  Scenario: A user can pay at a merchant
+  Scenario: A customer can pay at a merchant
     Given I already have an account
+    And a merchant has an account
+    And I have requested a barcode
     And I have received a barcode
     When A merchant attempts to verify my barcode for a purchase
     Then DTUpay accepts the barcode and performs the transaction
     And My balance has changed
 
-  Scenario: A user cannot pay a merchant with too low fund
+  Scenario: A customer cannot pay a merchant with too low fund
     Given I already have an account
+    And a merchant has an account
+    And I have requested a barcode
     And I have received a barcode
     When A merchant tries to withdraw too large a fund
     Then DTUpay denies the transaction
@@ -15,9 +19,35 @@ Feature: Pay at merchant
 
   Scenario: A merchant cannot use the same barcode twice
     Given I already have an account
-    And I have received a barcode
+    And a merchant has an account
+    And customer have requested a barcode
+    And customer have received a barcode
     When A merchant attempts to verify my barcode for a purchase
     And DTUpay accepts the barcode and performs the transaction
     And A merchant attempts to verify my barcode for a purchase
     Then DTUpay denies the transaction
     And my balance has changed
+
+  Scenario: A merchant cannot use a non-existing barcode
+    Given a merchant has an account
+    And a barcode with uuid "00000000-0000-0000-0000-000000000000"
+    When the merchant attempts to verify this barcode for a purchase
+    Then DTUpay denies the transaction
+
+
+  Scenario: A merchant cannot be paid by non-existing customers
+    Given a merchant has an account
+    And a customer has an account
+    And customer have requested a barcode
+    And customer have received a barcode
+    And a customer then deletes his account
+    When a merchant attempts to verify the customers barcode for a purchase
+    Then DTUpay denies the transaction
+
+  Scenario: A non-existing merchant cannot get paid by a customer
+    Given a customer has an account
+    And customer have requested a barcode
+    And customer have received a barcode
+    And merchant does not have an account
+    When the merchant attempts to verify this barcode for a purchase
+    Then DTUpay denies the transaction
