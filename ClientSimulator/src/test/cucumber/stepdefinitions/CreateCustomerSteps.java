@@ -1,20 +1,10 @@
-import Core.User.User;
+
 import cucumber.api.PendingException;
 import cucumber.api.java8.En;
-import simulator.ClientSimulator;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class CreateAccountSteps implements En {
-    public CreateAccountSteps() {
-
-        final ClientSimulator[] clientSimulator = new ClientSimulator[1];
-        final String[] uuid = new String[1];
-        final User[] user = new User[1];
-
+public class CreateCustomerSteps implements En {
+    public CreateCustomerSteps() {
 
         Given("^I already have an account$", () -> {
             // Write code here that turns the phrase above into concrete actions

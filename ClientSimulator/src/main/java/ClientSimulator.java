@@ -1,6 +1,4 @@
-package simulator;
-
-import Core.User.User;
+import core.user.Customer;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -14,15 +12,15 @@ public class ClientSimulator {
     public ClientSimulator(){}
 
 
-    public String createAccount() throws UnirestException {
+    public String createCustomer() throws UnirestException {
 
         //make json
-        HttpResponse<String> r = Unirest.post(endpoint + "/accounts").header("Content-Type", "application/json").body(GsonWrapper.toJson(new User("",""))).asString();
+        HttpResponse<String> r = Unirest.post(endpoint + "/accounts").header("Content-Type", "application/json").body(GsonWrapper.toJson(new Customer("",""))).asString();
 
         return "123412341234123412341234123412341234";
     }
 
-    public User getAccount(String s) {
-        return new User("","");
+    public Customer getAccount(String s) {
+        return new Customer("","");
     }
 }

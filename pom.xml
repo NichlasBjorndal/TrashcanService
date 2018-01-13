@@ -12,6 +12,8 @@
         <module>SystemTest</module>
         <module>DTUPay</module>
         <module>ExternalTest</module>
+        <module>ClientSimulator</module>
+        <module>MerchantSimulator</module>
     </modules>
 
 
