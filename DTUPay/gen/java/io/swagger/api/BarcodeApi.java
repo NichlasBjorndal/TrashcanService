@@ -1,20 +1,30 @@
-package gen.io.swagger.api;
+package io.swagger.api;
 
+import io.swagger.model.*;
+import io.swagger.api.BarcodeApiService;
 import io.swagger.api.factories.BarcodeApiServiceFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import io.swagger.annotations.ApiParam;
+import io.swagger.jaxrs.*;
+
+
+import java.util.Map;
+import java.util.List;
+import io.swagger.api.NotFoundException;
+
+import java.io.InputStream;
+
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.*;
+import javax.validation.constraints.*;
 
 @Path("/barcode")
 
 
 @io.swagger.annotations.Api(description = "the barcode API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T12:27:35.204Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:38:28.848Z")
 public class BarcodeApi  {
    private final BarcodeApiService delegate = BarcodeApiServiceFactory.getBarcodeApi();
 

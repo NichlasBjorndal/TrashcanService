@@ -1,20 +1,31 @@
-package gen.io.swagger.api;
+package io.swagger.api;
+
+import io.swagger.model.*;
+import io.swagger.api.MerchantApiService;
+import io.swagger.api.factories.MerchantApiServiceFactory;
 
 import io.swagger.annotations.ApiParam;
-import io.swagger.api.factories.MerchantApiServiceFactory;
-import gen.io.swagger.api.*;
-import gen.io.swagger.model.Merchant;
+import io.swagger.jaxrs.*;
 
-import javax.ws.rs.*;
+import io.swagger.model.Merchant;
+
+import java.util.Map;
+import java.util.List;
+import io.swagger.api.NotFoundException;
+
+import java.io.InputStream;
+
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.*;
+import javax.validation.constraints.*;
 
 @Path("/merchant")
 
 
 @io.swagger.annotations.Api(description = "the merchant API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T12:27:35.204Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:38:28.848Z")
 public class MerchantApi  {
    private final MerchantApiService delegate = MerchantApiServiceFactory.getMerchantApi();
 
@@ -24,6 +35,8 @@ public class MerchantApi  {
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "Create a new merchant in DTUPay", notes = "", response = Void.class, tags={ "merchant", })
     @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 201, message = "New merchant created", response = Void.class),
+        
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
     public Response createMerchant(@ApiParam(value = "Merchant object that needs to be added to DTUPay" ,required=true) Merchant body,@Context SecurityContext securityContext)
     throws NotFoundException {

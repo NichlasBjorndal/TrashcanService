@@ -1,4 +1,4 @@
-package gen.io.swagger.model;
+package io.swagger.model;
 
 import java.util.Objects;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T12:27:35.204Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:38:28.848Z")
 public class Merchant   {
   
   private String name = null;
