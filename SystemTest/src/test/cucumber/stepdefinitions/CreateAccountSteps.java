@@ -16,32 +16,11 @@ public class CreateAccountSteps implements En {
         final User[] user = new User[1];
 
 
-        When("^I ask the DTU-pay service to create me an Account$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-                clientSimulator[0] = new ClientSimulator();
-                uuid[0] = clientSimulator[0].createAccount();
-
-        });
-
-
-        Then("^I receive a UUID$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            assertNotNull(uuid[0]);
-            assertTrue(uuid[0].length() == 36);
-
-
-        });
-        And("^the account is created$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            user[0] = clientSimulator[0].getAccount(uuid[0]);
-            assertNotNull(user[0]);
-        });
-
-
         Given("^I already have an account$", () -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
+
         Then("^I receive an error from the system$", () -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
@@ -50,15 +29,29 @@ public class CreateAccountSteps implements En {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
-        Then("^I recieve an error from the system$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^the account is not created$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
+
+
         Given("^That my last or first name contains errors$", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            throw new PendingException();
+        });
+        Given("^I have a customer bank account in the FastMoney Bank$", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            throw new PendingException();
+        });
+        When("^I ask the DTU-pay service to create me a Customer Account$", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            throw new PendingException();
+        });
+        Then("^the customer account is created$", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            throw new PendingException();
+        });
+        And("^the customer account is not created$", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            throw new PendingException();
+        });
+        Given("^That I do not have a customer account in the FastMoney Bank$", () -> {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
