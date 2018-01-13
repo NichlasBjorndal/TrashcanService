@@ -1,11 +1,9 @@
-package dtu.ws.fastmoney;
+package fastmoney;
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 import org.junit.rules.ExternalResource;
 
-import static org.junit.Assert.assertEquals;
+import dtu.ws.fastmoney.*;
+import static org.junit.Assert.*;
 
 public class TestResources extends ExternalResource {
     public BankServiceService service;
@@ -32,13 +30,13 @@ public class TestResources extends ExternalResource {
     protected void after() {
         try {
             Account account = server.getAccountByCprNumber(user1.getCprNumber());
-            server.retireAccount(account.id);
+            server.retireAccount(account.getId());
         } catch (BankServiceException_Exception e) {
             assertEquals("Account does not exist", e.getMessage());
         }
         try {
             Account account = server.getAccountByCprNumber(user2.getCprNumber());
-            server.retireAccount(account.id);
+            server.retireAccount(account.getId());
         } catch (BankServiceException_Exception e) {
             assertEquals("Account does not exist", e.getMessage());
         }

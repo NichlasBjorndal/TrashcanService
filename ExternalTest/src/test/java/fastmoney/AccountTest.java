@@ -1,4 +1,4 @@
-package dtu.ws.fastmoney;
+package fastmoney;
 
 import java.math.BigDecimal;
 
@@ -7,8 +7,12 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.rules.ExpectedException;
+import static org.junit.Assert.*;
+
+import dtu.ws.fastmoney.*;
+
+import static org.junit.Assert.fail;
 
 public class AccountTest {
     BankService server;
@@ -51,7 +55,7 @@ public class AccountTest {
         assertEquals(user1.getFirstName(),account.getUser().getFirstName());
         assertEquals(user1.getLastName(),account.getUser().getLastName());
 
-        server.retireAccount(account.id);
+        server.retireAccount(account.getId());
         expectedException.expect(BankServiceException_Exception.class);
         server.getAccount(user1.getCprNumber());
     }
@@ -65,7 +69,7 @@ public class AccountTest {
 
         assertEquals(amount, account.getBalance());
 
-        server.retireAccount(account.id);
+        server.retireAccount(account.getId());
         expectedException.expect(BankServiceException_Exception.class);
         server.getAccount(user2.getCprNumber());
     }
