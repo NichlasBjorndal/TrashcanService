@@ -84,6 +84,38 @@ public class TransferTest {
         assertEquals(expectedAmountSender, res.server.getAccount(senderAccount).getBalance());
     }
 
+    @Test
+    public void transferNoSender() throws BankServiceException_Exception {
+        BigDecimal amount2 = new BigDecimal(0);
+        BigDecimal transferAmount = new BigDecimal(500000);
+
+        String senderAccount = "NoSender";
+        String receiverAccount = res.server.createAccountWithBalance(res.user2, amount2);
+
+        try {
+            res.server.transferMoneyFromTo(senderAccount, receiverAccount, transferAmount,"Transfer from no one to Jane");
+            fail("No sender account should exist");
+        } catch (BankServiceException_Exception e) {
+            assertEquals("Debtor account does not exist", e.getMessage());
+        }
+    }
+
+    @Test
+    public void transferNoReceiver() throws BankServiceException_Exception {
+        BigDecimal amount1 = new BigDecimal(1000000);
+        BigDecimal transferAmount = new BigDecimal(500000);
+
+        String senderAccount = res.server.createAccountWithBalance(res.user1, amount1);
+        String receiverAccount = "NoReceiver";
+
+        try {
+            res.server.transferMoneyFromTo(senderAccount, receiverAccount, transferAmount,"Transfer from John to No one");
+            fail("No receiver account should exist");
+        } catch (BankServiceException_Exception e) {
+            assertEquals("Creditor account does not exist", e.getMessage());
+        }
+    }
+
     @After
     public void cleanUp(){
         res.after();
