@@ -9,6 +9,7 @@ import core.barcode.Model.Barcode;
 
 public class BarcodeGeneratorTest {
     private BarcodeGenerator barcodeGenerator;
+    private Barcode barcodeResult;
 
     @Before
     public void setUp() throws Exception {
@@ -17,11 +18,12 @@ public class BarcodeGeneratorTest {
 
     @After
     public void tearDown() throws Exception {
+        if(barcodeResult.getFile() != null)
+            barcodeResult.getFile().delete();
     }
 
     @Test
     public void generateBarcode() throws Exception {
-        Barcode barcodeResult;
 
         barcodeResult = barcodeGenerator.generateBarcode();
 
