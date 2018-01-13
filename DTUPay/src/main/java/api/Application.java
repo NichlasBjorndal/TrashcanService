@@ -2,7 +2,7 @@ package api;
 
 import javax.ws.rs.ApplicationPath;
 
-@ApplicationPath("/api")
+//@ApplicationPath("/api")
 public class Application extends javax.ws.rs.core.Application {
     //...
 }
