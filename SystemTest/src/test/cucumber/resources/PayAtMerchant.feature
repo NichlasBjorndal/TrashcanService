@@ -1,12 +1,11 @@
 Feature: Pay at merchant
   Scenario: A customer can pay at a merchant
-    Given I already have an account
-    And a merchant has an account
-    And I have requested a barcode
-    And I have received a barcode
-    When A merchant attempts to verify my barcode for a purchase
-    Then DTUpay accepts the barcode and performs the transaction
-    And My balance has changed
+    Given customer account with first name "John", last name "Doe" and CPR number "9859526433" exists with account balance of  "500"
+    And merchant account with first name "Jane", last name "Doe" and CVR number "67184597" exists with account balance of "500"
+    And the customer has received a barcode
+    When A merchant scans the customer's barcode and sends an invoice for a payment of "500"
+    #Then the merchant's and customer's balance is changed'
+
 
   Scenario: A customer cannot pay a merchant with too low fund
     Given I already have an account

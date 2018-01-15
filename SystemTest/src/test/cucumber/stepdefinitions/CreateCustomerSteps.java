@@ -38,8 +38,8 @@ public class CreateCustomerSteps implements En {
         });
         When("^I ask the DTU-pay service to create me a Customer Account$", () -> {
             // Write code here that turns the phrase above into concrete actions
-            s[0] = cs.createCustomer();
-            //throw new PendingException();
+            //s[0] = cs.createCustomer();
+            throw new PendingException();
         });
         Then("^the customer account is created$", () -> {
             // Write code here that turns the phrase above into concrete actions
