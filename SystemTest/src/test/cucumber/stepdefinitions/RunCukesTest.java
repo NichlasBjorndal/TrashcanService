@@ -5,6 +5,6 @@ import gherkin.ast.Feature;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty", "html:SystemTest/target/cucumber", "json:SystemTest/target/cucumber.json"})
+@CucumberOptions(plugin = {"pretty", "json:target/cucumber.json"})
 public class RunCukesTest {
 }

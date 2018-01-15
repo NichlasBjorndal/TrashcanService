@@ -19,7 +19,7 @@ public class ClientSimulator {
     }
 
     public ResponseModel requestBarcode(String useruuid) throws UnirestException {
-        HttpResponse<String> r = Unirest.post(endpoint + "/barcode/" + useruuid ).asString();
+        HttpResponse<String> r = Unirest.get(endpoint + "/barcode/" + useruuid ).asString();
 
         return new ResponseModel(r.getStatus(), r.getBody());
     }
