@@ -33,9 +33,12 @@ public class RequestBarcodeMBD extends BaseMDB {
 
         String response;
 
-        if (!validUUID || !uuidIsUserId(uuid)) {
+        if (!validUUID ){
             response = "invalidInput";
-        } else {
+        } else if(!uuidIsUserId(uuid)){
+            response = "userDoesntExist";
+        }
+        else {
             BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
 
             //TODO properly handle IO exception
