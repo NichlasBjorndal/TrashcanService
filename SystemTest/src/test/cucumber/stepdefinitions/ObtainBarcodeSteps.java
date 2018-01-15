@@ -38,7 +38,6 @@ public class ObtainBarcodeSteps implements En {
             bankService.createAccountWithBalance(user, decimal);
 
             response[0] = cs.createCustomer(customers[0]);
-            System.out.println(response[0].getStatus());
             assertTrue(response[0].getStatus() == 201);
         });
         When("^I request a new barcode$", () -> {
@@ -48,10 +47,7 @@ public class ObtainBarcodeSteps implements En {
         Then("^I receive a new barcode$", () -> {
             String barcodeuuid = (String) GsonWrapper.fromJson(response[0].getBody(), String.class);
 
-            //if it DOESN'T throw an exception it's a valid UUID
-            UUID.fromString(barcodeuuid);
-
-            assertTrue(response[0].getStatus() == 200);
+            assertEquals(200,response[0].getStatus());
         });
     }
 }

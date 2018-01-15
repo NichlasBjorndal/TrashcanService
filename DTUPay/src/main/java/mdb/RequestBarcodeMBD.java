@@ -4,6 +4,7 @@ import core.barcode.BarcodeGenerator;
 import core.barcode.Model.Barcode;
 import core.user.Customer;
 import mdb.utils.GsonWrapper;
+import persistence.BarcodeStore;
 import persistence.CustomerStore;
 import persistence.UserStore;
 
@@ -34,25 +35,27 @@ public class RequestBarcodeMBD extends BaseMDB {
 
         if (!validUUID || !uuidIsUserId(uuid)) {
             response = "invalidInput";
+        } else {
+            BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
+
+            //TODO properly handle IO exception
+            Barcode barcode = null;
+            try {
+                barcode = barcodeGenerator.generateBarcode();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            CustomerStore customerStoreInstance = CustomerStore.getInstance();
+            Customer customer = customerStoreInstance.getCustomer(uuid);
+
+            customer.getBarcodes().add(barcode);
+
+            BarcodeStore barcodeStoreInstance = BarcodeStore.getInstance();
+            barcodeStoreInstance.saveBarcode(barcode, customer);
+
+            response = GsonWrapper.toJson(barcode.getUUID());
         }
-
-        BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
-
-        //TODO properly handle IO exception
-        Barcode barcode = null;
-        try {
-            barcode = barcodeGenerator.generateBarcode();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        response = GsonWrapper.toJson(barcode.getUUID());
-
-        //is valid uuid
-        //does it belong to a user
-        //generate barcode and attach to user
-        //store in barcode hashtable(barcodestore)
-
         return response;
     }
 

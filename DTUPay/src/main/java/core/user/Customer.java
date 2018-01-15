@@ -38,4 +38,9 @@ public class Customer extends User {
     public void setCpr(String cpr) {
         this.cpr = cpr;
     }
+
+
+    public List<Barcode> getBarcodes() {
+        return barcodes;
+    }
 }
