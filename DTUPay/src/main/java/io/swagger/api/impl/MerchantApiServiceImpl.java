@@ -17,9 +17,9 @@ import javax.ws.rs.core.SecurityContext;
 @JMSDestinationDefinitions(
         value = {
                 @JMSDestinationDefinition(
-                        name = "java:/queue/CreateCustomerMDB",
+                        name = "java:/queue/CreateMerchantMDB",
                         interfaceName = "javax.jms.Queue",
-                        destinationName = "CreateCustomerQueue"
+                        destinationName = "CreateMerchantQueue"
                 )}
 )
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:38:28.848Z")

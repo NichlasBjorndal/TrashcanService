@@ -28,4 +28,10 @@ public class Merchant extends User {
     public void setCvr(String cvr) {
         this.cvr = cvr;
     }
+
+    @Override
+    public boolean equals(Object merchant){
+        Merchant m = (Merchant) merchant;
+        return m.getCvr().equals(this.cvr) && m.getName().equals(this.getName());
+    }
 }
