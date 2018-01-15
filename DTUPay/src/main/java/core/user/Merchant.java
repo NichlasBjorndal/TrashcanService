@@ -13,12 +13,14 @@ public class Merchant extends User {
 
     /**
      * @param cvr
-     * @param name
+     * @param firstName
+     * @param lastName
      */
-    public Merchant(String cvr, String name){
+    public Merchant(String cvr, String firstName, String lastName){
         super();
         this.cvr = cvr;
-        this.setFirstName(name);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
     }
 
     public String getCvr() {

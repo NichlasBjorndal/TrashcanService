@@ -23,10 +23,10 @@ Feature: Create Merchant
     Then I receive a "Invalid input" error from the system
 
   Scenario: Create merchant account, name is invalid
-    Given  I ask DTU-Pay to create me a merchant account with name "au48esx57zyw4" "notreal239408" and CVR "65980983"
+    Given  I ask DTU-Pay to create me a merchant account with name "au48esx57zyw4" " " and CVR "65980983"
     Then I receive a "Invalid input" error from the system
 
   Scenario: Create merchant account, no bank account
-    Given That I do not have a merchant account in the FastMoney Bank
-    When I ask DTU-Pay to create me a merchant account with name "Hej" "AS" and CVR "65980983"
-    Then I receive a "An error occurred with the account" error from the system
+    Given That I do not have a merchant account in the FastMoney Bank with CVR "71089347"
+    When I ask DTU-Pay to create me a merchant account with name "Hej" "AS" and CVR "71089347"
+    Then I receive a "Merchant doesn't have bank account" error from the system
