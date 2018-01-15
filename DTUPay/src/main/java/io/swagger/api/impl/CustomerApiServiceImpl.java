@@ -32,7 +32,6 @@ public class CustomerApiServiceImpl extends CustomerApiService {
 
     @Override
     public Response createCustomer(Customer body, SecurityContext securityContext) throws NotFoundException {
-
         JmsProvider jmsProvider = new JmsProvider();
 
         String response = "";
@@ -57,7 +56,5 @@ public class CustomerApiServiceImpl extends CustomerApiService {
             httpRes = Response.status(201).entity(response).build();
         }
         return httpRes;
-
     }
-
 }
