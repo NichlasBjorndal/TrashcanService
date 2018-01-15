@@ -4,7 +4,7 @@ import cucumber.api.java8.En;
 import dtu.ws.fastmoney.Account;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.User;
-import io.swagger.api.model.Customer;
+import io.swagger.model.Customer;
 import mdb.utils.BankserverUtil;
 import mdb.utils.GsonWrapper;
 import persistence.CustomerStore;
@@ -24,9 +24,11 @@ public class CreateCustomerSteps implements En {
 
         Given("^a customer with the name \"([^\"]*)\" and cpr number \"([^\"]*)\" without an account in FastMoney Bank$", (String name, String cpr) -> {
             CustomerStore.getInstance().clearStore();
+            String[] names = name.split(" ");
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
-            customers[0].setName(name);
+            customers[0].setFirstName(names[1]);
+            customers[0].setLastName(names[1]);
 
             retireAccountByCpr(bankService, cpr);
         });
@@ -45,7 +47,9 @@ public class CreateCustomerSteps implements En {
         Given("^I am a customer with name \"([^\"]*)\" and cpr number \"([^\"]*)\" with an account in FastMoney Bank$", (String name, String cpr) -> {
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
-            customers[0].setName(name);
+            String[] names = name.split(" ");
+            customers[0].setFirstName(names[1]);
+            customers[0].setLastName(names[1]);
 
             retireAccountByCpr(bankService, cpr);
 
@@ -75,7 +79,9 @@ public class CreateCustomerSteps implements En {
             // Write code here that turns the phrase above into concrete actions
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
-            customers[0].setName(name);
+            String[] names = name.split(" ");
+            customers[0].setFirstName(names[1]);
+            customers[0].setLastName(names[1]);
 
             retireAccountByCpr(bankService, cpr);
 

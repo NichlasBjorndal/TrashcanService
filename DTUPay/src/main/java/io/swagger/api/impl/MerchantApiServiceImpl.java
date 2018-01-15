@@ -3,7 +3,7 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 
 
-import io.swagger.api.model.Merchant;
+import io.swagger.model.Merchant;
 
 import io.swagger.api.NotFoundException;
 
@@ -14,18 +14,6 @@ import javax.ws.rs.core.SecurityContext;
 public class MerchantApiServiceImpl extends MerchantApiService {
       @Override
       public Response createMerchant(Merchant body,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      @Override
-      public Response getMerchantByCVR(String cvr,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      @Override
-      public Response merchantCvrDelete(String cvr,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

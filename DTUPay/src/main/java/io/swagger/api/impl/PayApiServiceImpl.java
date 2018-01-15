@@ -3,7 +3,7 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 
 
-import io.swagger.api.model.Transaction;
+import io.swagger.model.Transaction;
 
 import io.swagger.api.NotFoundException;
 

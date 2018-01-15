@@ -3,7 +3,7 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 
 
-import io.swagger.api.model.Customer;
+import io.swagger.model.Customer;
 
 import io.swagger.api.NotFoundException;
 import jsmprovider.JmsProvider;
@@ -57,17 +57,4 @@ public class CustomerApiServiceImpl extends CustomerApiService {
 
     }
 
-    @Override
-    public Response deleteCustomerByCPR(String cpr, SecurityContext securityContext)
-            throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
-
-    @Override
-    public Response getCustomerByCPR(String cpr, SecurityContext securityContext)
-            throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
 }
