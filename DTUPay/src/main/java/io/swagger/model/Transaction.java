@@ -75,7 +75,7 @@ public class Transaction   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Transaction {\n");
+    sb.append("class FastMoneyTransaction {\n");
     
     sb.append("    barcode: ").append(toIndentedString(barcode)).append("\n");
     sb.append("    receiverCVR: ").append(toIndentedString(receiverCVR)).append("\n");
