@@ -3,10 +3,11 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 
 
-import io.swagger.api.model.Customer;
+import io.swagger.model.Customer;
 
 import io.swagger.api.NotFoundException;
 import jsmprovider.JmsProvider;
+import mdb.utils.GsonWrapper;
 
 import javax.ejb.Stateless;
 import javax.jms.JMSDestinationDefinition;
@@ -29,30 +30,31 @@ public class CustomerApiServiceImpl extends CustomerApiService {
 
     private static final String CREATE_CUSTOMER_QUEUE = "CreateCustomerQueue";
 
-      @Override
-      public Response createCustomer(Customer body,SecurityContext securityContext) throws NotFoundException {
+    @Override
+    public Response createCustomer(Customer body, SecurityContext securityContext) throws NotFoundException {
 
-          JmsProvider jmsProvider = new JmsProvider();
+        JmsProvider jmsProvider = new JmsProvider();
 
-          String response = "";
-          try {
-              response = jmsProvider.sendMessage(CREATE_CUSTOMER_QUEUE, body);
-          } catch (Exception e) {
-              return Response.serverError().build();
-          }
-          // do some magic!
-      return Response.status(201).entity(response).build();
-  }
-      @Override
-      public Response deleteCustomerByCPR(String cpr,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      @Override
-      public Response getCustomerByCPR(String cpr,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
+        String response = "";
+        try {
+            response = jmsProvider.sendMessage(CREATE_CUSTOMER_QUEUE, body);
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
+
+        String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
+
+        Response httpRes;
+        if (parsedResponse.equals("accountExistsError")) {
+            httpRes = Response.status(400).build();
+        }
+        else if (parsedResponse.equals("noBankAccountError")) {
+            httpRes = Response.status(403).build();
+        } else {
+            httpRes = Response.status(201).entity(response).build();
+        }
+        return httpRes;
+
+    }
+
 }

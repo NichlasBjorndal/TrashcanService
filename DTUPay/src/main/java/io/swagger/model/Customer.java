@@ -1,27 +1,42 @@
-package io.swagger.api.model;
+package io.swagger.model;
 
 import java.util.Objects;
-
+import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:54:24.517Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
 public class Customer   {
   
-  private String name = null;
+  private String firstName = null;
+  private String lastName = null;
   private String cpr = null;
 
   /**
    **/
   
   @ApiModelProperty(value = "")
-  @JsonProperty("name")
-  public String getName() {
-    return name;
+  @JsonProperty("firstName")
+  public String getFirstName() {
+    return firstName;
   }
-  public void setName(String name) {
-    this.name = name;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("lastName")
+  public String getLastName() {
+    return lastName;
+  }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
   /**
@@ -46,13 +61,14 @@ public class Customer   {
       return false;
     }
     Customer customer = (Customer) o;
-    return Objects.equals(name, customer.name) &&
+    return Objects.equals(firstName, customer.firstName) &&
+        Objects.equals(lastName, customer.lastName) &&
         Objects.equals(cpr, customer.cpr);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, cpr);
+    return Objects.hash(firstName, lastName, cpr);
   }
 
   @Override
@@ -60,7 +76,8 @@ public class Customer   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    cpr: ").append(toIndentedString(cpr)).append("\n");
     sb.append("}");
     return sb.toString();

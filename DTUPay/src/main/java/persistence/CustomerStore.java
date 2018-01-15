@@ -38,4 +38,12 @@ public class CustomerStore {
     public Customer getCustomer(String cpr){
         return customers.get(cpr);
     }
+
+
+    /**
+     * Deletes all users from the store
+     */
+    public void clearStore(){
+        customers.clear();
+    }
 }

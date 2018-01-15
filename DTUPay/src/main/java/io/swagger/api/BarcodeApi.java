@@ -24,21 +24,23 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the barcode API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:54:24.517Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
 public class BarcodeApi  {
    private final BarcodeApiService delegate = BarcodeApiServiceFactory.getBarcodeApi();
 
     @GET
-    @Path("/{cpr}")
+    @Path("/{uuid}")
     
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "Get barcode for customer specified by CPR", notes = "", response = String.class, tags={ "barcode", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = String.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Barcode successfully retrieved", response = String.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "User with UUID doesn't exist in DTUPay", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
-    public Response getCustomerBarcode( @PathParam("cpr") String cpr,@Context SecurityContext securityContext)
+    public Response getCustomerBarcode( @PathParam("uuid") String uuid,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getCustomerBarcode(cpr,securityContext);
+        return delegate.getCustomerBarcode(uuid,securityContext);
     }
 }

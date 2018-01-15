@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$USER_HOME$/Google Drev/DTU/Web Services/TrashcanService" />
+    <file type="web" url="file://$PROJECT_DIR$" />
     <file type="web" url="file://$PROJECT_DIR$/DTUPay" />
     <file type="web" url="file://$PROJECT_DIR$/SystemTest" />
     <file type="web" url="file://$PROJECT_DIR$/TrashcanService" />

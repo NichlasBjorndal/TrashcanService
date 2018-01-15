@@ -3,7 +3,7 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 
 
-import io.swagger.api.model.Merchant;
+import io.swagger.model.Merchant;
 
 import io.swagger.api.NotFoundException;
 import mdb.utils.GsonWrapper;
@@ -43,22 +43,5 @@ public class MerchantApiServiceImpl extends MerchantApiService {
 
 
       return Response.status(201).entity("65980983").build();
-  }
-      @Override
-      public Response getMerchantByCVR(String cvr,SecurityContext securityContext) throws NotFoundException {
-          Merchant dtoMerchant = new Merchant();
-          dtoMerchant.setName(lastMerchant.getFirstName());
-          dtoMerchant.setCvr(lastMerchant.getCvr());
-          if (!dtoMerchant.getCvr().equals(cvr))
-              return Response.status(404).entity("Merchant not found").build();
-
-
-          String lmao = GsonWrapper.toJson(lastMerchant);
-          return Response.status(200).entity(GsonWrapper.toJson(lastMerchant)).build();
-  }
-      @Override
-      public Response merchantCvrDelete(String cvr,SecurityContext securityContext) throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
 }
