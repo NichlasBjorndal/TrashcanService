@@ -6,7 +6,14 @@ import dtu.ws.fastmoney.BankServiceException_Exception;
 import mdb.utils.BankserverUtil;
 import mdb.utils.GsonWrapper;
 
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.MessageDriven;
 import java.math.BigDecimal;
+
+@MessageDriven(name = "FastMoneyBankTransactionMDB", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/FastMoneyBankTransactionQueue"),
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 
 /**
  * Message driven bean for transactions in the FastMoney Bank.
