@@ -49,7 +49,10 @@ public class CustomerApiServiceImpl extends CustomerApiService {
         }
         else if (parsedResponse.equals("noBankAccountError")) {
             httpRes = Response.status(403).build();
-        } else {
+        } else if (parsedResponse.equals("invalidInput")) {
+            httpRes = Response.status(405).build();
+        }
+        else {
             httpRes = Response.status(201).entity(response).build();
         }
         return httpRes;
