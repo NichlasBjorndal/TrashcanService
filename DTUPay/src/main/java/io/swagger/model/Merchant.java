@@ -8,22 +8,35 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:36:32.917Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
 public class Merchant   {
   
-  private String name = null;
+  private String firstName = null;
+  private String lastName = null;
   private String cvr = null;
 
   /**
    **/
   
   @ApiModelProperty(value = "")
-  @JsonProperty("name")
-  public String getName() {
-    return name;
+  @JsonProperty("firstName")
+  public String getFirstName() {
+    return firstName;
   }
-  public void setName(String name) {
-    this.name = name;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("lastName")
+  public String getLastName() {
+    return lastName;
+  }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
   /**
@@ -48,13 +61,14 @@ public class Merchant   {
       return false;
     }
     Merchant merchant = (Merchant) o;
-    return Objects.equals(name, merchant.name) &&
+    return Objects.equals(firstName, merchant.firstName) &&
+        Objects.equals(lastName, merchant.lastName) &&
         Objects.equals(cvr, merchant.cvr);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, cvr);
+    return Objects.hash(firstName, lastName, cvr);
   }
 
   @Override
@@ -62,7 +76,8 @@ public class Merchant   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Merchant {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    cvr: ").append(toIndentedString(cvr)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the customer API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:36:32.917Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
 public class CustomerApi  {
    private final CustomerApiService delegate = CustomerApiServiceFactory.getCustomerApi();
 
