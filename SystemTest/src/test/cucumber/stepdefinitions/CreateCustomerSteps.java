@@ -67,15 +67,15 @@ public class CreateCustomerSteps implements En {
 
         });
 
-        Then("^the customer account is created with cpr number \"([^\"]*)\"$", (String cpr) -> {
+        Then("the customer account is created with a UUID", () -> {
             int responseStatus = response[0].getStatus();
             assertTrue(responseStatus == 201);
 
-            String responseCpr = (String) GsonWrapper.fromJson(response[0].getBody(), String.class);
+            String responseUUID = (String) GsonWrapper.fromJson(response[0].getBody(), String.class);
 
-            assertEquals(cpr, responseCpr);
+            assertTrue(responseUUID.length() > 0);
 
-            retireAccountByCpr(bankService, cpr);
+            retireAccountByCpr(bankService, customers[0].getCpr());
         });
 
         Given("^I already have a DTUPay account with name \"([^\"]*)\" and cpr \"([^\"]*)\"$", (String name, String cpr) -> {

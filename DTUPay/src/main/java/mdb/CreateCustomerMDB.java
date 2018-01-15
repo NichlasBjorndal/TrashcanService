@@ -40,7 +40,7 @@ public class CreateCustomerMDB extends BaseMDB {
             response = "noBankAccountError";
         } else {
             instance.saveCustomer(customer);
-            response = customer.getCpr();
+            response = customer.getUserID().toString();
         }
         return GsonWrapper.toJson(response);
     }

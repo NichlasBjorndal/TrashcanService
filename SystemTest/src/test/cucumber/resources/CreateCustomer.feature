@@ -2,7 +2,7 @@ Feature: Create Customer
   Scenario:  Create customer account successfully
     Given I am a customer with name "John Cool" and cpr number "1234567890" with an account in FastMoney Bank
     When I ask the DTU-pay service to create me a Customer Account
-    Then the customer account is created with cpr number "1234567890"
+    Then the customer account is created with a UUID
 
   Scenario: Create customer account, no bank account
     Given a customer with the name "James Pryde" and cpr number "1234567899" without an account in FastMoney Bank
