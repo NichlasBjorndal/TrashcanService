@@ -4,7 +4,6 @@ import io.swagger.api.*;
 import io.swagger.model.*;
 
 
-import io.swagger.model.Customer;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -15,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:36:32.917Z")
-public abstract class CustomerApiService {
-      public abstract Response createCustomer(Customer body,SecurityContext securityContext)
+public abstract class UtilApiService {
+      public abstract Response flushData(SecurityContext securityContext)
       throws NotFoundException;
 }
