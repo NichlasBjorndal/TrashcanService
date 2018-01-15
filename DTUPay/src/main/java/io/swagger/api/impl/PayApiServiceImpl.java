@@ -46,17 +46,8 @@ public class PayApiServiceImpl extends PayApiService {
           String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
 
           Response httpRes;
-          if (parsedResponse.equals("accountExistsError")) {
-              httpRes = Response.status(400).build();
-          }
-          else if (parsedResponse.equals("Successful transaction")) {
-              httpRes = Response.status(403).build();
-          } else if (parsedResponse.equals("invalidInput")) {
-              httpRes = Response.status(405).build();
-          }
-          else {
+
               httpRes = Response.status(201).entity(response).build();
-          }
           return httpRes;
   }
 }
