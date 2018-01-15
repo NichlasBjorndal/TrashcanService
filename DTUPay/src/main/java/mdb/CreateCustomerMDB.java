@@ -1,6 +1,11 @@
 package mdb;
 
 import core.user.Customer;
+import dtu.ws.fastmoney.Account;
+import dtu.ws.fastmoney.BankService;
+import dtu.ws.fastmoney.BankServiceException_Exception;
+import dtu.ws.fastmoney.BankServiceService;
+import mdb.utils.BankserverUtil;
 import mdb.utils.GsonWrapper;
 import persistence.CustomerStore;
 
@@ -14,12 +19,39 @@ import javax.ejb.MessageDriven;
 public class CreateCustomerMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
-
-        Customer cust = (Customer) GsonWrapper.fromJson(receivedText, Customer.class);
+        Customer customer = (Customer) GsonWrapper.fromJson(receivedText, Customer.class);
 
         CustomerStore instance = CustomerStore.getInstance();
-        instance.saveCustomer(cust);
 
-        return GsonWrapper.toJson(cust.getCpr());
+        String response;
+
+        //Checks if an account already exists
+        if(instance.getCustomer(customer.getCpr()) != null){
+            response = "accountExistsError";
+        }
+
+        //Checks if the customer doesn't have a bank account
+        else if(!CheckIfBankAccountExists(customer.getCpr())){
+            response = "noBankAccountError";
+        } else {
+            instance.saveCustomer(customer);
+            response = customer.getCpr();
+        }
+
+        return GsonWrapper.toJson(response);
+    }
+
+    private boolean CheckIfBankAccountExists(String cpr) {
+        BankService server = BankserverUtil.GetServer();
+
+        Account accountByCprNumber = null;
+
+        try {
+             accountByCprNumber = server.getAccountByCprNumber(cpr);
+        } catch (BankServiceException_Exception e) {
+            e.printStackTrace();
+        }
+
+        return accountByCprNumber != null;
     }
 }

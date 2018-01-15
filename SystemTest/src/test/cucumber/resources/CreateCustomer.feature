@@ -1,28 +1,18 @@
 Feature: Create Customer
-  Scenario: Create customer account successfully
-    Given I have a customer bank account in the FastMoney Bank
+  Scenario:  Create customer account successfully
+    Given I am a customer with name "John" and cpr number "1234" with an account in FastMoney Bank
     When I ask the DTU-pay service to create me a Customer Account
-    Then the customer account is created
-
-  Scenario: Create customer account, customer account already exists
-    Given I already have an account
-    When I ask the DTU-pay service to create me a Customer Account
-    Then I receive a 'create customer' error from the system
-
-  Scenario: Create customer account, CPR-number is invalid
-    Given That my CPR-number is invalid
-    When I ask the DTU-pay service to create me a Customer Account
-    Then I receive a 'create customer' error from the system
-    And the customer account is not created
-
-  Scenario: Create customer account, name is invalid
-    Given That my last or first name contains errors
-    When I ask the DTU-pay service to create me a Customer Account
-    Then I receive a 'create merchant' error from the system
-    And the customer account is not created
+    Then the customer account is created with cpr number "1234"
 
   Scenario: Create customer account, no bank account
-    Given That I do not have a customer account in the FastMoney Bank
+    Given a customer with the name "James" and cpr number "5678" without an account in FastMoney Bank
     When I ask the DTU-pay service to create me a Customer Account
-    Then I receive a 'create merchant' error from the system
-    And the customer account is not created
+    Then I receive a 'create customer' error from the system
+
+  Scenario: Create customer account, customer account already exists
+    Given I already have a DTUPay account with name "Troels" and cpr "1337"
+    When I ask the DTU-pay service to create me a Customer Account
+    Then I receive a 'account already exists' error from the system
+
+
+
