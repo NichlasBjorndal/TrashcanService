@@ -2,9 +2,7 @@ package persistence;
 
 import core.user.Customer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class CustomerStore {
     private Map<UUID, Customer> customers;
@@ -45,5 +43,20 @@ public class CustomerStore {
      */
     public void clearStore(){
         customers.clear();
+    }
+
+
+    /**
+     * @param customer
+     * @return Whether a user with a cpr number already exists in the userstore
+     */
+    public boolean cprExists(Customer customer){
+        HashSet<String> cprNumbers = new HashSet<>();
+
+        for (UUID key: customers.keySet()) {
+            cprNumbers.add(customers.get(key).getCpr());
+        }
+
+        return cprNumbers.contains(customer.getCpr());
     }
 }
