@@ -17,7 +17,7 @@ public class IBCBMDExample extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
         String response = null;
-        Customer customer = new Customer("bob","2982389-1234");
+        Customer customer = new Customer("bob", "jones","2982389-1234");
 
         JmsProvider provider = new JmsProvider();
         try {

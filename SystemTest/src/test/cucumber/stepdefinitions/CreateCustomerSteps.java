@@ -28,7 +28,7 @@ public class CreateCustomerSteps implements En {
             String[] names = name.split(" ");
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
-            customers[0].setFirstName(names[1]);
+            customers[0].setFirstName(names[0]);
             customers[0].setLastName(names[1]);
 
             retireAccountByCpr(bankService, cpr);
@@ -51,7 +51,7 @@ public class CreateCustomerSteps implements En {
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
             String[] names = name.split(" ");
-            customers[0].setFirstName(names[1]);
+            customers[0].setFirstName(names[0]);
             customers[0].setLastName(names[1]);
 
             retireAccountByCpr(bankService, cpr);
@@ -83,7 +83,7 @@ public class CreateCustomerSteps implements En {
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
             String[] names = name.split(" ");
-            customers[0].setFirstName(names[1]);
+            customers[0].setFirstName(names[0]);
             customers[0].setLastName(names[1]);
 
             retireAccountByCpr(bankService, cpr);
@@ -104,6 +104,28 @@ public class CreateCustomerSteps implements En {
             int responseStatus = response[0].getStatus();
             assertTrue(responseStatus == 400);
             retireAccountByCpr(bankService, customers[0].getCpr());
+        });
+
+        Given("^I am a customer with invalid name \"([^\"]*)\" and cpr number \"([^\"]*)\" with an account in FastMoney Bank$", (String name, String cpr) -> {
+            // Write code here that turns the phrase above into concrete actions
+            customers[0] = new Customer();
+            customers[0].setCpr(cpr);
+            customers[0].setFirstName(name);
+        });
+
+        Then("^I receive a 'invalid input' error from the system$", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            int responseStatus = response[0].getStatus();
+            System.out.println(responseStatus);
+            assertTrue(responseStatus == 405);
+            retireAccountByCpr(bankService, customers[0].getCpr());
+        });
+        Given("^I am a customer with name \"([^\"]*)\" and invalid cpr number \"([^\"]*)\" with an account in FastMoney Bank$", (String name, String cpr) -> {
+            customers[0] = new Customer();
+            customers[0].setCpr(cpr);
+            String[] names = name.split(" ");
+            customers[0].setFirstName(names[0]);
+            customers[0].setLastName(names[1]);
         });
 
 
