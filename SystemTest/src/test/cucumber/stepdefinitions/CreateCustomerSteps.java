@@ -131,14 +131,6 @@ public class CreateCustomerSteps implements En {
     }
 
     private void retireAccountByCpr(BankService bankService, String cpr) {
-        try {
-            Account accountByCprNumber = bankService.getAccountByCprNumber(cpr);
-            if (accountByCprNumber != null) {
-                String id = accountByCprNumber.getId();
-                bankService.retireAccount(id);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        ObtainBarcodeSteps.retireBankAccount(bankService, cpr);
     }
 }

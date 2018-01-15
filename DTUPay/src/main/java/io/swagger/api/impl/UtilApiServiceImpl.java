@@ -7,6 +7,7 @@ import io.swagger.model.*;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
+import persistence.BarcodeStore;
 import persistence.CustomerStore;
 import persistence.MerchantStore;
 import persistence.UserStore;
@@ -23,6 +24,7 @@ public class UtilApiServiceImpl extends UtilApiService {
           MerchantStore.getInstance().clearStore();
           CustomerStore.getInstance().clearStore();
           UserStore.getInstance().clearStore();
+          BarcodeStore.getInstance().clearStore();
       return Response.ok().build();
   }
 }
