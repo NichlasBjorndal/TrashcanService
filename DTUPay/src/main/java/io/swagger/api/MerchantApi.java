@@ -26,7 +26,7 @@ public class MerchantApi  {
  @io.swagger.annotations.ApiResponses(value = {
          @io.swagger.annotations.ApiResponse(code = 201, message = "New merchant created", response = Void.class),
 
-         @io.swagger.annotations.ApiResponse(code = 400, message = "An account already exists", response = Void.class),
+         @io.swagger.annotations.ApiResponse(code = 400, message = "An error occurred with the account", response = Void.class),
 
          @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
  public Response createMerchant(@ApiParam(value = "Merchant object that needs to be added to DTUPay" ,required=true) Merchant body,@Context SecurityContext securityContext)

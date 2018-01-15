@@ -18,7 +18,7 @@ public class Merchant extends User {
     public Merchant(String cvr, String name){
         super();
         this.cvr = cvr;
-        this.setName(name);
+        this.setFirstName(name);
     }
 
     public String getCvr() {
@@ -32,6 +32,6 @@ public class Merchant extends User {
     @Override
     public boolean equals(Object merchant){
         Merchant m = (Merchant) merchant;
-        return m.getCvr().equals(this.cvr) && m.getName().equals(this.getName());
+        return merchant != null && (m.getCvr().equals(this.cvr) && m.getFirstName().equals(this.getFirstName()) && m.getLastName().equals(this.getLastName()));
     }
 }

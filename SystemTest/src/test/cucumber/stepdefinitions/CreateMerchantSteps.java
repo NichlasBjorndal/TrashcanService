@@ -1,3 +1,4 @@
+import core.user.Merchant;
 import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
@@ -5,16 +6,18 @@ import dtu.ws.fastmoney.BankServiceException_Exception;
 import dtu.ws.fastmoney.BankServiceService;
 import dtu.ws.fastmoney.User;
 
+
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class CreateMerchantSteps implements En {
     public CreateMerchantSteps() {
         MerchantSimulator simulator = new MerchantSimulator();
         final String[] cvr = new String[1];
-        final String[] response = new String[1];
+        final ResponseModel[] response = new ResponseModel[1];
 
         Given("^I have a merchant account in the FastMoney Bank with name \"(.+)\" \"(.+)\" and CVR \"(.+)\"$", (String firstname, String lastname, String CVR) -> {
             BankServiceService bss = new BankServiceService();
@@ -37,36 +40,20 @@ public class CreateMerchantSteps implements En {
             assertNotNull(bs.getAccountByCprNumber(CVR));
         });
 
-        When("^I ask DTU-Pay to create me a merchant account with name \"(.+)\" and CVR \"(.+)\"$", (String name, String CVR) -> {
-            response[0] = simulator.createAccount(name,CVR);
+        When("^I ask DTU-Pay to create me a merchant account with name \"(.+)\" \"(.+)\" and CVR \"(.+)\"$", (String firstName, String lastName, String CVR) -> {
+            response[0] = simulator.createAccount(firstName,lastName,CVR);
         });
 
-        Then("^An account is created with CVR \"(.+)\"$", (String CVR) -> {
-            assertNotNull(response[0]);
-            assertEquals(CVR,response[0]);
-
-            BankServiceService bss = new BankServiceService();
-            BankService bs = bss.getBankServicePort();
-
-            bs.retireAccount(cvr[0]);
+        Then("^The account was created sucessfully$", () -> {
+            assertEquals(201,response[0].getStatus());
         });
 
-        And("^I again ask DTU-Pay to create me a merchant account with name \"(.+)\" and CVR \"(.+)\"$", (String name, String CVR) -> {
-            response[0] = simulator.createAccount(name, CVR);
+        And("^I again ask DTU-Pay to create me a merchant account with name \"(.+)\" \"(.+)\" and CVR \"(.+)\"$", (String firstName, String lastName, String CVR) -> {
+            response[0] = simulator.createAccount(firstName,lastName, CVR);
         });
 
-        Then("^I receive a 'create merchant' error from the system$", () -> {
-            assertEquals("An account already exists",response[0]);
-        });
-
-        Given("^That the CVR-number is invalid$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-
-        And("^the merchant account is not created$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+        Then("^I receive a \"(.+)\" error from the system$", (String errorMsg) -> {
+            assertEquals(errorMsg,response[0].getBody());
         });
 
         Given("^That my merchant last or first name contains errors$", () -> {

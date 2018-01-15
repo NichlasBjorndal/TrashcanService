@@ -18,7 +18,7 @@ public class Customer extends User {
      */
     public Customer(String name, String cpr) {
         super();
-        this.setName(name);
+        this.setFirstName(name);
         this.setCpr(cpr);
         barcodes = new ArrayList<>();
     }

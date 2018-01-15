@@ -6,6 +6,7 @@ import io.swagger.api.*;
 import io.swagger.api.model.Merchant;
 
 import io.swagger.api.NotFoundException;
+import mdb.utils.GsonWrapper;
 
 import javax.ejb.Stateless;
 import javax.jms.JMSDestinationDefinition;
@@ -30,18 +31,30 @@ public class MerchantApiServiceImpl extends MerchantApiService {
       public Response createMerchant(Merchant body,SecurityContext securityContext) throws NotFoundException {
           core.user.Merchant merchant = new core.user.Merchant(body.getCvr(),body.getName());
 
+          if(!body.getCvr().matches("^(?!\\s*$)[0-9\\s]{8}$"))
+              return Response.status(405).entity("Invalid input").build();
+
+
+
           if(!merchant.equals(lastMerchant))
               lastMerchant = merchant;
           else
-              return Response.status(400).entity("An account already exists").build();
+              return Response.status(400).entity("An error occurred with the account").build();
 
 
       return Response.status(201).entity("65980983").build();
   }
       @Override
       public Response getMerchantByCVR(String cvr,SecurityContext securityContext) throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+          Merchant dtoMerchant = new Merchant();
+          dtoMerchant.setName(lastMerchant.getFirstName());
+          dtoMerchant.setCvr(lastMerchant.getCvr());
+          if (!dtoMerchant.getCvr().equals(cvr))
+              return Response.status(404).entity("Merchant not found").build();
+
+
+          String lmao = GsonWrapper.toJson(lastMerchant);
+          return Response.status(200).entity(GsonWrapper.toJson(lastMerchant)).build();
   }
       @Override
       public Response merchantCvrDelete(String cvr,SecurityContext securityContext) throws NotFoundException {

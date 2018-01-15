@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 public class User {
 
-    private String name;
+    private String firstName, lastName;
     private UUID userID;
     private Double accountBalance;
 
@@ -19,10 +19,17 @@ public class User {
     }
 
     /**
-     * @return the user's full name
+     * @return the user's firstName
      */
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @return the user's lastName
+     */
+    public String getLastName() {
+        return lastName;
     }
 
     /**
@@ -32,8 +39,12 @@ public class User {
         return userID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Double getAccountBalance() {
