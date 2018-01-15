@@ -6,6 +6,7 @@ import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceService;
 import dtu.ws.fastmoney.User;
+import io.swagger.model.Transaction;
 import persistence.CustomerStore;
 import persistence.MerchantStore;
 
@@ -120,12 +121,14 @@ public class PayAtMerchantSteps implements En {
             BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
             uuid = barcodeGenerator.generateBarcode().getUUID();
         });
+
         When("^A merchant scans the customer's barcode and sends an invoice for a payment of \"([^\"]*)\"$", (String amount) -> {
-
-
-
-
-
+            Transaction transaction = new Transaction();
+            transaction.setReceiverCVR(cvr);
+            transaction.setAmount(new BigDecimal(amount));
+            transaction.setBarcode(uuid);
+            ResponseModel responseModel = merchantSimulator.payMerchant(transaction);
+            assertEquals(responseModel.getStatus(),201);
         });
     }
 }

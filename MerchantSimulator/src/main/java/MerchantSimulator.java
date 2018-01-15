@@ -1,6 +1,8 @@
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import io.swagger.model.Transaction;
+import mdb.utils.GsonWrapper;
 
 public class MerchantSimulator {
     public static String endpoint = "http://localhost:8080/DTUPay-0.5/api";
@@ -16,6 +18,17 @@ public class MerchantSimulator {
         HttpResponse<String> r = null;
         try {
             r = Unirest.post(endpoint + "/merchant").header("Content-Type", "application/json").body("{\"firstName\": \""+firstname+"\",\"lastName\": \""+lastname+"\",\"cvr\": \""+cvr+"\"}").asString();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return new ResponseModel(r.getStatus(),r.getBody());
+    }
+
+    public ResponseModel payMerchant(Transaction transaction) {
+        //make json
+        HttpResponse<String> r = null;
+        try {
+            r = Unirest.post(endpoint + "/pay").header("Content-Type", "application/json").body(GsonWrapper.toJson(transaction)).asString();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
