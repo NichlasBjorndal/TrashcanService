@@ -16,7 +16,6 @@ public class CreateMerchantSteps implements En {
         final ResponseModel[] response = new ResponseModel[1];
 
         Given("^I have a merchant account in the FastMoney Bank with name \"(.+)\" \"(.+)\" and CVR \"(.+)\"$", (String firstname, String lastname, String CVR) -> {
-
             BankService bs = BankserverUtil.GetServer();
             try {
                 bs.retireAccount(bs.getAccountByCprNumber(CVR).getId());
@@ -37,10 +36,11 @@ public class CreateMerchantSteps implements En {
         });
 
         When("^I ask DTU-Pay to create me a merchant account with name \"(.+)\" \"(.+)\" and CVR \"(.+)\"$", (String firstName, String lastName, String CVR) -> {
+            simulator.clearDataStores();
             response[0] = simulator.createAccount(firstName, lastName, CVR);
         });
 
-        Then("^The account was created sucessfully$", () -> {
+        Then("^The account was created successfully$", () -> {
             assertEquals(201, response[0].getStatus());
         });
 
