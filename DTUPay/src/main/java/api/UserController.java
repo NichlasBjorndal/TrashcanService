@@ -42,7 +42,7 @@ public class UserController {
         JmsProvider jmsProvider = new JmsProvider();
         String response = null;
         try {
-            String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"" +
+            String jsonmsg = "{\"firstName\":\"Karl\",\"lastName\":\"Karlsen\",\"cpr\":\"" +
                     "\"}";
             response = jmsProvider.sendMessage(CREATE_QUEUE, jsonmsg);
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class UserController {
         JmsProvider jmsProvider = new JmsProvider();
         String response = null;
         try {
-            String jsonmsg = "{\"name\":\"Karl\",\"cpr\":\"1234567\"}";
+            String jsonmsg = "{\"firstName\":\"Karl\",\"lastName\":\"Karlsen\",\"cpr\":\"1234567\"}";
             response = jmsProvider.sendMessage(IBC_QUEUE, jsonmsg);
         } catch (Exception e) {
             e.printStackTrace();

@@ -38,7 +38,7 @@ public class PayApi  {
         @io.swagger.annotations.ApiResponse(code = 201, message = "New transaction completed", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
-    public Response performTransaction(@ApiParam(value = "Transaction object" ,required=true) Transaction body,@Context SecurityContext securityContext)
+    public Response performTransaction(@ApiParam(value = "FastMoneyTransaction object" ,required=true) Transaction body,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.performTransaction(body,securityContext);
     }

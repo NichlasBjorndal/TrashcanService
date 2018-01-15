@@ -25,8 +25,13 @@ public class CreateCustomerMDB extends BaseMDB {
 
         String response;
 
+        //Checks if input it valid
+        if(!isValidInput(customer)){
+            response = "invalidInput";
+        }
+
         //Checks if an account already exists
-        if(instance.getCustomer(customer.getCpr()) != null){
+        else if(instance.cprExists(customer)){
             response = "accountExistsError";
         }
 
@@ -35,10 +40,16 @@ public class CreateCustomerMDB extends BaseMDB {
             response = "noBankAccountError";
         } else {
             instance.saveCustomer(customer);
-            response = customer.getCpr();
+            response = customer.getUserID().toString();
         }
-
         return GsonWrapper.toJson(response);
+    }
+
+    private boolean isValidInput(Customer customer) {
+
+        boolean isValidName = !(customer.getFirstName() == null || customer.getFirstName().isEmpty() || customer.getLastName() == null || customer.getLastName().isEmpty());
+        boolean isValidCpr = customer.getCpr().length() == 10 && customer.getCpr().matches("[0-9]+");
+        return isValidCpr && isValidName;
     }
 
     private boolean CheckIfBankAccountExists(String cpr) {

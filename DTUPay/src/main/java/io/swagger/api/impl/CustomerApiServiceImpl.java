@@ -32,7 +32,6 @@ public class CustomerApiServiceImpl extends CustomerApiService {
 
     @Override
     public Response createCustomer(Customer body, SecurityContext securityContext) throws NotFoundException {
-
         JmsProvider jmsProvider = new JmsProvider();
 
         String response = "";
@@ -50,11 +49,12 @@ public class CustomerApiServiceImpl extends CustomerApiService {
         }
         else if (parsedResponse.equals("noBankAccountError")) {
             httpRes = Response.status(403).build();
-        } else {
+        } else if (parsedResponse.equals("invalidInput")) {
+            httpRes = Response.status(405).build();
+        }
+        else {
             httpRes = Response.status(201).entity(response).build();
         }
         return httpRes;
-
     }
-
 }

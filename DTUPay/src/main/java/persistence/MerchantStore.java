@@ -6,12 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MerchantStore {
-    private Map<String, Merchant> merchants;
-
+    private Map<String, Merchant> Merchants;
     private static final MerchantStore instance = new MerchantStore();
 
     private MerchantStore(){
-        merchants = new HashMap<String, Merchant>();
+        Merchants = new HashMap<>();
     }
 
     /**
@@ -22,19 +21,25 @@ public class MerchantStore {
     }
 
     /**
-     * Stores the merchant in a hashmap
-     * @param merchant The merchant to be saved in a map
+     * Stores the Merchant in a hashmap
+     * @param Merchant The Merchant to be saved in a map
      */
-    public void saveMerchant(Merchant merchant){ merchants.put(merchant.getCvr(), merchant);
+    public void saveMerchant(Merchant Merchant){
+        Merchants.put(Merchant.getCvr(), Merchant);
     }
-
 
     /**
-     * @param cvr The merchant's cpr number
-     * @return The merchant with that cpr number
+     * @param Cvr The Merchant's Cvr number
+     * @return The Merchant with that Cvr number
      */
-    public Merchant getMerchant(String cvr){
-        return merchants.get(cvr);
+    public Merchant getMerchant(String Cvr){
+        return Merchants.get(Cvr);
+    }
+
+    /**
+     * Deletes all users from the store
+     */
+    public void clearStore(){
+        Merchants.clear();
     }
 }
-

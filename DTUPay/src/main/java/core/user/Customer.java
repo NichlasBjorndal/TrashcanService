@@ -12,13 +12,16 @@ public class Customer extends User {
     private String cpr;
     private List<Barcode> barcodes;
 
+
     /**
-     * @param name
+     * @param firstname
+     * @param lastname
      * @param cpr
      */
-    public Customer(String name, String cpr) {
+    public Customer(String firstname, String lastname, String cpr) {
         super();
-        this.setName(name);
+        this.setFirstName(firstname);
+        this.setLastName(lastname);
         this.setCpr(cpr);
         barcodes = new ArrayList<>();
     }
