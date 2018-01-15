@@ -1,6 +1,6 @@
 Feature: Obtain Barcode
   Scenario: Customer can obtain a new barcode
-    Given I have a customer account
+    Given I have a DTUPay account
     When I request a new barcode
     Then I receive a new barcode
 

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class CustomerStore {
-    private Map<String, Customer> customers;
+    private Map<UUID, Customer> customers;
 
     private static final CustomerStore instance = new CustomerStore();
 
@@ -27,16 +27,16 @@ public class CustomerStore {
      * @param customer The customer to be saved in a map
      */
     public void saveCustomer(Customer customer){
-        customers.put(customer.getCpr(), customer);
+        customers.put(customer.getUserID(), customer);
     }
 
 
     /**
-     * @param cpr The customer's cpr number
-     * @return The customer with that cpr number
+     * @param uuid
+     * @return
      */
-    public Customer getCustomer(String cpr){
-        return customers.get(cpr);
+    public Customer getCustomer(UUID uuid){
+        return customers.get(uuid);
     }
 
 
