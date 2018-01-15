@@ -18,4 +18,11 @@ public class ClientSimulator {
         return new ResponseModel(r.getStatus(), r.getBody());
     }
 
+    public ResponseModel clearDataStores() throws UnirestException {
+        //make json
+        HttpResponse<String> r = Unirest.post(endpoint + "/util/flush").asString();
+
+        return new ResponseModel(r.getStatus(), r.getBody());
+    }
+
 }

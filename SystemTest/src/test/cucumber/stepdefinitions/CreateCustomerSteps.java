@@ -23,6 +23,7 @@ public class CreateCustomerSteps implements En {
         BankService bankService = BankserverUtil.GetServer();
 
         Given("^a customer with the name \"([^\"]*)\" and cpr number \"([^\"]*)\" without an account in FastMoney Bank$", (String name, String cpr) -> {
+
             CustomerStore.getInstance().clearStore();
             String[] names = name.split(" ");
             customers[0] = new Customer();
@@ -45,6 +46,8 @@ public class CreateCustomerSteps implements En {
         });
 
         Given("^I am a customer with name \"([^\"]*)\" and cpr number \"([^\"]*)\" with an account in FastMoney Bank$", (String name, String cpr) -> {
+
+            cs.clearDataStores();
             customers[0] = new Customer();
             customers[0].setCpr(cpr);
             String[] names = name.split(" ");
