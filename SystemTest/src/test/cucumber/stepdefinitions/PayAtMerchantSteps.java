@@ -1,3 +1,4 @@
+<<<<<<< .merge_file_a12168
 import core.barcode.BarcodeGenerator;
 import core.user.Customer;
 import core.user.Merchant;
@@ -19,6 +20,12 @@ public class PayAtMerchantSteps implements En {
     BankService server = service.getBankServicePort();
     String uuid;
     String cvr;
+=======
+import cucumber.api.PendingException;
+import cucumber.api.java8.En;
+
+public class PayAtMerchantSteps implements En {
+>>>>>>> .merge_file_a12336
     public PayAtMerchantSteps() {
         Then("^DTUpay accepts the barcode and performs the transaction$", () -> {
             // Write code here that turns the phrase above into concrete actions
@@ -92,6 +99,7 @@ public class PayAtMerchantSteps implements En {
             // Write code here that turns the phrase above into concrete actions
             throw new PendingException();
         });
+<<<<<<< .merge_file_a12168
         Given("^customer account with first name \"([^\"]*)\", last name \"([^\"]*)\" and CPR number \"([^\"]*)\" exists with account balance of  \"([^\"]*)\"$", (String firstName, String lastName, String cpr, String customerBalance) -> {
             Customer customer = new Customer("", cpr);
             CustomerStore customerStore = CustomerStore.getInstance();
@@ -126,5 +134,7 @@ public class PayAtMerchantSteps implements En {
 
 
         });
+=======
+>>>>>>> .merge_file_a12336
     }
 }

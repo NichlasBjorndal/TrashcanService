@@ -1,21 +1,31 @@
 package io.swagger.api;
 
+import io.swagger.model.*;
+import io.swagger.api.MerchantApiService;
 import io.swagger.api.factories.MerchantApiServiceFactory;
 
 import io.swagger.annotations.ApiParam;
+import io.swagger.jaxrs.*;
 
-import io.swagger.api.model.Merchant;
+import io.swagger.model.Merchant;
+
+import java.util.Map;
+import java.util.List;
+import io.swagger.api.NotFoundException;
+
+import java.io.InputStream;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.*;
+import javax.validation.constraints.*;
 
 @Path("/merchant")
 
 
 @io.swagger.annotations.Api(description = "the merchant API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:54:24.517Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
 public class MerchantApi  {
    private final MerchantApiService delegate = MerchantApiServiceFactory.getMerchantApi();
 
@@ -23,41 +33,17 @@ public class MerchantApi  {
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Create a new merchant in DTUPay", notes = "", response = Void.class, tags={ "merchant", })
+    @io.swagger.annotations.ApiOperation(value = "Create a new merchant in DTUPay", notes = "", response = String.class, tags={ "merchant", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 201, message = "New merchant created", response = Void.class),
+        @io.swagger.annotations.ApiResponse(code = 201, message = "New merchant created", response = String.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 400, message = "Merchant already exist in DTUPay", response = Void.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Merchant doesn't have bank account", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
     public Response createMerchant(@ApiParam(value = "Merchant object that needs to be added to DTUPay" ,required=true) Merchant body,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.createMerchant(body,securityContext);
-    }
-    @GET
-    @Path("/{cvr}")
-    
-    @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Find merchant by CVR", notes = "Returns a single merchant", response = Merchant.class, tags={ "merchant", })
-    @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = Merchant.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 400, message = "Invalid CVR supplied", response = Void.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 404, message = "Merchant not found", response = Void.class) })
-    public Response getMerchantByCVR( @PathParam("cvr") String cvr,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.getMerchantByCVR(cvr,securityContext);
-    }
-    @DELETE
-    @Path("/{cvr}")
-    
-    @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Delete merchant by CVR", notes = "", response = Void.class, tags={ "merchant", })
-    @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 400, message = "Invalid CVR supplied", response = Void.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 404, message = "Merchant not found", response = Void.class) })
-    public Response merchantCvrDelete( @PathParam("cvr") String cvr,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.merchantCvrDelete(cvr,securityContext);
     }
 }

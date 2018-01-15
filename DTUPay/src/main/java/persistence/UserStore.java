@@ -41,4 +41,8 @@ public class UserStore {
     public User getUser(UUID id){
         return users.get(id);
     }
+
+    public void clearStore() {
+        users.clear();
+    }
 }

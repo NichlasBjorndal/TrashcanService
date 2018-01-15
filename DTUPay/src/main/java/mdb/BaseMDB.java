@@ -16,7 +16,9 @@
  */
 package mdb;
 
+import dtu.ws.fastmoney.BankServiceException_Exception;
 import mdb.utils.OnMessageUtil;
+import org.junit.rules.ExternalResource;
 
 import javax.jms.*;
 
@@ -27,9 +29,14 @@ public abstract class BaseMDB implements MessageListener {
      */
     public void onMessage(Message rcvMessage) {
         String receivedText = OnMessageUtil.getTextFromMessage(rcvMessage);
-        String responseMessageText = processMessage(receivedText);
+        String responseMessageText = null;
+        try {
+            responseMessageText = processMessage(receivedText);
+        } catch (BankServiceException_Exception e) {
+            e.printStackTrace();
+        }
         OnMessageUtil.Reply(rcvMessage, responseMessageText);
     }
 
-    protected abstract String processMessage(String receivedText);
+    protected abstract String processMessage(String receivedText) throws BankServiceException_Exception;
 }

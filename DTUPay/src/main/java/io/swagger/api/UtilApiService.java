@@ -4,7 +4,6 @@ import io.swagger.api.*;
 import io.swagger.model.*;
 
 
-import io.swagger.model.Merchant;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -15,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
-public abstract class MerchantApiService {
-      public abstract Response createMerchant(Merchant body,SecurityContext securityContext)
+public abstract class UtilApiService {
+      public abstract Response flushData(SecurityContext securityContext)
       throws NotFoundException;
 }
