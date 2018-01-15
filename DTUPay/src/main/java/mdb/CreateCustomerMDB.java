@@ -4,8 +4,7 @@ import core.user.Customer;
 import dtu.ws.fastmoney.Account;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
-import dtu.ws.fastmoney.BankServiceService;
-import mdb.utils.BankserverUtil;
+import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
 import persistence.CustomerStore;
 
@@ -53,7 +52,7 @@ public class CreateCustomerMDB extends BaseMDB {
     }
 
     private boolean CheckIfBankAccountExists(String cpr) {
-        BankService server = BankserverUtil.GetServer();
+        BankService server = BankServerUtil.getServer();
 
         Account accountByCprNumber = null;
 

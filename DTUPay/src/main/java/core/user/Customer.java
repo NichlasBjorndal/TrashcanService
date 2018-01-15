@@ -31,10 +31,16 @@ public class Customer extends User {
         barcodes = new ArrayList<>();
     }
 
+    /**
+     * @return cpr number of customer
+     */
     public String getCpr() {
         return cpr;
     }
 
+    /**
+     * @param cpr new cpr number of customer
+     */
     public void setCpr(String cpr) {
         this.cpr = cpr;
     }

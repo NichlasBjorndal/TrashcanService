@@ -1,7 +1,5 @@
 package io.swagger.api.impl;
 
-import dtu.ws.fastmoney.BankService;
-import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.*;
 
 
@@ -9,7 +7,6 @@ import io.swagger.model.Merchant;
 
 import io.swagger.api.NotFoundException;
 import jsmprovider.JmsProvider;
-import mdb.utils.BankserverUtil;
 import mdb.utils.GsonWrapper;
 
 import javax.ejb.Stateless;

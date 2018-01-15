@@ -4,6 +4,10 @@ import javax.jms.*;
 
 public class OnMessageUtil {
 
+    /**
+     * @param message Java Messaging Service message.
+     * @return Message converted into TextMessage.
+     */
     public static String getTextFromMessage(Message message){
         TextMessage msg = (TextMessage) message;
         String rcvMsgText = null;
@@ -17,6 +21,10 @@ public class OnMessageUtil {
         return rcvMsgText;
     }
 
+    /**
+     * @param receivedMessage Received message.
+     * @param responseMessageText The text message to be send back to the original sender.
+     */
     public static void Reply(Message receivedMessage, String responseMessageText){
         Session jmsSession = JMSSessionFactory.createJmsSession();
         try {

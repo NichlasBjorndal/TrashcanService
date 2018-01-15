@@ -23,6 +23,9 @@ public class Merchant extends User {
         this.setLastName(lastName);
     }
 
+    /**
+     * @return CVR number of merchant.
+     */
     public String getCvr() {
         return cvr;
     }
@@ -31,6 +34,10 @@ public class Merchant extends User {
         this.cvr = cvr;
     }
 
+    /**
+     * @param merchant Merchant to compare with.
+     * @return Comparison result.
+     */
     @Override
     public boolean equals(Object merchant){
         Merchant m = (Merchant) merchant;
