@@ -3,7 +3,7 @@ package mdb;
 import core.user.Merchant;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.impl.MerchantApiServiceImpl;
-import mdb.utils.BankserverUtil;
+import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
 import persistence.MerchantStore;
 
@@ -33,7 +33,7 @@ public class CreateMerchantMDB extends BaseMDB {
             response = MerchantApiServiceImpl.INVALID_INPUT;
         } else if (instance.getMerchant(merchant.getCvr()) == null) {
             try {
-                BankserverUtil.GetServer().getAccountByCprNumber(merchant.getCvr());
+                BankServerUtil.getServer().getAccountByCprNumber(merchant.getCvr());
                 instance.saveMerchant(merchant);
                 response = merchant.getUserID().toString();
             } catch (BankServiceException_Exception e) {

@@ -1,9 +1,8 @@
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.User;
 import io.swagger.model.Customer;
-import mdb.utils.BankserverUtil;
+import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
 
 import java.math.BigDecimal;
@@ -18,7 +17,7 @@ public class ObtainBarcodeSteps implements En {
         final Customer[] customers = {null};
         final ResponseModel[] response = new ResponseModel[1];
 
-        BankService bankService = BankserverUtil.GetServer();
+        BankService bankService = BankServerUtil.getServer();
 
         Given("^I have a DTUPay account$", () -> {
             cs.clearDataStores();

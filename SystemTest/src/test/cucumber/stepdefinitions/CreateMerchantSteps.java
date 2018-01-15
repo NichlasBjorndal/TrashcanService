@@ -1,8 +1,6 @@
-import core.user.Merchant;
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.*;
-import mdb.utils.BankserverUtil;
+import mdb.utils.BankServerUtil;
 
 
 import java.math.BigDecimal;
@@ -16,7 +14,7 @@ public class CreateMerchantSteps implements En {
         final ResponseModel[] response = new ResponseModel[1];
 
         Given("^I have a merchant account in the FastMoney Bank with name \"(.+)\" \"(.+)\" and CVR \"(.+)\"$", (String firstname, String lastname, String CVR) -> {
-            BankService bs = BankserverUtil.GetServer();
+            BankService bs = BankServerUtil.getServer();
             try {
                 bs.retireAccount(bs.getAccountByCprNumber(CVR).getId());
             } catch (BankServiceException_Exception ex) {
@@ -54,7 +52,7 @@ public class CreateMerchantSteps implements En {
 
         Given("^That I do not have a merchant account in the FastMoney Bank with CVR \"(.+)\"$", (String CVR) -> {
             // Write code here that turns the phrase above into concrete actions
-            BankService bs = BankserverUtil.GetServer();
+            BankService bs = BankServerUtil.getServer();
 
             try {
                 Account a = bs.getAccountByCprNumber(CVR);
