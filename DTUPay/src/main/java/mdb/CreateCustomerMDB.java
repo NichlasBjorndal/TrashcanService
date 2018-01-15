@@ -31,7 +31,7 @@ public class CreateCustomerMDB extends BaseMDB {
         }
 
         //Checks if an account already exists
-        else if(instance.getCustomer(customer.getCpr()) != null){
+        else if(instance.cprExists(customer)){
             response = "accountExistsError";
         }
 

@@ -2,12 +2,10 @@ package persistence;
 
 import core.user.Customer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class CustomerStore {
-    private Map<String, Customer> customers;
+    private Map<UUID, Customer> customers;
 
     private static final CustomerStore instance = new CustomerStore();
 
@@ -27,16 +25,16 @@ public class CustomerStore {
      * @param customer The customer to be saved in a map
      */
     public void saveCustomer(Customer customer){
-        customers.put(customer.getCpr(), customer);
+        customers.put(customer.getUserID(), customer);
     }
 
 
     /**
-     * @param cpr The customer's cpr number
-     * @return The customer with that cpr number
+     * @param uuid
+     * @return
      */
-    public Customer getCustomer(String cpr){
-        return customers.get(cpr);
+    public Customer getCustomer(UUID uuid){
+        return customers.get(uuid);
     }
 
 
@@ -45,5 +43,20 @@ public class CustomerStore {
      */
     public void clearStore(){
         customers.clear();
+    }
+
+
+    /**
+     * @param customer
+     * @return Whether a user with a cpr number already exists in the userstore
+     */
+    public boolean cprExists(Customer customer){
+        HashSet<String> cprNumbers = new HashSet<>();
+
+        for (UUID key: customers.keySet()) {
+            cprNumbers.add(customers.get(key).getCpr());
+        }
+
+        return cprNumbers.contains(customer.getCpr());
     }
 }

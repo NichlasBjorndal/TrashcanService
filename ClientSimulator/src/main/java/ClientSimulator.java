@@ -18,6 +18,12 @@ public class ClientSimulator {
         return new ResponseModel(r.getStatus(), r.getBody());
     }
 
+    public ResponseModel requestBarcode(String useruuid) throws UnirestException {
+        HttpResponse<String> r = Unirest.post(endpoint + "/barcode/" + useruuid ).asString();
+
+        return new ResponseModel(r.getStatus(), r.getBody());
+    }
+
     public ResponseModel clearDataStores() throws UnirestException {
         //make json
         HttpResponse<String> r = Unirest.post(endpoint + "/util/flush").asString();
