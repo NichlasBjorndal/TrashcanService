@@ -4,6 +4,7 @@ import core.user.Customer;
 import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
 import io.swagger.api.impl.CustomerResponse;
+import mdb.utils.ProcessMessageUtil;
 import persistence.CustomerStore;
 
 import javax.ejb.ActivationConfigProperty;
@@ -24,27 +25,8 @@ public class CreateCustomerMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
         Customer customer = (Customer) GsonWrapper.fromJson(receivedText, Customer.class);
+        String response = ProcessMessageUtil.createCustomer(customer);
 
-        CustomerStore instance = CustomerStore.getInstance();
-
-        String response;
-
-        if (!isValidInput(customer)) {
-            response = CustomerResponse.INVALID_INPUT.getValue();
-        } else if (instance.cprExists(customer)) {
-            response = CustomerResponse.ALREADY_EXISTS.getValue();
-        } else if (!BankServerUtil.checkIfBankAccountExistsById(customer.getCpr())) {
-            response = CustomerResponse.NO_BANK_ACCOUNT.getValue();
-        } else {
-            instance.saveCustomer(customer);
-            response = customer.getUserID().toString();
-        }
         return GsonWrapper.toJson(response);
-    }
-
-    private boolean isValidInput(Customer customer) {
-        boolean isValidName = !(customer.getFirstName() == null || customer.getFirstName().isEmpty() || customer.getLastName() == null || customer.getLastName().isEmpty());
-        boolean isValidCpr = customer.getCpr().length() == 10 && customer.getCpr().matches("[0-9]+");
-        return isValidCpr && isValidName;
     }
 }

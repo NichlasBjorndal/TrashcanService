@@ -28,23 +28,19 @@ public class RequestBarcodeMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
         String inputUUID = (String) GsonWrapper.fromJson(receivedText, String.class);
-
-        boolean validUUID = true;
-        UUID uuid = null;
-        try {
-            uuid = UUID.fromString(inputUUID);
-        } catch (Exception e) {
-            validUUID = false;
-        }
-
         String response;
+        UUID uuid = null;
 
-        if (!validUUID ){
+        if (!isUUIDValid(inputUUID)) {
             response = BarcodeResponse.INVALID_INPUT.getValue();
-        } else if(!uuidIsUserId(uuid)){
-            response = BarcodeResponse.NO_USER.getValue();
+        } else {
+            uuid = UUID.fromString(inputUUID);
         }
-        else {
+
+
+        if (!uuidIsUserId(uuid)) {
+            response = BarcodeResponse.NO_USER.getValue();
+        } else {
             BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
 
             //TODO properly handle IO exception
@@ -66,6 +62,10 @@ public class RequestBarcodeMDB extends BaseMDB {
             response = barcode.getUUID();
         }
         return GsonWrapper.toJson(response);
+    }
+
+    private boolean isUUIDValid(String inputUUID) {
+        return inputUUID.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
     }
 
     private boolean uuidIsUserId(UUID uuid) {
