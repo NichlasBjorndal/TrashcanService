@@ -7,7 +7,6 @@ import io.swagger.api.NotFoundException;
 import core.persistence.BarcodeStore;
 import core.persistence.CustomerStore;
 import core.persistence.MerchantStore;
-import core.persistence.UserStore;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -18,7 +17,6 @@ public class UtilApiServiceImpl extends UtilApiService {
       public Response flushData(SecurityContext securityContext) throws NotFoundException {
           MerchantStore.getInstance().clearStore();
           CustomerStore.getInstance().clearStore();
-          UserStore.getInstance().clearStore();
           BarcodeStore.getInstance().clearStore();
       return Response.ok().build();
   }
