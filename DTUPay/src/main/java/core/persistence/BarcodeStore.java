@@ -48,4 +48,11 @@ public class BarcodeStore {
         barcodes.clear();
     }
 
+    /**
+     * @return
+     */
+    public Map<String, UUID> getBarcodes(){
+        return barcodes;
+    }
+
 }
