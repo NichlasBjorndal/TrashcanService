@@ -15,8 +15,6 @@ import java.util.UUID;
  * Contains methods for handling messages received on barcode MDBs.
  */
 public class BarcodeMessageHandler {
-
-
     /**
      * @param inputUUID String of the UUID of the user for whom the barcode is being generated for.
      * @param barcodeGeneratorInterface This a seam where it's possible to inject a custom barcode generator
@@ -49,7 +47,6 @@ public class BarcodeMessageHandler {
             return barcode.getUUID();
         }
     }
-
 
     /**
      * @param inputUUID String of the UUID of the user for whom the barcode is being generated for.
