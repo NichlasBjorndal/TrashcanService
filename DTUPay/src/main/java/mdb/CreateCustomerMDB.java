@@ -1,11 +1,8 @@
 package mdb;
 
 import core.user.Customer;
-import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
-import io.swagger.api.impl.CustomerResponse;
-import mdb.utils.ProcessMessageUtil;
-import persistence.CustomerStore;
+import mdb.utils.CustomerMessageHandler;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -25,7 +22,7 @@ public class CreateCustomerMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
         Customer customer = (Customer) GsonWrapper.fromJson(receivedText, Customer.class);
-        String response = ProcessMessageUtil.createCustomer(customer);
+        String response = CustomerMessageHandler.createCustomer(customer);
 
         return GsonWrapper.toJson(response);
     }
