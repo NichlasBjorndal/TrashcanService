@@ -36,7 +36,7 @@ Feature: Pay at merchant
     And then balance is 900 on the customers account and the balance is 5655 on the merchant's account
 
     # NEDENSTÅENDE er ikke redundant, vel? Fordi ovenfor tjekker vi jo, OM barcode fjernes rigtigt og ikke fejlagtigt kan bruges igen...her en HELT random...
-  #Scenario: A merchant cannot use a non-existing barcode
+   Scenario: A merchant cannot use a non-existing barcode
     Given no accounts in FastMoney Bank and DTUPay exists with CPR 0000000000 and CVR 36947525
     Given Tog Portalen with CVR number 36947525 has an account in FastMoney Bank with balance 2323
     And Tog Portalen is merchant in DTUPay with CVR number 36947525
