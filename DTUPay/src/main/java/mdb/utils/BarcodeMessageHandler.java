@@ -40,7 +40,7 @@ public class BarcodeMessageHandler {
     }
 
     private static boolean isUUIDValid(String inputUUID) {
-        return inputUUID.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
+        return inputUUID != null && inputUUID.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
     }
 
     private static boolean uuidIsUserId(String uuid) {
