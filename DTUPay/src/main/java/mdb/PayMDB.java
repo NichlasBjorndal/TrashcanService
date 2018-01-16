@@ -1,10 +1,11 @@
 package mdb;
 
+import core.barcode.Model.Barcode;
 import core.persistence.BarcodeStore;
 import core.persistence.CustomerStore;
+import core.user.Customer;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
-import io.swagger.api.impl.PayApiServiceImpl;
 import io.swagger.api.impl.PayResponse;
 import io.swagger.model.Transaction;
 import mdb.utils.BankServerUtil;
@@ -27,21 +28,40 @@ public class PayMDB extends BaseMDB {
         String customerCPR = getCostumer(transaction.getBarcode());
 
         BankService server = BankServerUtil.getServer();
-
         String response;
-        try {
-            String senderAccountId = server.getAccountByCprNumber(customerCPR).getId();
-            String receiverAccountId = server.getAccountByCprNumber(transaction.getReceiverCVR()).getId();
-            server.transferMoneyFromTo(senderAccountId, receiverAccountId, transaction.getAmount(),"Successful transaction");
-            response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
-        } catch (BankServiceException_Exception e) {
-            if (e.getMessage().equals("Debtor balance will be negative")) {
-                response = PayResponse.INVALID_INPUT.getValue();
-            } else {
+
+        if (customerCPR == null) {
+            response = PayResponse.INVALID_BARCODE.getValue();
+        } else {
+            try {
+                String senderAccountId = server.getAccountByCprNumber(customerCPR).getId();
+                String receiverAccountId = server.getAccountByCprNumber(transaction.getReceiverCVR()).getId();
+                server.transferMoneyFromTo(senderAccountId, receiverAccountId, transaction.getAmount(),"Successful transaction");
                 response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
+                removeBarcode(transaction.getBarcode());
+            } catch (BankServiceException_Exception e) {
+                if (e.getMessage().equals("Debtor balance will be negative")) {
+                    response = PayResponse.INVALID_INPUT.getValue();
+                } else {
+                    response = PayResponse.UNEXPECTED.getValue();
+                }
             }
         }
         return GsonWrapper.toJson(response);
+    }
+
+    private void removeBarcode(String barcode) {
+        BarcodeStore barcodeStore = BarcodeStore.getInstance();
+        CustomerStore customerStore = CustomerStore.getInstance();
+        UUID customerId = barcodeStore.getCustomerId(barcode);
+        Customer customer = customerStore.getCustomer(customerId);
+        for (Barcode b : customer.getBarcodes()) {
+            if (barcode.equals(b.getUUID())) {
+                customer.removeBarcode(b);
+                break;
+            }
+        }
+        barcodeStore.removeBarcode(barcode);
     }
 
     private String getCostumer(String barcode) {

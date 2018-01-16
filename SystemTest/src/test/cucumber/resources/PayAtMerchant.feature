@@ -21,14 +21,20 @@ Feature: Pay at merchant
     When A merchant scans the customer's barcode and sends an invoice for a payment of 200
     Then the transfer is denied with response code 405
     And then balance is 100 on the customers account and the balance is 1337 on the merchant's account
+  
+  Scenario: A merchant cannot use the same barcode twice
+    Given no accounts in FastMoney Bank and DTUPay exists with CPR 4016591427 and CVR 22171596
+    Given Jens Jensen with CPR number 4016591427 has an account in FastMoney Bank with balance 1000
+    And Jens Jensen is customer in DTUPay with CPR number 4016591427
+    And Frida Fedtbiks with CVR number 22171596 has an account in FastMoney Bank with balance 5555
+    And Frida FedtBiks is merchant in DTUPay with CVR number 22171596
+    And the customer requests and receives a barcode
+    When A merchant scans the customer's barcode and sends an invoice for a payment of 100
+    Then the transfer is accepted with response code 201
+    When A merchant scans the customer's barcode and sends an invoice for a payment of 200
+    Then the transfer is denied with response code 400
+    And then balance is 900 on the customers account and the balance is 5655 on the merchant's account
 
-
-
-  #Scenario: A merchant cannot use the same barcode twice
-    #Given I already have an account
-    #And a merchant has an account
-    #And customer have requested a barcode
-    #And customer have received a barcode
     #When A merchant attempts to verify my barcode for a purchase
     #And DTUpay accepts the barcode and performs the transaction
     #And A merchant attempts to verify my barcode for a purchase

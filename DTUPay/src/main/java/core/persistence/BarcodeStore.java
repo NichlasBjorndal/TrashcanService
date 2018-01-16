@@ -55,4 +55,7 @@ public class BarcodeStore {
         return barcodes;
     }
 
+    public void removeBarcode(String barcode) {
+        barcodes.remove(barcode);
+    }
 }

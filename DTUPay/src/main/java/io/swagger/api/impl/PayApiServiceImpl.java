@@ -48,8 +48,12 @@ public class PayApiServiceImpl extends PayApiService {
           Response httpRes;
           if (parsedResponse.equals(PayResponse.SUCCESSFUL_PAYMENT.getValue())) {
               httpRes = Response.status(201).entity(PayResponse.SUCCESSFUL_PAYMENT.getValue()).build();
-          } else {
+          } else if (parsedResponse.equals(PayResponse.INVALID_INPUT.getValue())) {
               httpRes = Response.status(405).entity(PayResponse.INVALID_INPUT.getValue()).build();
+          } else if (parsedResponse.equals(PayResponse.INVALID_BARCODE.getValue())) {
+              httpRes = Response.status(400).entity(PayResponse.INVALID_BARCODE.getValue()).build();
+          } else {
+              httpRes = Response.status(433).entity(PayResponse.UNEXPECTED.getValue()).build();
           }
           return httpRes;
   }

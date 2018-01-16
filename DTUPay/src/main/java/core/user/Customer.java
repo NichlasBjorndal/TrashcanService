@@ -49,4 +49,8 @@ public class Customer extends User {
     public List<Barcode> getBarcodes() {
         return barcodes;
     }
+
+    public void removeBarcode(Barcode b) {
+        barcodes.remove(b);
+    }
 }
