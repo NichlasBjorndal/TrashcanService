@@ -6,8 +6,8 @@ import mdb.utils.GsonWrapper;
 
 public class ClientSimulator {
 
-    //public static String endpoint = "http://159.89.18.108:8080/DTUPay-0.5/api";
-    public static String endpoint = "http://localhost:8080/DTUPay-0.5/api";
+    public static String endpoint = "http://159.89.18.108:8080/DTUPay-0.5/api";
+    //public static String endpoint = "http://localhost:8080/DTUPay-0.5/api";
 
     public ClientSimulator(){}
 
