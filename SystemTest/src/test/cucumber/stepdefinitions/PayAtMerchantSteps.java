@@ -1,134 +1,104 @@
-import core.barcode.BarcodeGenerator;
-import core.user.Customer;
-import core.user.Merchant;
 import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
-import dtu.ws.fastmoney.BankServiceService;
 import dtu.ws.fastmoney.User;
+import io.swagger.model.Customer;
+import io.swagger.model.Merchant;
 import io.swagger.model.Transaction;
-import persistence.CustomerStore;
-import persistence.MerchantStore;
+import mdb.utils.BankServerUtil;
+import mdb.utils.GsonWrapper;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PayAtMerchantSteps implements En {
+    ClientSimulator clientSimulator = new ClientSimulator();
     MerchantSimulator merchantSimulator = new MerchantSimulator();
-    BankServiceService service = new BankServiceService();
-    BankService server = service.getBankServicePort();
-    String uuid;
-    String cvr;
+    BankService server = BankServerUtil.getServer();
+    String customerUUID;
+    String merchantCVR;
+    String customerCPR;
+    String barcodeUUID;
+    private int transferResponseCode;
 
     public PayAtMerchantSteps() {
-        Then("^DTUpay accepts the barcode and performs the transaction$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^My balance has changed$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        When("^A merchant tries to withdraw too large a fund$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        Then("^DTUpay denies the transaction$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^My balance has not been changed$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^my balance has changed$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^a merchant has an account$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^I have requested a barcode$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^I have received a barcode$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        When("^A merchant attempts to verify my barcode for a purchase$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^customer have requested a barcode$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^customer have received a barcode$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^a barcode with uuid \"([^\"]*)\"$", (String arg0) -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        When("^the merchant attempts to verify this barcode for a purchase$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^a customer has an account$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^a customer then deletes his account$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        When("^a merchant attempts to verify the customers barcode for a purchase$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-        And("^merchant does not have an account$", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+
+        Given("^([^\"]*) ([^\"]*) with CPR number ([^\"]*) has an account in FastMoney Bank with balance ([^\"]*)$", (String firstName, String lastName, String cpr, String customerBalance) -> {
+            clientSimulator.clearDataStores();
+            //server.retireAccount(server.getAccountByCprNumber("9859526433").getId());
+            //server.retireAccount(server.getAccountByCprNumber("67184597").getId());
+            customerCPR = cpr;
+            User customer = new User();
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setCprNumber(cpr);
+            BigDecimal bD = new BigDecimal(customerBalance);
+            server.createAccountWithBalance(customer, bD);
+            assertEquals(cpr, server.getAccountByCprNumber(cpr).getUser().getCprNumber());
+
         });
 
-        Given("^customer account with first name \"([^\"]*)\", last name \"([^\"]*)\" and CPR number \"([^\"]*)\" exists with account balance of  \"([^\"]*)\"$", (String firstName, String lastName, String cpr, String customerBalance) -> {
-            Customer customer = new Customer(firstName, lastName, cpr);
-            User cust = new User();
-            cust.setFirstName(firstName);
-            cust.setLastName(lastName);
-            cust.setCprNumber(cpr);
-            BigDecimal bD = new BigDecimal(customerBalance);
-            server.createAccountWithBalance(cust,bD);
-            assertEquals(cpr, server.getAccountByCprNumber(cpr).getUser().getCprNumber());
-            server.retireAccount(server.getAccountByCprNumber(cpr).getId());
+        And("^([^\"]*) ([^\"]*) is customer in DTUPay with CPR number ([^\"]*)$", (String firstName, String lastName, String cpr) -> {
+            Customer customer = new Customer();
+            customer.setCpr(cpr);
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            ResponseModel response = clientSimulator.createCustomer(customer);
+            int responseCode = response.getStatus();
+            customerUUID = (String) GsonWrapper.fromJson(response.getBody(), String.class);
+            assertTrue(responseCode == 201);
         });
-        And("^merchant account with first name \"([^\"]*)\", last name \"([^\"]*)\" and CVR number \"([^\"]*)\" exists with account balance of \"([^\"]*)\"$", (String firstName, String lastName,  String cvr, String merchantBalance) -> {
+
+        And("^([^\"]*) ([^\"]*) with CVR number ([^\"]*) has an account in FastMoney Bank with balance ([^\"]*)$", (String firstName, String lastName, String cvr, String merchantBalance) -> {
+            merchantCVR = cvr;
             User merchant = new User();
             merchant.setFirstName(firstName);
             merchant.setLastName(lastName);
             merchant.setCprNumber(cvr);
-            this.cvr = cvr;
             BigDecimal bD = new BigDecimal(merchantBalance);
-            server.createAccountWithBalance(merchant,bD);
+            server.createAccountWithBalance(merchant, bD);
             assertEquals(cvr, server.getAccountByCprNumber(cvr).getUser().getCprNumber());
-            server.retireAccount(server.getAccountByCprNumber(cvr).getId());
-        });
-        And("^the customer has received a barcode$", () -> {
-            BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
-            uuid = barcodeGenerator.generateBarcode().getUUID();
         });
 
-        When("^A merchant scans the customer's barcode and sends an invoice for a payment of \"([^\"]*)\"$", (String amount) -> {
+        And("^([^\"]*) ([^\"]*) is merchant in DTUPay with CVR number ([^\"]*)$", (String firstName, String lastName, String cvr) -> {
+            Merchant merchant = new Merchant();
+            merchant.setCvr(cvr);
+            merchant.setFirstName(firstName);
+            merchant.setLastName(lastName);
+            ResponseModel response = merchantSimulator.createAccount(firstName, lastName, cvr);
+            int responseCode = response.getStatus();
+            assertEquals(201, responseCode);
+        });
+
+        And("^the customer requests and receives a barcode$", () -> {
+            ResponseModel response = clientSimulator.requestBarcode(customerUUID);
+            barcodeUUID = (String) GsonWrapper.fromJson(response.getBody(), String.class);
+            assertEquals(200, response.getStatus());
+            assertTrue(barcodeUUID.length() > 0);
+        });
+
+        When("^A merchant scans the customer's barcode and sends an invoice for a payment of ([^\"]*)$", (String amount) -> {
+            BigDecimal paymentAmount = new BigDecimal(amount);
             Transaction transaction = new Transaction();
-            transaction.setReceiverCVR(cvr);
-            transaction.setAmount(new BigDecimal(amount));
-            transaction.setBarcode(uuid);
-            ResponseModel responseModel = merchantSimulator.payMerchant(transaction);
-            assertEquals(responseModel.getStatus(),201);
+            transaction.setAmount(paymentAmount);
+            transaction.setBarcode(barcodeUUID);
+            transaction.setReceiverCVR(merchantCVR);
+            ResponseModel response = merchantSimulator.payMerchant(transaction);
+            transferResponseCode = response.getStatus();
+            assertEquals(201, transferResponseCode);
+        });
+
+        Then("^then balance is ([^\"]*) on the customers account and the balance is ([^\"]*) on the merchant's account$", (String customerBalance, String merchantBalance) -> {
+            assertEquals(customerBalance, server.getAccountByCprNumber(customerCPR).getBalance().toString());
+            assertEquals(merchantBalance, server.getAccountByCprNumber(merchantCVR).getBalance().toString());
+            server.retireAccount(server.getAccountByCprNumber(merchantCVR).getId());
+            server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
+            clientSimulator.clearDataStores();
+        });
+        Then("^the transfer is denied with an error message$", () -> {
+
         });
     }
 }

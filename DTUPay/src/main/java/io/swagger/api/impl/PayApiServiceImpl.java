@@ -28,6 +28,7 @@ import javax.ws.rs.core.SecurityContext;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-13T13:38:28.848Z")
 public class PayApiServiceImpl extends PayApiService {
 
+    public static final String SUCCESSFUL_PAY = "Payment was successful";
     private static final String PAY_QUEUE = "PayQueue";
 
       @Override
@@ -46,8 +47,11 @@ public class PayApiServiceImpl extends PayApiService {
           String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
 
           Response httpRes;
-
-              httpRes = Response.status(201).entity(response).build();
+          if (parsedResponse.equals(SUCCESSFUL_PAY)) {
+              httpRes = Response.status(201).entity(SUCCESSFUL_PAY).build();
+          } else {
+              httpRes = Response.status(400).build();
+          }
           return httpRes;
   }
 }
