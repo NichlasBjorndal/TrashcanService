@@ -5,7 +5,14 @@ import core.utils.BankServerUtil;
 import io.swagger.api.impl.MerchantResponse;
 import persistence.MerchantStore;
 
+/**
+ * Contains methods for handling messages received on merchant MDBs.
+ */
 public class MerchantMessageHandler {
+    /**
+     * @param merchant merchant object to be created in the system.
+     * @return UUID for the created merchant or error message if relevant.
+     */
     public static String createMerchant(Merchant merchant) {
         MerchantStore instance = MerchantStore.getInstance();
 
@@ -21,6 +28,10 @@ public class MerchantMessageHandler {
         }
     }
 
+    /**
+     * @param merchant merchant object to be checked.
+     * @return whether the first name, last name and cpr of the merchant object has correct structure.
+     */
     private static boolean merchantInputIsInvalid(Merchant merchant) {
         return (!merchant.getCvr().matches("^(?!\\s*$)[0-9\\s]{8}$")) || ((merchant.getFirstName().equals(" ") || merchant.getLastName().equals(" ")) ||
                 (!merchant.getLastName().matches("^[a-zA-Z0-9 ]*$") || !merchant.getFirstName().matches("^[a-zA-Z0-9 ]*$")));
