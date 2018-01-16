@@ -1,3 +1,4 @@
+import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
@@ -76,7 +77,7 @@ public class PayAtMerchantSteps implements En {
             assertTrue(barcodeUUID.length() > 0);
         });
 
-        When("^A merchant scans the customer's barcode and sends an invoice for a payment of ([^\"]*)$", (String amount) -> {
+        When("^A merchant scans the barcode and sends an invoice for a payment of ([^\"]*)$", (String amount) -> {
             BigDecimal paymentAmount = new BigDecimal(amount);
             Transaction transaction = new Transaction();
             transaction.setAmount(paymentAmount);
@@ -112,5 +113,20 @@ public class PayAtMerchantSteps implements En {
                 assertEquals("Account does not exist", e.getMessage());
             }
         });
+        And("^the merchant has a barcode with UUID ([^\"]*)$", (String barcodeUUID) -> {
+            this.barcodeUUID = barcodeUUID;
+        });
+        And("^then the balance is (\\d+) on the merchant's account$", (String merchantBalance) -> {
+            assertEquals(merchantBalance, server.getAccountByCprNumber(merchantCVR).getBalance().toString());
+            server.retireAccount(server.getAccountByCprNumber(merchantCVR).getId());
+            merchantSimulator.clearDataStores();
+        });
+        And("^then balance is (\\d+) on the customers account$", (String customerBalance) -> {
+            assertEquals(customerBalance, server.getAccountByCprNumber(customerCPR).getBalance().toString());
+            server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
+            clientSimulator.clearDataStores();
+        });
+
+
     }
 }
