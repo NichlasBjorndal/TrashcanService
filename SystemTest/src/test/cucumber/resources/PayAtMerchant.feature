@@ -8,15 +8,15 @@ Feature: Pay at merchant
     When A merchant scans the customer's barcode and sends an invoice for a payment of 500
     Then then balance is 0 on the customers account and the balance is 1000 on the merchant's account
 
-  Scenario: A customer cannot pay a merchant with too low fund
-    Given Simon Bro with CPR number 1427912340 has an account in FastMoney Bank with balance 100
-    And Simon Bro is customer in DTUPay with CPR number 1427912340
-    And Gustav Fring with CVR number 7231339 has an account in FastMoney Bank with balance 1337
-    And Gustav Fring is merchant in DTUPay with CVR number 7231339
-    And the customer requests and receives a barcode
-    When A merchant scans the customer's barcode and sends an invoice for a payment of 200
-    Then the transfer is denied with an error message
-    And then balance is 100 on the customers account and the balance is 1337 on the merchant's account
+  #Scenario: A customer cannot pay a merchant with too low fund
+    #Given Simon Bro with CPR number 1427912340 has an account in FastMoney Bank with balance 100
+    #And Simon Bro is customer in DTUPay with CPR number 1427912340
+    #And Gustav Fring with CVR number 7231339 has an account in FastMoney Bank with balance 1337
+    #And Gustav Fring is merchant in DTUPay with CVR number 7231339
+    #And the customer requests and receives a barcode
+    #When A merchant scans the customer's barcode and sends an invoice for a payment of 200
+    ##Then the transfer is denied with an error message
+    ##And then balance is 100 on the customers account and the balance is 1337 on the merchant's account
 
    # And I have requested a barcode
    # And I have received a barcode
