@@ -1,22 +1,26 @@
 Feature: Pay at merchant
+
   Scenario: A customer can pay at a merchant
+    Given no accounts in FastMoney Bank and DTUPay exists with CPR 9859526433 and CVR 67184597
     Given John Doe with CPR number 9859526433 has an account in FastMoney Bank with balance 500
     And John Doe is customer in DTUPay with CPR number 9859526433
     And Jane Doe with CVR number 67184597 has an account in FastMoney Bank with balance 500
     And Jane Doe is merchant in DTUPay with CVR number 67184597
     And the customer requests and receives a barcode
     When A merchant scans the customer's barcode and sends an invoice for a payment of 500
-    Then then balance is 0 on the customers account and the balance is 1000 on the merchant's account
+    Then the transfer is accepted with response code 201
+    And then balance is 0 on the customers account and the balance is 1000 on the merchant's account
 
-  #Scenario: A customer cannot pay a merchant with too low fund
-    #Given Simon Bro with CPR number 1427912340 has an account in FastMoney Bank with balance 100
-    #And Simon Bro is customer in DTUPay with CPR number 1427912340
-    #And Gustav Fring with CVR number 7231339 has an account in FastMoney Bank with balance 1337
-    #And Gustav Fring is merchant in DTUPay with CVR number 7231339
-    #And the customer requests and receives a barcode
-    #When A merchant scans the customer's barcode and sends an invoice for a payment of 200
-    ##Then the transfer is denied with an error message
-    ##And then balance is 100 on the customers account and the balance is 1337 on the merchant's account
+  Scenario: A customer cannot pay a merchant with too low fund
+    Given no accounts in FastMoney Bank and DTUPay exists with CPR 1427912340 and CVR 47803166
+    Given Simon Bro with CPR number 1427912340 has an account in FastMoney Bank with balance 100
+    And Simon Bro is customer in DTUPay with CPR number 1427912340
+    And Gustav Fring with CVR number 47803166 has an account in FastMoney Bank with balance 1337
+    And Gustav Fring is merchant in DTUPay with CVR number 47803166
+    And the customer requests and receives a barcode
+    When A merchant scans the customer's barcode and sends an invoice for a payment of 200
+    Then the transfer is denied with response code 405
+    And then balance is 100 on the customers account and the balance is 1337 on the merchant's account
 
    # And I have requested a barcode
    # And I have received a barcode

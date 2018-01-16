@@ -1,6 +1,7 @@
 import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
+import dtu.ws.fastmoney.BankServiceException_Exception;
 import dtu.ws.fastmoney.User;
 import io.swagger.model.Customer;
 import io.swagger.model.Merchant;
@@ -26,9 +27,6 @@ public class PayAtMerchantSteps implements En {
     public PayAtMerchantSteps() {
 
         Given("^([^\"]*) ([^\"]*) with CPR number ([^\"]*) has an account in FastMoney Bank with balance ([^\"]*)$", (String firstName, String lastName, String cpr, String customerBalance) -> {
-            clientSimulator.clearDataStores();
-            //server.retireAccount(server.getAccountByCprNumber("9859526433").getId());
-            //server.retireAccount(server.getAccountByCprNumber("67184597").getId());
             customerCPR = cpr;
             User customer = new User();
             customer.setFirstName(firstName);
@@ -87,7 +85,6 @@ public class PayAtMerchantSteps implements En {
             transaction.setReceiverCVR(merchantCVR);
             ResponseModel response = merchantSimulator.payMerchant(transaction);
             transferResponseCode = response.getStatus();
-            assertEquals(201, transferResponseCode);
         });
 
         Then("^then balance is ([^\"]*) on the customers account and the balance is ([^\"]*) on the merchant's account$", (String customerBalance, String merchantBalance) -> {
@@ -97,8 +94,25 @@ public class PayAtMerchantSteps implements En {
             server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
             clientSimulator.clearDataStores();
         });
-        Then("^the transfer is denied with an error message$", () -> {
-
+        Then("^the transfer is denied with response code ([^\"]*)$", (String responseCode) -> {
+            assertEquals(Integer.parseInt(responseCode), transferResponseCode);
         });
+        Then("^the transfer is accepted with response code ([^\"]*)$", (String responseCode) -> {
+            assertEquals(Integer.parseInt(responseCode), transferResponseCode);
+        });
+        Given("^no accounts in FastMoney Bank and DTUPay exists with CPR ([^\"]*) and CVR ([^\"]*)$", (String cpr, String cvr) -> {
+            clientSimulator.clearDataStores();
+            try {
+                server.retireAccount(server.getAccountByCprNumber(cpr).getId());
+            } catch (BankServiceException_Exception e) {
+                assertEquals("Account does not exist", e.getMessage());
+            }
+            try {
+                server.retireAccount(server.getAccountByCprNumber(cvr).getId());
+            } catch (BankServiceException_Exception e) {
+                assertEquals("Account does not exist", e.getMessage());
+            }
+        });
+
     }
 }

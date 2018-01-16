@@ -1,16 +1,13 @@
 package mdb;
 
-import core.user.Customer;
-import dtu.ws.fastmoney.Account;
+import core.persistence.BarcodeStore;
+import core.persistence.CustomerStore;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
-import dtu.ws.fastmoney.BankServiceService;
 import io.swagger.api.impl.PayApiServiceImpl;
 import io.swagger.model.Transaction;
 import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
-import persistence.BarcodeStore;
-import persistence.CustomerStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -37,7 +34,10 @@ public class PayMDB extends BaseMDB {
             server.transferMoneyFromTo(senderAccountId, receiverAccountId, transaction.getAmount(),"Successful transaction");
             response = PayApiServiceImpl.SUCCESSFUL_PAY;
         } catch (BankServiceException_Exception e) {
-            response = "failure";
+            if (e.getMessage().equals("Debtor balance will be negative")) {
+                response = Pay
+            }
+
         }
 
         return GsonWrapper.toJson(response);
