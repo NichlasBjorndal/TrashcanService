@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class BarcodeMessageHandler {
-
     public static String createBarcode(String inputUUID) {
         if (!isUUIDValid(inputUUID)) {
             return BarcodeResponse.INVALID_INPUT.getValue();
