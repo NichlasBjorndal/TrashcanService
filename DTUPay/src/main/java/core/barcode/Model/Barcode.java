@@ -18,6 +18,9 @@ public class Barcode {
         this.barcodeFile = barcodeFile;
     }
 
+    public Barcode(){
+    }
+
     /**
      * @return the barcode image file
      */

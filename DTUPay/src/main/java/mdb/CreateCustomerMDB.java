@@ -6,7 +6,7 @@ import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
-import persistence.CustomerStore;
+import core.persistence.CustomerStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -35,7 +35,7 @@ public class CreateCustomerMDB extends BaseMDB {
         }
 
         //Checks if the customer doesn't have a bank account
-        else if(!CheckIfBankAccountExists(customer.getCpr())){
+        else if(!BankServerUtil.checkIfBankAccountExistsById(customer.getCpr())){
             response = "noBankAccountError";
         } else {
             instance.saveCustomer(customer);
@@ -49,19 +49,5 @@ public class CreateCustomerMDB extends BaseMDB {
         boolean isValidName = !(customer.getFirstName() == null || customer.getFirstName().isEmpty() || customer.getLastName() == null || customer.getLastName().isEmpty());
         boolean isValidCpr = customer.getCpr().length() == 10 && customer.getCpr().matches("[0-9]+");
         return isValidCpr && isValidName;
-    }
-
-    private boolean CheckIfBankAccountExists(String cpr) {
-        BankService server = BankServerUtil.getServer();
-
-        Account accountByCprNumber = null;
-
-        try {
-             accountByCprNumber = server.getAccountByCprNumber(cpr);
-        } catch (BankServiceException_Exception e) {
-            e.printStackTrace();
-        }
-
-        return accountByCprNumber != null;
     }
 }

@@ -4,9 +4,8 @@ import core.barcode.BarcodeGenerator;
 import core.barcode.Model.Barcode;
 import core.user.Customer;
 import mdb.utils.GsonWrapper;
-import persistence.BarcodeStore;
-import persistence.CustomerStore;
-import persistence.UserStore;
+import core.persistence.BarcodeStore;
+import core.persistence.CustomerStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -17,7 +16,7 @@ import java.util.UUID;
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/RequestBarcodeQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
-public class RequestBarcodeMBD extends BaseMDB {
+public class RequestBarcodeMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
 

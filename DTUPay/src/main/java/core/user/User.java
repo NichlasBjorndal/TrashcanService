@@ -11,9 +11,7 @@ public class User {
     private String firstName, lastName;
     private UUID userID;
     private Double accountBalance;
-
-
-    //Used for GSON
+    
     public User(){
         this.userID = UUID.randomUUID();
     }

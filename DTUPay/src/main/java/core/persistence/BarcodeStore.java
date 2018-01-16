@@ -1,4 +1,4 @@
-package persistence;
+package core.persistence;
 
 import core.barcode.Model.Barcode;
 import core.user.Customer;
@@ -46,6 +46,13 @@ public class BarcodeStore {
      */
     public void clearStore(){
         barcodes.clear();
+    }
+
+    /**
+     * @return
+     */
+    public Map<String, UUID> getBarcodes(){
+        return barcodes;
     }
 
 }

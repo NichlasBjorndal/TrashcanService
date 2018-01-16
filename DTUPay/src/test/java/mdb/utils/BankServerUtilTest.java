@@ -42,13 +42,6 @@ public class BankServerUtilTest {
 
     }
 
-    @After
-    public void tearDown() throws Exception {
-        BankService bs = BankServerUtil.getServer();
-        bs.retireAccount(userID1);
-        bs.retireAccount(userID2);
-    }
-
     @Test
     public void transferMoneyTest() throws Exception {
         FastMoneyTransaction transaction = new FastMoneyTransaction(userCPR1, userCPR2, new BigDecimal(501), "500 from Tosh to Caroline");
@@ -76,5 +69,22 @@ public class BankServerUtilTest {
         BankService bs = BankServerUtil.getServer();
         assertEquals(new BigDecimal(499), bs.getAccount(userID1).getBalance());
         assertEquals(new BigDecimal(1501), bs.getAccount(userID2).getBalance());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        BankService bs = BankServerUtil.getServer();
+        try {
+            bs.retireAccount(bs.getAccount(userID1).getId());
+        } catch (BankServiceException_Exception e) {
+            assertEquals("Account does not exist", e.getMessage());
+        }
+
+        try {
+            bs.retireAccount(bs.getAccount(userID2).getId());
+        } catch (BankServiceException_Exception e) {
+            assertEquals("Account does not exist", e.getMessage());
+        }
+
     }
 }
