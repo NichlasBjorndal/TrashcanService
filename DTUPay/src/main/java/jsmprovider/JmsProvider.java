@@ -1,6 +1,6 @@
 package jsmprovider;
 
-import mdb.utils.GsonWrapper;
+import core.utils.GsonWrapper;
 import mdb.utils.JMSSessionFactory;
 
 import javax.jms.*;

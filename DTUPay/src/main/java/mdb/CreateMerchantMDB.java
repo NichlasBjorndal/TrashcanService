@@ -1,17 +1,17 @@
 package mdb;
 
 import core.user.Merchant;
-import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.impl.MerchantApiServiceImpl;
-import mdb.utils.BankServerUtil;
-import mdb.utils.GsonWrapper;
+import core.utils.BankServerUtil;
+import core.utils.GsonWrapper;
+import io.swagger.api.impl.MerchantResponse;
 import persistence.MerchantStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 
 /**
- * Message Driven Bean for creating merchants
+ * Message Driven Bean for creating merchants. Listens to the CreateMerchantQueue.
  */
 @MessageDriven(name = "CreateMerchantMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateMerchantQueue"),
@@ -20,8 +20,8 @@ import javax.ejb.MessageDriven;
 
 public class CreateMerchantMDB extends BaseMDB {
     /**
-     * @param receivedText text received from CreateMerchantQueue
-     * @return JSON response
+     * @param receivedText JSON received from CreateMerchantQueue.
+     * @return new merchant id if successful, otherwise relevant error message.
      */
     @Override
     protected String processMessage(String receivedText) {
@@ -30,16 +30,14 @@ public class CreateMerchantMDB extends BaseMDB {
         String response;
 
         if (inputIsInvalid(merchant)) {
-            response = MerchantApiServiceImpl.INVALID_INPUT;
-        } else if (instance.getMerchant(merchant.getCvr()) == null) {
-            if (BankServerUtil.checkIfBankAccountExistsById(merchant.getCvr())) {
-                instance.saveMerchant(merchant);
-                response = merchant.getUserID().toString();
-            } else {
-                response = MerchantApiServiceImpl.NO_BANK_ACCOUNT;
-            }
+            response = MerchantResponse.INVALID_INPUT.getValue();
+        } else if (instance.getMerchant(merchant.getCvr()) != null) {
+            response = MerchantResponse.ALREADY_EXISTS.getValue();
+        } else if (!BankServerUtil.checkIfBankAccountExistsById(merchant.getCvr())) {
+            response = MerchantResponse.NO_BANK_ACCOUNT.getValue();
         } else {
-            response = MerchantApiServiceImpl.ALREADY_EXISTS;
+            instance.saveMerchant(merchant);
+            response = merchant.getUserID().toString();
         }
 
         return GsonWrapper.toJson(response);

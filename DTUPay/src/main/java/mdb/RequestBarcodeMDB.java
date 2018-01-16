@@ -3,24 +3,30 @@ package mdb;
 import core.barcode.BarcodeGenerator;
 import core.barcode.Model.Barcode;
 import core.user.Customer;
-import mdb.utils.GsonWrapper;
+import core.utils.GsonWrapper;
+import io.swagger.api.impl.BarcodeResponse;
 import persistence.BarcodeStore;
 import persistence.CustomerStore;
-import persistence.UserStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Message Driven Bean for handling barcode requests. Listens to the RequestBarcodeQueue.
+ */
 @MessageDriven(name = "RequestBarcodeMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/RequestBarcodeQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 public class RequestBarcodeMDB extends BaseMDB {
+    /**
+     * @param receivedText JSON received from RequestBarcodeQueue.
+     * @return new barcode uuid if successful, otherwise relevant error message.
+     */
     @Override
     protected String processMessage(String receivedText) {
-
         String inputUUID = (String) GsonWrapper.fromJson(receivedText, String.class);
 
         boolean validUUID = true;
@@ -34,9 +40,9 @@ public class RequestBarcodeMDB extends BaseMDB {
         String response;
 
         if (!validUUID ){
-            response = "invalidInput";
+            response = BarcodeResponse.INVALID_INPUT.getValue();
         } else if(!uuidIsUserId(uuid)){
-            response = "userDoesntExist";
+            response = BarcodeResponse.NO_USER.getValue();
         }
         else {
             BarcodeGenerator barcodeGenerator = new BarcodeGenerator();
@@ -57,9 +63,9 @@ public class RequestBarcodeMDB extends BaseMDB {
             BarcodeStore barcodeStoreInstance = BarcodeStore.getInstance();
             barcodeStoreInstance.saveBarcode(barcode, customer);
 
-            response = GsonWrapper.toJson(barcode.getUUID());
+            response = barcode.getUUID();
         }
-        return response;
+        return GsonWrapper.toJson(response);
     }
 
     private boolean uuidIsUserId(UUID uuid) {

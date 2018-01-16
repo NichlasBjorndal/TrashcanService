@@ -1,4 +1,4 @@
-package mdb.utils;
+package core.utils;
 
 import core.FastMoneyTransaction;
 import dtu.ws.fastmoney.Account;

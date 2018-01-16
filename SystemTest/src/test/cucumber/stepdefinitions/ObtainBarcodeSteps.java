@@ -3,8 +3,8 @@ import dtu.ws.fastmoney.Account;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.User;
 import io.swagger.model.Customer;
-import mdb.utils.BankServerUtil;
-import mdb.utils.GsonWrapper;
+import core.utils.BankServerUtil;
+import core.utils.GsonWrapper;
 
 import java.math.BigDecimal;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package mdb.utils;
+package core.utils;
 
 import com.google.gson.Gson;
 

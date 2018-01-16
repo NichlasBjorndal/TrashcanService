@@ -2,7 +2,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import io.swagger.model.Customer;
-import mdb.utils.GsonWrapper;
+import core.utils.GsonWrapper;
 
 public class ClientSimulator {
 

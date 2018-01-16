@@ -1,6 +1,6 @@
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.*;
-import mdb.utils.BankServerUtil;
+import core.utils.BankServerUtil;
 
 
 import java.math.BigDecimal;
