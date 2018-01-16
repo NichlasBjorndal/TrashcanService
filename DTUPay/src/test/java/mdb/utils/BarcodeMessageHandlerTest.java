@@ -5,9 +5,11 @@ import core.persistence.CustomerStore;
 import core.user.Customer;
 import io.swagger.api.impl.BarcodeResponse;
 import org.apache.commons.codec.binary.Base64;
+import org.junit.After;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.UUID;
@@ -21,6 +23,14 @@ import static org.mockito.Mockito.when;
  */
 public class BarcodeMessageHandlerTest {
 
+    private String latestUID;
+
+    @After
+    public void tearDown() throws Exception {
+        File file = new File(latestUID + ".png");
+        if (file != null)
+            file.delete();
+    }
 
     @Test
     public void createBarcode_nullUuid() {
@@ -73,23 +83,13 @@ public class BarcodeMessageHandlerTest {
 
         //Act
         String barcode = BarcodeMessageHandler.createBarcode(uuid);
+        latestUID = barcode;
 
-        String uuidFromBase64 = uuidFromBase64(barcode);
-        boolean validuuid = uuidFromBase64.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
 
         //Assert
-        assertTrue(validuuid);
-        instance.clearStore();
+        assertEquals(22, barcode.length());
     }
 
-    //https://stackoverflow.com/a/15013205
-    private static String uuidFromBase64(String str) {
-        String base64Padding = "==";
-        byte[] bytes = Base64.decodeBase64((str + base64Padding).getBytes());
-        ByteBuffer bb = ByteBuffer.wrap(bytes);
-        UUID uuid = new UUID(bb.getLong(), bb.getLong());
-        return uuid.toString();
-    }
 
     @Test(expected = NullPointerException.class)
     public void createBarcode_IoExceptionThrown() throws IOException {
@@ -105,7 +105,7 @@ public class BarcodeMessageHandlerTest {
         String uuid = customer.getUserID().toString();
 
         //Act
-         BarcodeMessageHandler.createBarcode(uuid, barcodeGenerator);
+        BarcodeMessageHandler.createBarcode(uuid, barcodeGenerator);
 
         //Assert
     }
