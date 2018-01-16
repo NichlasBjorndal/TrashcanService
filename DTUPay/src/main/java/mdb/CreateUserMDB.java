@@ -1,9 +1,8 @@
 package mdb;
 
 import core.user.Customer;
-import core.user.User;
 import mdb.utils.GsonWrapper;
-import persistence.UserStore;
+import core.persistence.UserStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;

@@ -1,4 +1,4 @@
-package persistence;
+package core.persistence;
 
 import core.barcode.Model.Barcode;
 import core.user.Customer;

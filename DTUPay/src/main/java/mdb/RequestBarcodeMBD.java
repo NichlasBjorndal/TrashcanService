@@ -4,9 +4,8 @@ import core.barcode.BarcodeGenerator;
 import core.barcode.Model.Barcode;
 import core.user.Customer;
 import mdb.utils.GsonWrapper;
-import persistence.BarcodeStore;
-import persistence.CustomerStore;
-import persistence.UserStore;
+import core.persistence.BarcodeStore;
+import core.persistence.CustomerStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;

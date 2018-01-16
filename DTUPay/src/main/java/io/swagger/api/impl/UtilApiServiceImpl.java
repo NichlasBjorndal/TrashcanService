@@ -1,18 +1,13 @@
 package io.swagger.api.impl;
 
 import io.swagger.api.*;
-import io.swagger.model.*;
 
 
-
-import java.util.List;
 import io.swagger.api.NotFoundException;
-import persistence.BarcodeStore;
-import persistence.CustomerStore;
-import persistence.MerchantStore;
-import persistence.UserStore;
-
-import java.io.InputStream;
+import core.persistence.BarcodeStore;
+import core.persistence.CustomerStore;
+import core.persistence.MerchantStore;
+import core.persistence.UserStore;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
