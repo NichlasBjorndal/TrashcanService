@@ -43,7 +43,6 @@ public class BankServerUtil {
         try {
             accountByIdentifier = server.getAccountByCprNumber(cpr);
         } catch (BankServiceException_Exception e) {
-            e.printStackTrace();
         }
 
         return accountByIdentifier != null;
