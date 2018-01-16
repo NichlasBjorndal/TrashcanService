@@ -35,12 +35,6 @@ Feature: Pay at merchant
     Then the transfer is denied with response code 400
     And then balance is 900 on the customers account and the balance is 5655 on the merchant's account
 
-    #When A merchant attempts to verify my barcode for a purchase
-    #And DTUpay accepts the barcode and performs the transaction
-    #And A merchant attempts to verify my barcode for a purchase
-    #Then DTUpay denies the transaction
-    #And my balance has changed
-
   #Scenario: A merchant cannot use a non-existing barcode
    # Given a merchant has an account
    # And a barcode with uuid "00000000-0000-0000-0000-000000000000"

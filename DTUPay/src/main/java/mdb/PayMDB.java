@@ -30,7 +30,7 @@ public class PayMDB extends BaseMDB {
         BankService server = BankServerUtil.getServer();
         String response;
 
-        if (customerCPR == null) {
+        if (customerCPR.equals("")) {
             response = PayResponse.INVALID_BARCODE.getValue();
         } else {
             try {
@@ -65,9 +65,14 @@ public class PayMDB extends BaseMDB {
     }
 
     private String getCostumer(String barcode) {
+        UUID customerId;
+        CustomerStore customerStore;
         BarcodeStore barcodeStore = BarcodeStore.getInstance();
-        UUID customerId = barcodeStore.getCustomerId(barcode);
-        CustomerStore customerStore = CustomerStore.getInstance();
+        customerId = barcodeStore.getCustomerId(barcode);
+        customerStore = CustomerStore.getInstance();
+        if (customerId == null){
+            return "";
+        }
         return customerStore.getCustomer(customerId).getCpr();
     }
 }
