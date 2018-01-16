@@ -17,7 +17,7 @@ import java.util.UUID;
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/RequestBarcodeQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
-public class RequestBarcodeMBD extends BaseMDB {
+public class RequestBarcodeMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
 
