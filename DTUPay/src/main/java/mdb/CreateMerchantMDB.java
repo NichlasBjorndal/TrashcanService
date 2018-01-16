@@ -5,7 +5,7 @@ import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.impl.MerchantApiServiceImpl;
 import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
-import persistence.MerchantStore;
+import core.persistence.MerchantStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;

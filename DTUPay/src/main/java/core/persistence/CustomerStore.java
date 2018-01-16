@@ -1,4 +1,4 @@
-package persistence;
+package core.persistence;
 
 import core.user.Customer;
 
@@ -38,6 +38,12 @@ public class CustomerStore {
     }
 
 
+    /**
+     * @return
+     */
+    public Map<UUID, Customer> getCustomers(){
+        return customers;
+    }
     /**
      * Deletes all users from the store
      */

@@ -6,7 +6,7 @@ import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
-import persistence.CustomerStore;
+import core.persistence.CustomerStore;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
