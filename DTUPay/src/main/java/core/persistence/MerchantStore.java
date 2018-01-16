@@ -42,4 +42,8 @@ public class MerchantStore {
     public void clearStore(){
         Merchants.clear();
     }
+
+    public Map<String, Merchant> getMerchants(){
+        return Merchants;
+    }
 }
