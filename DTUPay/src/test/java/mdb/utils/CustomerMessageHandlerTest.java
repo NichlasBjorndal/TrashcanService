@@ -33,7 +33,7 @@ public class CustomerMessageHandlerTest {
         BigDecimal bd = new BigDecimal(1);
         bs.createAccountWithBalance(user1, bd);
 
-        correctCustomer2 = new Customer("Oliver","Clausen","1234567890");
+        correctCustomer2 = new Customer("Oliver","Clausen","2203822831");
 
         incorrectCustomer = new Customer("Mimir", "Mogensen","2004682303");
         user2 = new User();
