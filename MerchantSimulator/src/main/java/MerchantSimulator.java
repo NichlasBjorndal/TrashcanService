@@ -1,9 +1,15 @@
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import mdb.utils.DynamicEndpointHelper;
+
 
 public class MerchantSimulator {
-    public static String endpoint = "http://localhost:8080/DTUPay-0.5/api";
+    public static String endpoint = "";
+
+    public MerchantSimulator(){
+        endpoint = DynamicEndpointHelper.getCurrentEndpoint();
+    }
 
     /**
      * @param firstname first name of merchant

@@ -1,4 +1,4 @@
-package persistence;
+package core.persistence;
 
 import core.user.Merchant;
 
@@ -41,5 +41,9 @@ public class MerchantStore {
      */
     public void clearStore(){
         Merchants.clear();
+    }
+
+    public Map<String, Merchant> getMerchants(){
+        return Merchants;
     }
 }

@@ -5,7 +5,7 @@ import dtu.ws.fastmoney.User;
 import io.swagger.model.Customer;
 import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
-import persistence.CustomerStore;
+import core.persistence.CustomerStore;
 
 import java.math.BigDecimal;
 
