@@ -3,7 +3,7 @@ package mdb.utils;
 import core.user.Customer;
 import core.utils.BankServerUtil;
 import io.swagger.api.impl.CustomerResponse;
-import persistence.CustomerStore;
+import core.persistence.CustomerStore;
 
 /**
  * Contains methods for handling messages received on customer MDBs.

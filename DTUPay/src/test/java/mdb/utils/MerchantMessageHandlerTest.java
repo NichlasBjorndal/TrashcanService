@@ -1,20 +1,17 @@
 package mdb.utils;
 
+import core.persistence.MerchantStore;
 import core.user.Merchant;
 import core.utils.BankServerUtil;
-import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
-import dtu.ws.fastmoney.BankServiceService;
 import dtu.ws.fastmoney.User;
 import io.swagger.api.impl.MerchantResponse;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import persistence.MerchantStore;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MerchantMessageHandlerTest {
     @After

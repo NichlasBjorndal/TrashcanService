@@ -8,7 +8,7 @@ import dtu.ws.fastmoney.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import persistence.CustomerStore;
+import core.persistence.CustomerStore;
 
 import java.math.BigDecimal;
 import java.util.UUID;

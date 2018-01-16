@@ -5,8 +5,8 @@ import core.barcode.BarcodeGeneratorInterface;
 import core.barcode.Model.Barcode;
 import core.user.Customer;
 import io.swagger.api.impl.BarcodeResponse;
-import persistence.BarcodeStore;
-import persistence.CustomerStore;
+import core.persistence.BarcodeStore;
+import core.persistence.CustomerStore;
 
 import java.io.IOException;
 import java.util.UUID;

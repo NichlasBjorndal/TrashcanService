@@ -1,19 +1,16 @@
 package mdb.utils;
 
-import core.barcode.BarcodeGenerator;
 import core.barcode.BarcodeGeneratorInterface;
+import core.persistence.CustomerStore;
 import core.user.Customer;
 import io.swagger.api.impl.BarcodeResponse;
+import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import org.mockito.Mockito;
-import persistence.CustomerStore;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.UUID;
-
-import org.apache.commons.codec.binary.Base64;
-
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

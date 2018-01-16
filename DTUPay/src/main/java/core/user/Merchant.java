@@ -7,6 +7,17 @@ package core.user;
 public class Merchant extends User {
     private String cvr;
 
+    public Merchant(String cvr, String firstName, String lastName) {
+        super();
+        setCvr(cvr);
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+
+    public Merchant() {
+        super();
+    }
+
     /**
      * @return CVR number of merchant.
      */

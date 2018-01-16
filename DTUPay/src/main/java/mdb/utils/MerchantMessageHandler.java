@@ -3,7 +3,7 @@ package mdb.utils;
 import core.user.Merchant;
 import core.utils.BankServerUtil;
 import io.swagger.api.impl.MerchantResponse;
-import persistence.MerchantStore;
+import core.persistence.MerchantStore;
 
 /**
  * Contains methods for handling messages received on merchant MDBs.
