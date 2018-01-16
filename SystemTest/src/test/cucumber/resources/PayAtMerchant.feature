@@ -22,11 +22,7 @@ Feature: Pay at merchant
     Then the transfer is denied with response code 405
     And then balance is 100 on the customers account and the balance is 1337 on the merchant's account
 
-   # And I have requested a barcode
-   # And I have received a barcode
-   # When A merchant tries to withdraw too large a fund
-   # Then DTUpay denies the transaction
-   # And My balance has not been changed
+
 
   #Scenario: A merchant cannot use the same barcode twice
     #Given I already have an account

@@ -46,10 +46,10 @@ public class PayApiServiceImpl extends PayApiService {
           String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
 
           Response httpRes;
-          if (parsedResponse.equals(PayResponse.SUCCESSFUL_PAYMENT)) {
-              httpRes = Response.status(201).entity(PayResponse.SUCCESSFUL_PAYMENT).build();
+          if (parsedResponse.equals(PayResponse.SUCCESSFUL_PAYMENT.getValue())) {
+              httpRes = Response.status(201).entity(PayResponse.SUCCESSFUL_PAYMENT.getValue()).build();
           } else {
-              httpRes = Response.status(400).build();
+              httpRes = Response.status(405).entity(PayResponse.INVALID_INPUT.getValue()).build();
           }
           return httpRes;
   }

@@ -5,6 +5,7 @@ import core.persistence.CustomerStore;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.impl.PayApiServiceImpl;
+import io.swagger.api.impl.PayResponse;
 import io.swagger.model.Transaction;
 import mdb.utils.BankServerUtil;
 import mdb.utils.GsonWrapper;
@@ -32,14 +33,14 @@ public class PayMDB extends BaseMDB {
             String senderAccountId = server.getAccountByCprNumber(customerCPR).getId();
             String receiverAccountId = server.getAccountByCprNumber(transaction.getReceiverCVR()).getId();
             server.transferMoneyFromTo(senderAccountId, receiverAccountId, transaction.getAmount(),"Successful transaction");
-            response = PayApiServiceImpl.SUCCESSFUL_PAY;
+            response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
         } catch (BankServiceException_Exception e) {
             if (e.getMessage().equals("Debtor balance will be negative")) {
-                response = Pay
+                response = PayResponse.INVALID_INPUT.getValue();
+            } else {
+                response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
             }
-
         }
-
         return GsonWrapper.toJson(response);
     }
 

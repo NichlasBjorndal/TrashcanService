@@ -1,4 +1,3 @@
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
@@ -113,6 +112,5 @@ public class PayAtMerchantSteps implements En {
                 assertEquals("Account does not exist", e.getMessage());
             }
         });
-
     }
 }
