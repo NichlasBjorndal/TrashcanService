@@ -23,4 +23,8 @@ public class Merchant extends User {
         Merchant m = (Merchant) merchant;
         return merchant != null && (m.getCvr().equals(this.cvr) && m.getFirstName().equals(this.getFirstName()) && m.getLastName().equals(this.getLastName()));
     }
+
+    public void setCvr(String cvr) {
+        this.cvr = cvr;
+    }
 }
