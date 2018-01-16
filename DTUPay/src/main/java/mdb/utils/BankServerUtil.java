@@ -1,6 +1,7 @@
 package mdb.utils;
 
 import core.FastMoneyTransaction;
+import dtu.ws.fastmoney.Account;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import dtu.ws.fastmoney.BankServiceService;
@@ -32,5 +33,19 @@ public class BankServerUtil {
         receiverAccountId = bankService.getAccountByCprNumber(transaction.getReceiverCvr()).getId();
 
         bankService.transferMoneyFromTo(senderAccountId, receiverAccountId, amount, message);
+    }
+
+    public static boolean checkIfBankAccountExistsById(String cpr) {
+        BankService server = BankServerUtil.getServer();
+
+        Account accountByIdentifier = null;
+
+        try {
+            accountByIdentifier = server.getAccountByCprNumber(cpr);
+        } catch (BankServiceException_Exception e) {
+            e.printStackTrace();
+        }
+
+        return accountByIdentifier != null;
     }
 }

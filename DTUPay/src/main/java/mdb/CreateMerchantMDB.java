@@ -11,7 +11,7 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 
 /**
- *  Message Driven Bean for creating merchants
+ * Message Driven Bean for creating merchants
  */
 @MessageDriven(name = "CreateMerchantMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateMerchantQueue"),
@@ -29,14 +29,13 @@ public class CreateMerchantMDB extends BaseMDB {
         MerchantStore instance = MerchantStore.getInstance();
         String response;
 
-        if(inputIsInvalid(merchant)){
+        if (inputIsInvalid(merchant)) {
             response = MerchantApiServiceImpl.INVALID_INPUT;
         } else if (instance.getMerchant(merchant.getCvr()) == null) {
-            try {
-                BankServerUtil.getServer().getAccountByCprNumber(merchant.getCvr());
+            if (BankServerUtil.checkIfBankAccountExistsById(merchant.getCvr())) {
                 instance.saveMerchant(merchant);
                 response = merchant.getUserID().toString();
-            } catch (BankServiceException_Exception e) {
+            } else {
                 response = MerchantApiServiceImpl.NO_BANK_ACCOUNT;
             }
         } else {
