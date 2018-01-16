@@ -21,7 +21,7 @@ public class MerchantMessageHandlerTest {
 
     @Test
     public void createValidMerchant() {
-        Merchant validMerchant = new Merchant("12345678","Super","Brusen");
+        Merchant validMerchant = new Merchant("19120585","Super","Brusen");
 
         User validMerchantUser = new User();
         validMerchantUser.setFirstName(validMerchant.getFirstName());
@@ -81,7 +81,7 @@ public class MerchantMessageHandlerTest {
 
     @Test
     public void createMerchantAlreadyExists() { //
-        Merchant merchantAlreadyExists = new Merchant("12345678","Super","Brusen");
+        Merchant merchantAlreadyExists = new Merchant("19120585","Super","Brusen");
 
         User validMerchantUser = new User();
         validMerchantUser.setFirstName(merchantAlreadyExists.getFirstName());
