@@ -5,7 +5,14 @@ import core.utils.BankServerUtil;
 import io.swagger.api.impl.CustomerResponse;
 import persistence.CustomerStore;
 
+/**
+ * Contains methods for handling messages received on customer MDBs.
+ */
 public class CustomerMessageHandler {
+    /**
+     * @param customer customer object to be created in the system.
+     * @return UUID for the created customer or error message if relevant.
+     */
     public static String createCustomer(Customer customer) {
         CustomerStore instance = CustomerStore.getInstance();
 
@@ -21,6 +28,10 @@ public class CustomerMessageHandler {
         }
     }
 
+    /**
+     * @param customer customer object to be checked.
+     * @return whether the first name, last name and cpr of the customer object has correct structure.
+     */
     private static boolean isValidCustomerInput(Customer customer) {
         boolean isValidName = !(customer.getFirstName() == null || customer.getFirstName().isEmpty() || customer.getLastName() == null || customer.getLastName().isEmpty());
         boolean isValidCpr = customer.getCpr().length() == 10 && customer.getCpr().matches("[0-9]+");
