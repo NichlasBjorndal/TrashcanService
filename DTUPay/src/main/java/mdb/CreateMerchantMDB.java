@@ -1,12 +1,8 @@
 package mdb;
 
 import core.user.Merchant;
-import io.swagger.api.impl.MerchantApiServiceImpl;
-import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
-import io.swagger.api.impl.MerchantResponse;
-import mdb.utils.ProcessMessageUtil;
-import persistence.MerchantStore;
+import mdb.utils.MerchantMessageHandler;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -27,7 +23,7 @@ public class CreateMerchantMDB extends BaseMDB {
     @Override
     protected String processMessage(String receivedText) {
         Merchant merchant = (Merchant) GsonWrapper.fromJson(receivedText, Merchant.class);
-        String response = ProcessMessageUtil.createMerchant(merchant);
+        String response = MerchantMessageHandler.createMerchant(merchant);
 
         return GsonWrapper.toJson(response);
     }
