@@ -1,3 +1,5 @@
+import core.utils.BankServerUtil;
+import core.utils.GsonWrapper;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
@@ -5,8 +7,7 @@ import dtu.ws.fastmoney.User;
 import io.swagger.model.Customer;
 import io.swagger.model.Merchant;
 import io.swagger.model.Transaction;
-import mdb.utils.BankServerUtil;
-import mdb.utils.GsonWrapper;
+
 
 import java.math.BigDecimal;
 

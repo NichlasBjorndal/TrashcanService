@@ -1,5 +1,6 @@
 package io.swagger.api.impl;
 
+import core.utils.GsonWrapper;
 import io.swagger.api.*;
 
 
@@ -7,7 +8,7 @@ import io.swagger.model.Transaction;
 
 import io.swagger.api.NotFoundException;
 import jsmprovider.JmsProvider;
-import mdb.utils.GsonWrapper;
+
 
 import javax.ejb.Stateless;
 import javax.jms.JMSDestinationDefinition;

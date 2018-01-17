@@ -112,5 +112,6 @@
     <orderEntry type="library" name="Maven: io.swagger:swagger-models:1.5.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.3" level="project" />
+    <orderEntry type="module" module-name="ClientSimulator" />
   </component>
 </module>
