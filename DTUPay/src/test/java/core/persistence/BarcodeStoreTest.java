@@ -57,6 +57,9 @@ public class BarcodeStoreTest {
 
         //Assert
         assertEquals(1, unitUnderTest.getBarcodes().size());
+
+        if(barcode.getFile() != null)
+            barcode.getFile().delete();
     }
 
     @Test
@@ -77,6 +80,9 @@ public class BarcodeStoreTest {
         //Assert
         assertEquals(1, unitUnderTest.getBarcodes().size());
         assertEquals(customer.getUserID(), customerId);
+
+        if(barcode.getFile() != null)
+            barcode.getFile().delete();
     }
 
     @Test
@@ -96,5 +102,8 @@ public class BarcodeStoreTest {
 
         //Assert
         assertEquals(0, unitUnderTest.getBarcodes().size());
+
+        if(barcode.getFile() != null)
+            barcode.getFile().delete();
     }
 }
