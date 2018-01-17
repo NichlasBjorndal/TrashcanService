@@ -23,7 +23,7 @@ Feature: Create Merchant
     Then I receive a "Invalid input" error from the system
 
   Scenario: Create merchant account, name is invalid
-    Given  I ask DTU-Pay to create me a merchant account with name "au48esx57zyw4" " " and CVR "65980983"
+    Given  I ask DTU-Pay to create me a merchant account with first name "au48esx57zyw4" no last name and CVR "65980983"
     Then I receive a "Invalid input" error from the system
 
   Scenario: Create merchant account, no bank account

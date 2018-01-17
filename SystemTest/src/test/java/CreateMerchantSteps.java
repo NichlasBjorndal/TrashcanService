@@ -1,3 +1,4 @@
+import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.*;
 import core.utils.BankServerUtil;
@@ -60,6 +61,9 @@ public class CreateMerchantSteps implements En {
             } catch (BankServiceException_Exception bse) {
                 assertEquals("Account does not exist", bse.getMessage());
             }
+        });
+        Given("^I ask DTU-Pay to create me a merchant account with first name \"([^\"]*)\" no last name and CVR \"([^\"]*)\"$", (String firstName, String CVR) -> {
+            response[0] = simulator.createAccount(firstName, "", CVR);
         });
 
     }
