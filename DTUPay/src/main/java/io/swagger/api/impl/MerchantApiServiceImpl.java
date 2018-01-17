@@ -12,8 +12,10 @@ import core.utils.GsonWrapper;
 import javax.ejb.Stateless;
 import javax.jms.JMSDestinationDefinition;
 import javax.jms.JMSDestinationDefinitions;
+import javax.jms.JMSException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import java.util.concurrent.TimeoutException;
 
 @Stateless
 @JMSDestinationDefinitions(
@@ -37,8 +39,10 @@ public class MerchantApiServiceImpl extends MerchantApiService {
         String response = "";
         try {
             response = jmsProvider.sendMessage(CREATE_MERCHANT_QUEUE, body);
-        } catch (Exception e) {
-            return Response.serverError().build();
+        } catch (TimeoutException e) {
+            return Response.serverError().entity(JmsProvider.TIMEOUT_ERROR).build();
+        } catch (JMSException e) {
+            return Response.serverError().entity(JmsProvider.JMS_ERROR).build();
         }
 
         String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
@@ -46,14 +50,11 @@ public class MerchantApiServiceImpl extends MerchantApiService {
         Response httpRes;
         if (parsedResponse.equals(MerchantResponse.ALREADY_EXISTS.getValue())) {
             httpRes = Response.status(400).entity(parsedResponse).build();
-        }
-        else if (parsedResponse.equals(MerchantResponse.NO_BANK_ACCOUNT.getValue())) {
+        } else if (parsedResponse.equals(MerchantResponse.NO_BANK_ACCOUNT.getValue())) {
             httpRes = Response.status(403).entity(parsedResponse).build();
-        }
-        else if (parsedResponse.equals(MerchantResponse.INVALID_INPUT.getValue())) {
+        } else if (parsedResponse.equals(MerchantResponse.INVALID_INPUT.getValue())) {
             httpRes = Response.status(405).entity(parsedResponse).build();
-        }
-        else {
+        } else {
             httpRes = Response.status(201).entity(response).build();
         }
         return httpRes;

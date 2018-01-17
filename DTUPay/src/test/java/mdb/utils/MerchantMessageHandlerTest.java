@@ -69,13 +69,20 @@ public class MerchantMessageHandlerTest {
 
     @Test
     public void createMerchantInvalidFirstNameInput() { //
-        Merchant merchantInvalidFirstName = new Merchant("12345678"," ","Brusen");
+        Merchant merchantInvalidFirstName = new Merchant("12345678","","Brusen");
         assertEquals(MerchantResponse.INVALID_INPUT.getValue(),MerchantMessageHandler.createMerchant(merchantInvalidFirstName));
+
+        merchantInvalidFirstName = new Merchant("12345678",null,"Brusen");
+        assertEquals(MerchantResponse.INVALID_INPUT.getValue(),MerchantMessageHandler.createMerchant(merchantInvalidFirstName));
+
     }
 
     @Test
     public void createMerchantInvalidLastNameInput() { //
-        Merchant merchantInvalidLastName = new Merchant("12345678","Super"," ");
+        Merchant merchantInvalidLastName = new Merchant("12345678","Super","");
+        assertEquals(MerchantResponse.INVALID_INPUT.getValue(),MerchantMessageHandler.createMerchant(merchantInvalidLastName));
+
+        merchantInvalidLastName = new Merchant("12345678","Super",null);
         assertEquals(MerchantResponse.INVALID_INPUT.getValue(),MerchantMessageHandler.createMerchant(merchantInvalidLastName));
     }
 

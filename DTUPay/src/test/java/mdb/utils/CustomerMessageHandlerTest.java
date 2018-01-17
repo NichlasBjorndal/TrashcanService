@@ -19,7 +19,7 @@ public class CustomerMessageHandlerTest {
 
     private Customer correctCustomer1, correctCustomer2, incorrectCustomer;
     BankService bs;
-    User user1,user2;
+    User user1, user2;
 
     @Before
     public void setUp() throws Exception {
@@ -33,14 +33,14 @@ public class CustomerMessageHandlerTest {
         BigDecimal bd = new BigDecimal(1);
         bs.createAccountWithBalance(user1, bd);
 
-        correctCustomer2 = new Customer("Oliver","Clausen","2203822831");
+        correctCustomer2 = new Customer("Oliver", "Clausen", "2203822831");
 
-        incorrectCustomer = new Customer("Mimir", "Mogensen","2004682303");
+        incorrectCustomer = new Customer("Mimir", "Mogensen", "2004682303");
         user2 = new User();
         user2.setCprNumber("2004682303");
         user2.setLastName("Mogensen");
         user2.setFirstName("Mimir");
-        bs.createAccountWithBalance(user2,bd);
+        bs.createAccountWithBalance(user2, bd);
 
 
     }
@@ -53,7 +53,7 @@ public class CustomerMessageHandlerTest {
     }
 
     @Test
-    public void customerMessageHandlerCorrect() throws BankServiceException_Exception {
+    public void createValidCustomer() throws BankServiceException_Exception {
         String response = CustomerMessageHandler.createCustomer(correctCustomer1);
 
         assertNotNull(response);
@@ -62,36 +62,79 @@ public class CustomerMessageHandlerTest {
     }
 
     @Test
-    public void customerMessageHandlerIncorrect() {
+    public void createCustomerAlreadyExists() {
+        String response;
         CustomerMessageHandler.createCustomer(correctCustomer1);
 
-        String response = CustomerMessageHandler.createCustomer(correctCustomer1);
+        response = CustomerMessageHandler.createCustomer(correctCustomer1);
         assertEquals("Customer already exist in DTUPay", response);
+    }
+
+    @Test
+    public void createCustomerNoBankAccount() {
+        String response;
 
         response = CustomerMessageHandler.createCustomer(correctCustomer2);
         assertEquals("Customer doesn't have bank account", response);
+    }
+
+    @Test
+    public void createCustomerInvalidFirstNameNull() {
+        String response;
 
         incorrectCustomer.setFirstName(null);
         response = CustomerMessageHandler.createCustomer(incorrectCustomer);
         assertEquals("Invalid input", response);
+    }
+
+    @Test
+    public void createCustomerInvalidFirstNameEmpty() {
+        String response;
 
         incorrectCustomer.setFirstName("");
         response = CustomerMessageHandler.createCustomer(incorrectCustomer);
         assertEquals("Invalid input", response);
+    }
 
-        incorrectCustomer.setFirstName("Mimir");
+    @Test
+    public void createCustomerInvalidLastNameNull() {
+        String response;
+
         incorrectCustomer.setLastName(null);
         response = CustomerMessageHandler.createCustomer(incorrectCustomer);
         assertEquals("Invalid input", response);
+    }
+
+    @Test
+    public void createCustomerInvalidLastNameEmpty() {
+        String response;
 
         incorrectCustomer.setLastName("");
         response = CustomerMessageHandler.createCustomer(incorrectCustomer);
         assertEquals("Invalid input", response);
+    }
 
-        incorrectCustomer.setLastName("Mogensen");
+    @Test
+    public void createCustomerInvalidCprTooShort() {
+        String response;
+
         incorrectCustomer.setCpr("123456789");
         response = CustomerMessageHandler.createCustomer(incorrectCustomer);
         assertEquals("Invalid input", response);
+    }
+
+    @Test
+    public void createCustomerInvalidCprTooLong() {
+        String response;
+
+        incorrectCustomer.setCpr("123456789");
+        response = CustomerMessageHandler.createCustomer(incorrectCustomer);
+        assertEquals("Invalid input", response);
+    }
+
+    @Test
+    public void createCustomerInvalidCprContainsLetter() {
+        String response;
 
         incorrectCustomer.setCpr("123456789a");
         response = CustomerMessageHandler.createCustomer(incorrectCustomer);

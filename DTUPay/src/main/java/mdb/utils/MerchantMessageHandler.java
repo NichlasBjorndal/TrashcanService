@@ -33,7 +33,10 @@ public class MerchantMessageHandler {
      * @return whether the first name, last name and cpr of the merchant object has correct structure.
      */
     private static boolean merchantInputIsInvalid(Merchant merchant) {
-        return (!merchant.getCvr().matches("^(?!\\s*$)[0-9\\s]{8}$")) || ((merchant.getFirstName().equals(" ") || merchant.getLastName().equals(" ")) ||
-                (!merchant.getLastName().matches("^[a-zA-Z0-9 ]*$") || !merchant.getFirstName().matches("^[a-zA-Z0-9 ]*$")));
+        boolean invalidCvr = (!merchant.getCvr().matches("^(?!\\s*$)[0-9\\s]{8}$"));
+        boolean invalidFirstName = (merchant.getFirstName() == null || merchant.getFirstName().isEmpty()) || !merchant.getFirstName().matches("^[a-zA-Z0-9 ]*$");
+        boolean invalidLastName = (merchant.getLastName() == null || merchant.getLastName().isEmpty()) || (!merchant.getLastName().matches("^[a-zA-Z0-9 ]*$"));
+
+        return invalidCvr ||invalidFirstName || invalidLastName;
     }
 }
