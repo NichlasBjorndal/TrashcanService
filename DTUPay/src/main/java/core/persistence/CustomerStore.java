@@ -5,7 +5,7 @@ import core.user.Customer;
 import java.util.*;
 
 /**
- * The store containing all users created in the DTUPay application
+ * The store containing all customers created in the DTUPay application
  */
 public class CustomerStore {
     private Map<UUID, Customer> customers;
@@ -24,8 +24,7 @@ public class CustomerStore {
     }
 
     /**
-     * Stores the customer in a hashmap
-     * @param customer The customer to be saved in a map
+     * @param customer The customer to be saved in the store
      */
     public void saveCustomer(Customer customer){
         customers.put(customer.getUserID(), customer);
