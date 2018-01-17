@@ -52,7 +52,7 @@ Feature: Pay at merchant
    When A merchant scans the barcode and sends an invoice for a payment of 300
    Then the transfer is denied with response code 406
    And then balance is 9999 on the customer's account
-    
+
   Scenario: Merchant cannot get paid to a non-existing account in FastMoney Bank
     Given no accounts in FastMoney Bank and DTUPay exists with CPR 7354277112 and CVR 62774955
     Given Jesper Jensen with CPR number 7354277112 has an account in FastMoney Bank with balance 100
