@@ -77,6 +77,11 @@ public class JmsProvider {
         return sendMessage(queueName,jsonString,5000);
     }
 
+    /**
+     * Extracts text as a String from a received message
+     * @param response The message to be used
+     * @return a String with the text contained in the passed message
+     */
     private String getTextFromReceivedMessage(Message response) {
         String messageText = null;
         if(response instanceof TextMessage) {
@@ -91,6 +96,11 @@ public class JmsProvider {
         return messageText;
     }
 
+    /**
+     * Used to generate a random string to be used as an identifier for a temporary queue,
+     * when getting a response from a bean
+     * @return the randomly generated string
+     */
     private String createRandomString() {
         Random random = new Random(System.currentTimeMillis());
         long randomLong = random.nextLong();
