@@ -8,9 +8,14 @@ import dtu.ws.fastmoney.BankServiceService;
 
 import java.math.BigDecimal;
 
+/**
+ *  A utility class for quick access to the necessary FastMoney Bank tools.
+ */
 public class BankServerUtil {
     /**
-     * @return server reference for FastMoney Bank service
+     * Return server reference for FastMoney Bank service.
+     *
+     * @return server reference for FastMoney Bank service.
      */
     public static BankService getServer() {
         BankServiceService service = new BankServiceService();
@@ -18,6 +23,8 @@ public class BankServerUtil {
     }
 
     /**
+     * Performs a transaction through the FastMoney Bank using the given transaction model.
+     *
      * @param transaction model of the transaction ot be performed.
      * @throws BankServiceException_Exception Exception from FastMoney Bank service.
      */
@@ -35,6 +42,13 @@ public class BankServerUtil {
         bankService.transferMoneyFromTo(senderAccountId, receiverAccountId, amount, message);
     }
 
+    /**
+     * Returns <code>true</code> if the FastMoney Bank contains a user with the given CPR.
+     *
+     * @param cpr CPR/CVR number of some client or merchant.
+     * @return <code>true</code> if the FastMoney Bank contains a user with the given CPR;
+     *         <code>false</code> otherwise
+     */
     public static boolean checkIfBankAccountExistsById(String cpr) {
         BankService server = BankServerUtil.getServer();
 
