@@ -19,6 +19,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author Mathias Linde
+ * A class used to forward requests to a bean and handle its responses by generating response codes for the API
  */
 @Stateless
 @JMSDestinationDefinitions(
@@ -35,8 +36,13 @@ public class MerchantApiServiceImpl extends MerchantApiService {
 
     core.user.Merchant lastMerchant;
 
+    /** This method is responsible for mapping the HTTP request to the CreateMerchant bean,
+     *  and return the repsonse from the bean as HTTP response.
+     * @param body The body of the HTTP request
+     * @return The response from the bean in JSON format
+     */
     @Override
-    public Response createMerchant(Merchant body, SecurityContext securityContext) throws NotFoundException {
+    public Response createMerchant(Merchant body, SecurityContext securityContext)  {
         JmsProvider jmsProvider = new JmsProvider();
 
         String response = "";
