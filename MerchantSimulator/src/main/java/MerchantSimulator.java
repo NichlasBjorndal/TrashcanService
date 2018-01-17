@@ -30,6 +30,10 @@ public class MerchantSimulator {
         return new ResponseModel(r.getStatus(),r.getBody());
     }
 
+    /**
+     * @param transaction information on customer barcode, merchant CVR and amount of money
+     * @return response from API
+     */
     public ResponseModel payMerchant(Transaction transaction) {
         //make json
         HttpResponse<String> r = null;
