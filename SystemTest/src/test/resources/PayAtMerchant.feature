@@ -35,8 +35,7 @@ Feature: Pay at merchant
     Then the transfer is denied with response code 400
     And then balance is 900 on the customers account and the balance is 5655 on the merchant's account
 
-    # NEDENSTÅENDE er ikke redundant, vel? Fordi ovenfor tjekker vi jo, OM barcode fjernes rigtigt og ikke fejlagtigt kan bruges igen...her en HELT random...
-   Scenario: A merchant cannot use a non-existing barcode
+    Scenario: A merchant cannot use a non-existing barcode
     Given no accounts in FastMoney Bank and DTUPay exists with CPR 0000000000 and CVR 36947525
     Given Tog Portalen with CVR number 36947525 has an account in FastMoney Bank with balance 2323
     And Tog Portalen is merchant in DTUPay with CVR number 36947525
@@ -44,17 +43,6 @@ Feature: Pay at merchant
     When A merchant scans the barcode and sends an invoice for a payment of 995
     Then the transfer is denied with response code 400
     And then the balance is 2323 on the merchant's account
-
-# NEDENSTÅENDE SKAL NUKES!!!!!
-#  Scenario: A merchant cannot be paid by non-existing customers
- #   Given a merchant has an account
-  #  And a customer has an account
-   # And customer have requested a barcode
-   # And customer have received a barcode
-   # And a customer then deletes his account
-   # When a merchant attempts to verify the customers barcode for a purchase
-   # Then DTUpay denies the transaction
-
 
   Scenario: A non-existing merchant in DTUpay cannot get paid by a customer
    Given no accounts in FastMoney Bank and DTUPay exists with CPR 6523254577 and CVR 74412900
@@ -65,16 +53,6 @@ Feature: Pay at merchant
    Then the transfer is denied with response code 403
    And then balance is 9999 on the customer's account
 
-  # egentlig fejlkode 433, da det er last "else" ...men bør vi også have en for not created customer??? vi har jo ikke den for user, da man kan tjekke på barcode
-
-
-
-   # Given a customer has an account
-   # And customer have requested a barcode
-   # And customer have received a barcode
-   # And merchant does not have an account
-   # When the merchant attempts to verify this barcode for a purchase
-   # Then DTUpay denies the transaction
 
   Scenario: Merchant cannot get paid to a non-existing account in FastMoney Bank
     Given no accounts in FastMoney Bank and DTUPay exists with CPR 7354277112 and CVR 62774955
