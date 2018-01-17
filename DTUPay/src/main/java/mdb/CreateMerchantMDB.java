@@ -18,7 +18,7 @@ import javax.ejb.MessageDriven;
 public class CreateMerchantMDB extends BaseMDB {
     /**
      * @param receivedText JSON received from CreateMerchantQueue.
-     * @return new merchant id if successful, otherwise relevant error message.
+     * @return CVR of merchant if successful, otherwise relevant error message.
      */
     @Override
     protected String processMessage(String receivedText) {

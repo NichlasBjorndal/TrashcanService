@@ -10,8 +10,9 @@ import core.persistence.MerchantStore;
  */
 public class MerchantMessageHandler {
     /**
-     * @param merchant merchant object to be created in the system.
-     * @return UUID for the created merchant or error message if relevant.
+     * Creates the Merchant in the system if names and cvr is valid and the merchant have an account in the FastMoneyBank
+     * @param merchant Merchant object to be created in the system.
+     * @return cvr for the created merchant or error message if relevant.
      */
     public static String createMerchant(Merchant merchant) {
         MerchantStore instance = MerchantStore.getInstance();
@@ -30,7 +31,7 @@ public class MerchantMessageHandler {
 
     /**
      * @param merchant merchant object to be checked.
-     * @return whether the first name, last name and cpr of the merchant object has correct structure.
+     * @return whether the first name, last name and cvr of the merchant object has correct structure.
      */
     private static boolean merchantInputIsInvalid(Merchant merchant) {
         boolean invalidCvr = (!merchant.getCvr().matches("^(?!\\s*$)[0-9\\s]{8}$"));
