@@ -120,7 +120,7 @@ public class PayAtMerchantSteps implements En {
             server.retireAccount(server.getAccountByCprNumber(merchantCVR).getId());
             merchantSimulator.clearDataStores();
         });
-        And("^then balance is (\\d+) on the customers account$", (String customerBalance) -> {
+        And("^then balance is (\\d+) on the customer's account$", (String customerBalance) -> {
             assertEquals(customerBalance, server.getAccountByCprNumber(customerCPR).getBalance().toString());
             server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
             clientSimulator.clearDataStores();

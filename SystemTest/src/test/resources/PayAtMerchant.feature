@@ -63,7 +63,7 @@ Feature: Pay at merchant
    And the customer requests and receives a barcode
    When A merchant scans the barcode and sends an invoice for a payment of 300
    Then the transfer is denied with response code 403
-   And then balance is 9999 on the customers account
+   And then balance is 9999 on the customer's account
 
   # egentlig fejlkode 433, da det er last "else" ...men bør vi også have en for not created customer??? vi har jo ikke den for user, da man kan tjekke på barcode
 
@@ -86,4 +86,16 @@ Feature: Pay at merchant
     When the FastMoney account with CPR number 62774955 is deleted
     And A merchant scans the barcode and sends an invoice for a payment of 40
     Then the transfer is denied with response code 433
-    And then balance is 100 on the customers account
+    And then balance is 100 on the customer's account
+
+  Scenario: Merchant cannot get paid to a non-existing account in FastMoney Bank
+    Given no accounts in FastMoney Bank and DTUPay exists with CPR 3113542555 and CVR 88476904
+    Given Jesper Lok with CPR number 3113542555 has an account in FastMoney Bank with balance 100
+    And Jesper Lok is customer in DTUPay with CPR number 3113542555
+    And Turkish Kitchen with CVR number 88476904 has an account in FastMoney Bank with balance 100000000
+    And Turkish Kitchen is merchant in DTUPay with CVR number 88476904
+    And the customer requests and receives a barcode
+    When the FastMoney account with CPR number 3113542555 is deleted
+    And A merchant scans the barcode and sends an invoice for a payment of 30
+    Then the transfer is denied with response code 433
+    And then the balance is 100000000 on the merchant's account

@@ -1,5 +1,6 @@
 package mdb;
 
+import core.FastMoneyTransaction;
 import core.barcode.Model.Barcode;
 import core.persistence.BarcodeStore;
 import core.persistence.CustomerStore;
@@ -12,10 +13,15 @@ import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.impl.PayResponse;
 import io.swagger.model.Transaction;
+import jsmprovider.JmsProvider;
 
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
+import javax.ejb.Stateless;
+import javax.jms.JMSDestinationDefinition;
+import javax.jms.JMSDestinationDefinitions;
+import javax.ws.rs.core.Response;
 import java.util.UUID;
 
 @MessageDriven(name = "PayMDB", activationConfig = {
@@ -23,15 +29,55 @@ import java.util.UUID;
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 public class PayMDB extends BaseMDB {
+    private static final String TRANSACTION_QUEUE = "FastMoneyBankTransactionQueue";
 
     @Override
     protected String processMessage(String receivedText) throws BankServiceException_Exception {
         Transaction transaction = (Transaction) GsonWrapper.fromJson(receivedText, Transaction.class);
 
+        //Lookup customer CPR from barcode
         String customerCPR = getCostumer(transaction.getBarcode());
-        boolean validMerchant = validateMerchant(transaction.getReceiverCVR());
+        if (customerCPR.equals("")) {
+            return GsonWrapper.toJson(PayResponse.INVALID_BARCODE.getValue());
+        }
 
-        BankService server = BankServerUtil.getServer();
+        //Check that the merchant has account in DTUPay
+        boolean validMerchant = validateMerchant(transaction.getReceiverCVR());
+        if (!validMerchant) {
+            return GsonWrapper.toJson(PayResponse.INVALID_MERCHANT.getValue());
+        }
+
+        //Put transaction in queue for the transaction bean
+        JmsProvider jmsProvider = new JmsProvider();
+
+        FastMoneyTransaction fastMoneyTransaction = new FastMoneyTransaction(customerCPR, transaction.getReceiverCVR(), transaction.getAmount(), "Transfer from " + customerCPR + " to " + transaction.getReceiverCVR());
+        String body = GsonWrapper.toJson(fastMoneyTransaction);
+
+        String transactionResponse;
+        try {
+            transactionResponse = jmsProvider.sendMessage(TRANSACTION_QUEUE, body);
+        } catch (Exception e) {
+            return GsonWrapper.toJson(PayResponse.SERVER_ERROR.getValue());
+        }
+
+        //Interpret transaction response
+        String response;
+        String parsedResponse = (String) GsonWrapper.fromJson(transactionResponse, String.class);
+        if (parsedResponse.equals("Debtor balance will be negative")) {
+            response = PayResponse.INVALID_INPUT.getValue();
+        } else if (parsedResponse.equals("Account does not exist")) {
+            response = PayResponse.UNEXPECTED.getValue();
+        } else {
+            response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
+            removeBarcode(transaction.getBarcode());
+        }
+
+
+
+
+
+
+        /*BankService server = BankServerUtil.getServer();
         String response;
 
         if (customerCPR.equals("")) {
@@ -53,7 +99,9 @@ public class PayMDB extends BaseMDB {
             }
         } else {
             response = PayResponse.INVALID_MERCHANT.getValue();
-        }
+        }*/
+
+
         return GsonWrapper.toJson(response);
     }
 

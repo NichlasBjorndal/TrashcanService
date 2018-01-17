@@ -5,7 +5,8 @@ public enum PayResponse {
     INVALID_INPUT("Invalid input"),
     INVALID_BARCODE("Barcode is invalid"),
     UNEXPECTED("Unexpected"),
-    INVALID_MERCHANT("Merchant does not exist in DTUPay");
+    INVALID_MERCHANT("Merchant does not exist in DTUPay"),
+    SERVER_ERROR("Server error");
 
     private String message;
 
