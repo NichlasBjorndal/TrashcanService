@@ -25,16 +25,10 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the pay API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-17T18:47:18.042Z")
 public class PayApi  {
    private final PayApiService delegate = PayApiServiceFactory.getPayApi();
 
-    /**
-     * @param body of the POST request
-     * @param securityContext
-     * @return response from transaction
-     * @throws NotFoundException
-     */
     @POST
     
     @Consumes({ "application/json" })
@@ -43,8 +37,14 @@ public class PayApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 201, message = "New transaction completed", response = Void.class),
         
-        @io.swagger.annotations.ApiResponse(code = 405, message = "Invalid input", response = Void.class) })
-    public Response performTransaction(@ApiParam(value = "FastMoneyTransaction object" ,required=true) Transaction body,@Context SecurityContext securityContext)
+        @io.swagger.annotations.ApiResponse(code = 400, message = "Not enough funds to make transfer", response = Void.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Bank account does not exist", response = Void.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 405, message = "Barcode is invalid", response = Void.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 406, message = "Merchant does not exist in DTUPay", response = Void.class) })
+    public Response performTransaction(@ApiParam(value = "Transaction object" ,required=true) Transaction body,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.performTransaction(body,securityContext);
     }

@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-17T18:47:18.042Z")
 public class Transaction   {
   
   private String barcode = null;
@@ -75,7 +75,7 @@ public class Transaction   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FastMoneyTransaction {\n");
+    sb.append("class Transaction {\n");
     
     sb.append("    barcode: ").append(toIndentedString(barcode)).append("\n");
     sb.append("    receiverCVR: ").append(toIndentedString(receiverCVR)).append("\n");

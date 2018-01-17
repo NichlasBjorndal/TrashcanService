@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the barcode API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:54:39.165Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-17T18:47:18.042Z")
 public class BarcodeApi  {
    private final BarcodeApiService delegate = BarcodeApiServiceFactory.getBarcodeApi();
 
