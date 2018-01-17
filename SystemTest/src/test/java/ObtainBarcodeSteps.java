@@ -11,6 +11,9 @@ import java.util.UUID;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Gustav Madslund
+ */
 public class ObtainBarcodeSteps implements En {
     public ObtainBarcodeSteps() {
 

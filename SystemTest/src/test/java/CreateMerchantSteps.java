@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Mathias Thomsen
+ */
 public class CreateMerchantSteps implements En {
     public CreateMerchantSteps() {
         MerchantSimulator simulator = new MerchantSimulator();

@@ -6,6 +6,9 @@ import io.swagger.model.Transaction;
 import mdb.utils.DynamicEndpointHelper;
 
 
+/**
+ * @author Mathias Thomsen
+ */
 public class MerchantSimulator {
     public static String endpoint = "";
 

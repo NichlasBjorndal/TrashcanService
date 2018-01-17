@@ -13,6 +13,9 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Gustav Madslund
+ */
 public class PayAtMerchantSteps implements En {
     ClientSimulator clientSimulator = new ClientSimulator();
     MerchantSimulator merchantSimulator = new MerchantSimulator();

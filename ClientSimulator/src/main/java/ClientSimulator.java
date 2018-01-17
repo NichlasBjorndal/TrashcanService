@@ -5,6 +5,9 @@ import io.swagger.model.Customer;
 import mdb.utils.DynamicEndpointHelper;
 import core.utils.GsonWrapper;
 
+/**
+ * @author Nichlas Bjørndal
+ */
 public class ClientSimulator {
 
     public static String currentEndpoint = "";
