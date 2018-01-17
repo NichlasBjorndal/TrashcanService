@@ -10,8 +10,10 @@ import core.utils.GsonWrapper;
 import javax.ejb.Stateless;
 import javax.jms.JMSDestinationDefinition;
 import javax.jms.JMSDestinationDefinitions;
+import javax.jms.JMSException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import java.util.concurrent.TimeoutException;
 
 @Stateless
 @JMSDestinationDefinitions(
@@ -34,8 +36,10 @@ public class BarcodeApiServiceImpl extends BarcodeApiService {
         String response = "";
         try {
             response = jmsProvider.sendMessage(REQUEST_BARCODE_QUEUE, uuid);
-        } catch (Exception e) {
-            return Response.serverError().build();
+        } catch (TimeoutException e) {
+            return Response.serverError().entity(JmsProvider.TIMEOUT_ERROR).build();
+        } catch (JMSException e) {
+            return Response.serverError().entity(JmsProvider.JMS_ERROR).build();
         }
 
         String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
