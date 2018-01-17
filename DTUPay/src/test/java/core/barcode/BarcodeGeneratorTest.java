@@ -7,12 +7,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import core.barcode.Model.Barcode;
 
+/**
+ * @author Mathias Linde
+ */
 public class BarcodeGeneratorTest {
     private BarcodeGenerator barcodeGenerator;
     private Barcode barcodeResult;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         barcodeGenerator = new BarcodeGenerator();
     }
 

@@ -8,6 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 /**
+ * @author Mathias Thomsen
  * Factory for creating sessions to be used when communicating over JMS.
  */
 public class JMSSessionFactory {

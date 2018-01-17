@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Mikkel Brusen
+ */
 public class UniqueIDGeneratorTest {
     private UniqueIDGenerator idGenerator;
 

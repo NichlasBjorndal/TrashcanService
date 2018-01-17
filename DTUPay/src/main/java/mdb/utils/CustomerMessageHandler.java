@@ -6,6 +6,7 @@ import io.swagger.api.impl.CustomerResponse;
 import core.persistence.CustomerStore;
 
 /**
+ * @author Simon Pileborg
  * Contains methods for handling messages received on customer MDBs.
  */
 public class CustomerMessageHandler {

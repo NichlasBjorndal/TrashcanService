@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author Mathias Linde
  * The store containing all merchants created in the DTUPay application
  */
 public class MerchantStore {

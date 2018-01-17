@@ -3,6 +3,7 @@ package core;
 import java.math.BigDecimal;
 
 /**
+ * @author Gustav Madslund
  * A model which represents a transaction request send to the FastMoney Bank.
  */
 public class FastMoneyTransaction {

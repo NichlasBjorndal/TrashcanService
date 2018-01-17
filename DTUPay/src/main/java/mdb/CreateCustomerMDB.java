@@ -8,6 +8,7 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 
 /**
+ * @author Simon Pileborg
  * Message Driven Bean for creating new customers. Listens to the CreateCustomerQueue.
  */
 @MessageDriven(name = "CreateCustomerMDB", activationConfig = {

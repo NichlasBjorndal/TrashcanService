@@ -12,6 +12,9 @@ import java.util.UUID;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Mathias Linde
+ */
 public class BarcodeStoreTest {
 
     private BarcodeStore unitUnderTest;

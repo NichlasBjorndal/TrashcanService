@@ -6,6 +6,7 @@ import io.swagger.api.impl.MerchantResponse;
 import core.persistence.MerchantStore;
 
 /**
+ * @author Mathias Linde
  * Contains methods for handling messages received on merchant MDBs.
  */
 public class MerchantMessageHandler {

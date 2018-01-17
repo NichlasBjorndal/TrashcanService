@@ -22,6 +22,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 /**
+ * @author Simon Pileborg
  * This class contains the base implementation for our MessageDrivenBeanClasses.
  * BaseMDB takes care of receiving, processing and responding to JMS messages.
  */

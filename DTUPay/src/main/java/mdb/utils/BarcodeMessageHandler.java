@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
+ * @author Mikkel Brusen
  * Contains methods for handling messages received on barcode MDBs.
  */
 public class BarcodeMessageHandler {

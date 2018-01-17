@@ -11,6 +11,9 @@ import core.persistence.MerchantStore;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+/**
+ * @author Gustav Madslund
+ */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaResteasyServerCodegen", date = "2018-01-15T13:52:27.201Z")
 public class UtilApiServiceImpl extends UtilApiService {
       @Override

@@ -15,6 +15,9 @@ import java.util.UUID;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Gustav Madslund
+ */
 public class CustomerMessageHandlerTest {
 
     private Customer correctCustomer1, correctCustomer2, incorrectCustomer;

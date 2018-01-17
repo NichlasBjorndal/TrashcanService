@@ -5,6 +5,7 @@ import java.util.Base64;
 import java.util.UUID;
 
 /**
+ * @author Mathias Thomsen
  * Generates Base64 encoded UUIDs to be used when generating barcodes. Base64 encoding is used to reduce the length
  * of the Barcode UUID from 36 to 22 chars
  */

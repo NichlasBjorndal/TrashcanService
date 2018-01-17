@@ -4,6 +4,7 @@ package core.user;
 import java.util.UUID;
 
 /**
+ * @author Mikkel Brusen
  *  Class to model a generic user account
  *  A generic user account has associated a first name, last name, UUID and a balance
  */

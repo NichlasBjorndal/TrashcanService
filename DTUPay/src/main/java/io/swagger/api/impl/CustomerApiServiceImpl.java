@@ -18,6 +18,7 @@ import javax.ws.rs.core.SecurityContext;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * @author Nichlas Bjørndal
  * A class used to forward requests to a bean and handle its responses by generating response codes for the API
  */
 

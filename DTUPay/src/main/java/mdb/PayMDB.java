@@ -18,6 +18,7 @@ import javax.ejb.MessageDriven;
 import java.util.UUID;
 
 /**
+ * @author Gustav Madslund
  * Message Driven Bean to do payment
  */
 @MessageDriven(name = "PayMDB", activationConfig = {

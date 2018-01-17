@@ -3,6 +3,7 @@ package core.utils;
 import com.google.gson.Gson;
 
 /**
+ * @author Nichlas Bjørndal
  * A wrapper for the Gson library. This class converts java objects to json.
  */
 public class GsonWrapper {

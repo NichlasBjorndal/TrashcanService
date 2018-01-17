@@ -3,6 +3,9 @@ package mdb.utils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * @author Nichlas Bjørndal
+ */
 //https://stackoverflow.com/a/7883580
 public class DynamicEndpointHelper {
 

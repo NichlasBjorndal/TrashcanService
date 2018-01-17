@@ -2,6 +2,9 @@ package mdb.utils;
 
 import javax.jms.*;
 
+/**
+ * @author Mikkel Brusen
+ */
 public class OnMessageUtil {
 
     /**

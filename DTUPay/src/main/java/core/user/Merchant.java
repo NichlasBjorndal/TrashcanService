@@ -2,6 +2,7 @@ package core.user;
 
 
 /**
+ * @author Mathias Linde
  * Class to model a merchant user
  */
 public class Merchant extends User {

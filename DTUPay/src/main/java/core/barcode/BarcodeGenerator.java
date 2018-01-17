@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 /**
+ * @author Mathias Thomsen
  * Generates 128-code barcodes based on Base64 encoded UUIDs with the tailing '==' removed.
  */
 public class BarcodeGenerator implements BarcodeGeneratorInterface{

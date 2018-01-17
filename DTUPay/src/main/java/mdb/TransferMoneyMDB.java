@@ -14,6 +14,7 @@ import javax.ejb.MessageDriven;
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 
 /**
+ * @author Gustav Madslund
  * Message driven bean for transactions in the FastMoney Bank. Listens to the FastMoneyBankTransactionQueue.
  */
 public class TransferMoneyMDB extends BaseMDB {

@@ -8,6 +8,7 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 
 /**
+ * @author Gustav Madslund
  * Message Driven Bean for creating merchants. Listens to the CreateMerchantQueue.
  */
 @MessageDriven(name = "CreateMerchantMDB", activationConfig = {

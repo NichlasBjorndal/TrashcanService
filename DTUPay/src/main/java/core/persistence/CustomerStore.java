@@ -5,6 +5,7 @@ import core.user.Customer;
 import java.util.*;
 
 /**
+ * @author Nichlas Bjørndal
  * The store containing all customers created in the DTUPay application
  */
 public class CustomerStore {

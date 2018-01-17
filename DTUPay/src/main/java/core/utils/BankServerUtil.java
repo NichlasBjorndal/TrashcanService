@@ -9,6 +9,7 @@ import dtu.ws.fastmoney.BankServiceService;
 import java.math.BigDecimal;
 
 /**
+ * @author Mathias Thomsen
  *  A utility class for quick access to the necessary FastMoney Bank tools.
  */
 public class BankServerUtil {

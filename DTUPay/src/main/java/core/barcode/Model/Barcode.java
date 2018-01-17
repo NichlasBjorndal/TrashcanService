@@ -3,6 +3,7 @@ package core.barcode.Model;
 import java.io.File;
 
 /**
+ * @author Mathias Thomsen
  *  An object containing the barcode image file and uuid
  */
 public class Barcode {

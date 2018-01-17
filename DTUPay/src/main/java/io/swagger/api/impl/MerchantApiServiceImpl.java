@@ -17,6 +17,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * @author Mathias Linde
+ */
 @Stateless
 @JMSDestinationDefinitions(
         value = {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Mikkel Brusen
  * Class to model a customer user account.
  * A customer account has besides the fields from a generic user account also associated a CPR-number
  * and a list of barcodes used for payment.

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * @author Mikkel Brusen
  * The store used for the Barcode UUID -> Customer mapping. This store allows one to find the customer UUID
  * to whom the Barcode is valid for
  */

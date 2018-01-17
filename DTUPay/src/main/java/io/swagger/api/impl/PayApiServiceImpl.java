@@ -18,6 +18,7 @@ import javax.ws.rs.core.SecurityContext;
 
 
 /**
+ * @author Simon Pileborg
  * Implementation of the payment API functionality
  */
 @Stateless

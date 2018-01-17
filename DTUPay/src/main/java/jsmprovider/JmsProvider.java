@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * @author Nichlas Bjørndal
  * A wrapper for sending messages over JMS.
  */
 public class JmsProvider {

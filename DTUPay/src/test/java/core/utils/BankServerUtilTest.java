@@ -13,6 +13,9 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Mathias Thomsen
+ */
 public class BankServerUtilTest {
 
     String userCPR1, userCPR2, userID1, userID2;

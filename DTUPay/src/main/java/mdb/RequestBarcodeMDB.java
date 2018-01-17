@@ -7,6 +7,7 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 
 /**
+ * @author Simon Pileborg
  * Message Driven Bean for handling barcode requests. Listens to the RequestBarcodeQueue.
  */
 @MessageDriven(name = "RequestBarcodeMDB", activationConfig = {

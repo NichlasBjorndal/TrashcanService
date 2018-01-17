@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Mathias Linde
+ */
 public class CustomerStoreTest {
 
     private CustomerStore unitUnderTest;
