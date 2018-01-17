@@ -93,12 +93,15 @@ public class PayAtMerchantSteps implements En {
             server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
             clientSimulator.clearDataStores();
         });
+
         Then("^the transfer is denied with response code ([^\"]*)$", (String responseCode) -> {
             assertEquals(Integer.parseInt(responseCode), transferResponseCode);
         });
+
         Then("^the transfer is accepted with response code ([^\"]*)$", (String responseCode) -> {
             assertEquals(Integer.parseInt(responseCode), transferResponseCode);
         });
+
         Given("^no accounts in FastMoney Bank and DTUPay exists with CPR ([^\"]*) and CVR ([^\"]*)$", (String cpr, String cvr) -> {
             clientSimulator.clearDataStores();
             try {
@@ -112,19 +115,23 @@ public class PayAtMerchantSteps implements En {
                 assertEquals("Account does not exist", e.getMessage());
             }
         });
+
         And("^the merchant has a barcode with UUID ([^\"]*)$", (String barcodeUUID) -> {
             this.barcodeUUID = barcodeUUID;
         });
+
         And("^then the balance is (\\d+) on the merchant's account$", (String merchantBalance) -> {
             assertEquals(merchantBalance, server.getAccountByCprNumber(merchantCVR).getBalance().toString());
             server.retireAccount(server.getAccountByCprNumber(merchantCVR).getId());
             merchantSimulator.clearDataStores();
         });
+
         And("^then balance is (\\d+) on the customer's account$", (String customerBalance) -> {
             assertEquals(customerBalance, server.getAccountByCprNumber(customerCPR).getBalance().toString());
             server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
             clientSimulator.clearDataStores();
         });
+
         When("^the FastMoney account with CPR number (\\d+) is deleted$", (String cpr) -> {
             try {
                 server.retireAccount(server.getAccountByCprNumber(cpr).getId());
@@ -132,7 +139,5 @@ public class PayAtMerchantSteps implements En {
                 assertEquals("Account does not exist", e.getMessage());
             }
         });
-
-
     }
 }

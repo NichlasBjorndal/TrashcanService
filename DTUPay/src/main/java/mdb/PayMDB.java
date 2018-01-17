@@ -7,21 +7,14 @@ import core.persistence.CustomerStore;
 import core.persistence.MerchantStore;
 import core.user.Customer;
 import core.user.Merchant;
-import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
-import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import io.swagger.api.impl.PayResponse;
 import io.swagger.model.Transaction;
 import jsmprovider.JmsProvider;
 
-
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-import javax.ejb.Stateless;
-import javax.jms.JMSDestinationDefinition;
-import javax.jms.JMSDestinationDefinitions;
-import javax.ws.rs.core.Response;
 import java.util.UUID;
 
 @MessageDriven(name = "PayMDB", activationConfig = {
@@ -64,44 +57,13 @@ public class PayMDB extends BaseMDB {
         String response;
         String parsedResponse = (String) GsonWrapper.fromJson(transactionResponse, String.class);
         if (parsedResponse.equals("Debtor balance will be negative")) {
-            response = PayResponse.INVALID_INPUT.getValue();
+            response = PayResponse.NOT_ENOUGH_FUNDS.getValue();
         } else if (parsedResponse.equals("Account does not exist")) {
-            response = PayResponse.UNEXPECTED.getValue();
+            response = PayResponse.NO_BANK_ACCOUNT.getValue();
         } else {
             response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
             removeBarcode(transaction.getBarcode());
         }
-
-
-
-
-
-
-        /*BankService server = BankServerUtil.getServer();
-        String response;
-
-        if (customerCPR.equals("")) {
-            response = PayResponse.INVALID_BARCODE.getValue();
-        } else if (validMerchant) {
-            try {
-                String senderAccountId = server.getAccountByCprNumber(customerCPR).getId();
-                String receiverAccountId = server.getAccountByCprNumber(transaction.getReceiverCVR()).getId();
-                server.transferMoneyFromTo(senderAccountId, receiverAccountId, transaction.getAmount(),"Successful transaction");
-                response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
-                removeBarcode(transaction.getBarcode());
-            } catch (BankServiceException_Exception e) {
-
-                if (e.getMessage().equals("Debtor balance will be negative")) {
-                    response = PayResponse.INVALID_INPUT.getValue();
-                } else {
-                    response = e.getMessage();
-                }
-            }
-        } else {
-            response = PayResponse.INVALID_MERCHANT.getValue();
-        }*/
-
-
         return GsonWrapper.toJson(response);
     }
 

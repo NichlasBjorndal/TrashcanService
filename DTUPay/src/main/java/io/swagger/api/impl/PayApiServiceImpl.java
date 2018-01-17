@@ -53,17 +53,20 @@ public class PayApiServiceImpl extends PayApiService {
 
           String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
 
+          //Interpret response from payment bean
           Response httpRes;
-          if (parsedResponse.equals(PayResponse.SUCCESSFUL_PAYMENT.getValue())) {
-              httpRes = Response.status(201).entity(PayResponse.SUCCESSFUL_PAYMENT.getValue()).build();
-          } else if (parsedResponse.equals(PayResponse.INVALID_INPUT.getValue())) {
-              httpRes = Response.status(405).entity(PayResponse.INVALID_INPUT.getValue()).build();
+          if (parsedResponse.equals(PayResponse.NOT_ENOUGH_FUNDS.getValue())) {
+              httpRes = Response.status(400).entity(parsedResponse).build();
+          } else if (parsedResponse.equals(PayResponse.NO_BANK_ACCOUNT.getValue())) {
+              httpRes = Response.status(403).entity(parsedResponse).build();
+          } else if (parsedResponse.equals(PayResponse.INVALID_MERCHANT.getValue())) {
+              httpRes = Response.status(406).entity(parsedResponse).build();
           } else if (parsedResponse.equals(PayResponse.INVALID_BARCODE.getValue())) {
-              httpRes = Response.status(400).entity(PayResponse.INVALID_BARCODE.getValue()).build();
-          } else  if (parsedResponse.equals(PayResponse.INVALID_MERCHANT.getValue())) {
-              httpRes = Response.status(403).entity(PayResponse.INVALID_MERCHANT.getValue()).build();
+              httpRes = Response.status(405).entity(parsedResponse).build();
+          } else if (parsedResponse.equals(PayResponse.SERVER_ERROR.getValue())) {
+              return Response.serverError().build();
           } else {
-              httpRes = Response.status(433).entity(PayResponse.UNEXPECTED.getValue()).build();
+              httpRes = Response.status(201).entity(PayResponse.SUCCESSFUL_PAYMENT.getValue()).build();
           }
           return httpRes;
   }
