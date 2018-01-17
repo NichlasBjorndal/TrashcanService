@@ -60,6 +60,8 @@ public class PayMDB extends BaseMDB {
             response = PayResponse.NOT_ENOUGH_FUNDS.getValue();
         } else if (parsedResponse.equals("Account does not exist")) {
             response = PayResponse.NO_BANK_ACCOUNT.getValue();
+        } else if (parsedResponse.equals("Amount must be positive")) {
+            response = PayResponse.NOT_ENOUGH_FUNDS.getValue();
         } else {
             response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
             removeBarcode(transaction.getBarcode());
