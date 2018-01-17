@@ -17,6 +17,9 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import java.util.UUID;
 
+/**
+ * Message Driven Bean to do payment
+ */
 @MessageDriven(name = "PayMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/PayQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -24,6 +27,14 @@ import java.util.UUID;
 public class PayMDB extends BaseMDB {
     private static final String TRANSACTION_QUEUE = "FastMoneyBankTransactionQueue";
 
+    /**Proccessing the transaction. Customer is found from barcode,
+     * merchant is validated,
+     * the transaction is put in FastMoneyBankTransactionQueue and
+     * the reponse from TransferMoneyMDB is interpreted
+     * @param receivedText the text message in JSON format containing the Transaction information
+     * @return string in JSON format holding the response code and message of the transaction
+     * @throws BankServiceException_Exception
+     */
     @Override
     protected String processMessage(String receivedText) throws BankServiceException_Exception {
         Transaction transaction = (Transaction) GsonWrapper.fromJson(receivedText, Transaction.class);
@@ -69,17 +80,20 @@ public class PayMDB extends BaseMDB {
         return GsonWrapper.toJson(response);
     }
 
+    /**
+     * @param receiverCVR the CVR number of the merchant.
+     * @return boolaen indicating whether a merchant with the CVR number exists in the system
+     */
     private boolean validateMerchant(String receiverCVR) {
         MerchantStore merchantStore = MerchantStore.getInstance();
         Merchant merchant = merchantStore.getMerchant(receiverCVR);
-        if (merchant == null) {
-            return false;
-        } else {
-            return true;
-        }
-
+        return  merchant != null;
     }
 
+    /**Removes specified barcode from the customer who has the barcode and
+     * from the BarcodeStore so that the barcode is not linked to the customer anymore and therefore becomes invalid
+     * @param barcode that should be removed
+     */
     private void removeBarcode(String barcode) {
         BarcodeStore barcodeStore = BarcodeStore.getInstance();
         CustomerStore customerStore = CustomerStore.getInstance();
@@ -94,6 +108,10 @@ public class PayMDB extends BaseMDB {
         barcodeStore.removeBarcode(barcode);
     }
 
+    /**
+     * @param barcode for which to find the connected customer
+     * @return the CPR number of the customer linked to the barcode. Empty string if no customer is linked to the barcode
+     */
     private String getCostumer(String barcode) {
         UUID customerId;
         CustomerStore customerStore;

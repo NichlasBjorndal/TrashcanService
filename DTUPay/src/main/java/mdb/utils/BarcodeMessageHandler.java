@@ -16,7 +16,9 @@ import java.util.UUID;
  */
 public class BarcodeMessageHandler {
     /**
-     * @param inputUUID String of the UUID of the user for whom the barcode is being generated for.
+     * Generates a Barcode and attaches it to the customer in the CustomerStore. It also creates a mapping from barcode
+     * to customer in the BarcodeStore, which enables the identification of a customer from a Barcode UUID
+     * @param inputUUID String of the UUID of the customer for whom the barcode is being generated for.
      * @param barcodeGeneratorInterface This a seam where it's possible to inject a custom barcode generator
      * @return UUID for the barcode that has been generated or error message if relevant.
      */
@@ -49,6 +51,7 @@ public class BarcodeMessageHandler {
     }
 
     /**
+     * createBarcode method using the BarcodeGenerator supplied in the core.barcode package
      * @param inputUUID String of the UUID of the user for whom the barcode is being generated for.
      * @return UUID for the barcode that has been generated or error message if relevant.
      */

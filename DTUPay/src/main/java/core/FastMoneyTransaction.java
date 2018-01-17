@@ -3,7 +3,7 @@ package core;
 import java.math.BigDecimal;
 
 /**
- * Model for transactions in the FastMoney Bank.
+ * A model which represents a transaction request send to the FastMoney Bank.
  */
 public class FastMoneyTransaction {
     private String senderCpr;
@@ -19,28 +19,28 @@ public class FastMoneyTransaction {
     }
 
     /**
-     * @return Sender's CPR number.
+     * @return Sender's CPR number ({@link FastMoneyTransaction#senderCpr}).
      */
     public String getSenderCpr() {
         return senderCpr;
     }
 
     /**
-     * @return Receiver's CPR number.
+     * @return Receiver's CPR number ({@link FastMoneyTransaction#receiverCvr}).
      */
     public String getReceiverCvr() {
         return receiverCvr;
     }
 
     /**
-     * @return Amount to be sent.
+     * @return Amount to be sent ({@link FastMoneyTransaction#amount}).
      */
     public BigDecimal getAmount() {
         return amount;
     }
 
     /**
-     * @return Message for transaction.
+     * @return Message for transaction ({@link FastMoneyTransaction#message}).
      */
     public String getMessage() {
         return message;

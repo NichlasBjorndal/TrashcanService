@@ -17,6 +17,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 
+/**
+ * Implementation of the payment API functionality
+ */
 @Stateless
 @JMSDestinationDefinitions(
         value = {
@@ -38,6 +41,12 @@ public class PayApiServiceImpl extends PayApiService {
 
     private static final String PAY_QUEUE = "PayQueue";
 
+    /**Putting the tranaction in the PayQueue. Interpretation of response deciding the response code.
+     * @param body containing the transaction information
+     * @param securityContext
+     * @return transaction response
+     * @throws NotFoundException
+     */
       @Override
       public Response performTransaction(Transaction body, SecurityContext securityContext)
       throws NotFoundException {

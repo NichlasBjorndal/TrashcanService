@@ -5,8 +5,7 @@ import core.user.Customer;
 import java.util.*;
 
 /**
- * Class to model a "store" of all the customers in the DTU-Pay-system
- * All Customer accounts are put in a HashMap uniquely identified by their UUID
+ * The store containing all users created in the DTUPay application
  */
 public class CustomerStore {
     private Map<UUID, Customer> customers;
@@ -26,7 +25,7 @@ public class CustomerStore {
 
     /**
      * Stores the customer in a hashmap
-     * @param customer The customer account to be saved in a map
+     * @param customer The customer to be saved in a map
      */
     public void saveCustomer(Customer customer){
         customers.put(customer.getUserID(), customer);
@@ -34,8 +33,8 @@ public class CustomerStore {
 
 
     /**
-     * @param uuid gets a specific customer from his UUID
-     * @return
+     * @param uuid The UUID of the customer that needs to be retrieved
+     * @return The Customer object with the given UUID
      */
     public Customer getCustomer(UUID uuid){
         return customers.get(uuid);
@@ -43,14 +42,14 @@ public class CustomerStore {
 
 
     /**
-     * @return the Map of all customers in the system
+     * @return The map containing all the created customers in the system
      */
     public Map<UUID, Customer> getCustomers(){
         return customers;
     }
 
     /**
-     * Deletes all users from the store
+     * Deletes all customers from the store
      */
     public void clearStore(){
         customers.clear();
@@ -58,13 +57,14 @@ public class CustomerStore {
 
 
     /**
-     * @param customer The customer account to be investigated
-     * @return Whether a customer with a cpr number already exists in the CustomerStore
+     * Since no two users with the same cpr should be created, this method looks through the store to check if any
+     * customer exists with a cpr matching that of the supplied Customer object
+     * @param customer The customer object from which we will check if it's cpr already exist
+     * @return Whether a user with a cpr number already exists in the CustomerStore
      */
     public boolean cprExists(Customer customer){
         HashSet<String> cprNumbers = new HashSet<>();
 
-        // All CPR-numbers in the CustomerStore are gathered
         for (UUID key: customers.keySet()) {
             cprNumbers.add(customers.get(key).getCpr());
         }

@@ -29,6 +29,12 @@ import javax.validation.constraints.*;
 public class PayApi  {
    private final PayApiService delegate = PayApiServiceFactory.getPayApi();
 
+    /**
+     * @param body of the POST request
+     * @param securityContext
+     * @return response from transaction
+     * @throws NotFoundException
+     */
     @POST
     
     @Consumes({ "application/json" })
