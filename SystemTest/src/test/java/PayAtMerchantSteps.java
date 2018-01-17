@@ -1,6 +1,5 @@
 import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
@@ -125,6 +124,13 @@ public class PayAtMerchantSteps implements En {
             assertEquals(customerBalance, server.getAccountByCprNumber(customerCPR).getBalance().toString());
             server.retireAccount(server.getAccountByCprNumber(customerCPR).getId());
             clientSimulator.clearDataStores();
+        });
+        When("^the FastMoney account with CPR number (\\d+) is deleted$", (String cpr) -> {
+            try {
+                server.retireAccount(server.getAccountByCprNumber(cpr).getId());
+            } catch (BankServiceException_Exception e) {
+                assertEquals("Account does not exist", e.getMessage());
+            }
         });
 
 

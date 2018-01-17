@@ -44,10 +44,11 @@ public class PayMDB extends BaseMDB {
                 response = PayResponse.SUCCESSFUL_PAYMENT.getValue();
                 removeBarcode(transaction.getBarcode());
             } catch (BankServiceException_Exception e) {
+
                 if (e.getMessage().equals("Debtor balance will be negative")) {
                     response = PayResponse.INVALID_INPUT.getValue();
                 } else {
-                    response = PayResponse.UNEXPECTED.getValue();
+                    response = e.getMessage();
                 }
             }
         } else {
