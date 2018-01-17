@@ -17,7 +17,7 @@ import javax.ejb.MessageDriven;
 public class CreateCustomerMDB extends BaseMDB {
     /**
      * @param receivedText JSON received from CreateCustomerQueue.
-     * @return new customer id if successful, otherwise relevant error message.
+     * @return The UUID of the customer if successful, otherwise relevant error message.
      */
     @Override
     protected String processMessage(String receivedText) {

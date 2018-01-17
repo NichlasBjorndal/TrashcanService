@@ -10,7 +10,9 @@ import core.persistence.CustomerStore;
  */
 public class CustomerMessageHandler {
     /**
-     * @param customer customer object to be created in the system.
+     * Creates a customer in the DTUPay application if the given information is valid, and the customer has a
+     * FastMoneyBank account
+     * @param customer Customer object to be created in the system.
      * @return UUID for the created customer or error message if relevant.
      */
     public static String createCustomer(Customer customer) {
@@ -34,6 +36,7 @@ public class CustomerMessageHandler {
      */
     private static boolean isValidCustomerInput(Customer customer) {
         boolean isValidName = !(customer.getFirstName() == null || customer.getFirstName().isEmpty() || customer.getLastName() == null || customer.getLastName().isEmpty());
+        // The regex does not account for the real life patterns a cpr number should follow
         boolean isValidCpr = customer.getCpr().length() == 10 && customer.getCpr().matches("[0-9]+");
         return isValidCpr && isValidName;
     }
