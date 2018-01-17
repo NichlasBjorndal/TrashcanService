@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 /**
- * Generates 128-code barcodes based on Base64 UUIDs.
+ * Generates 128-code barcodes based on Base64 encoded UUIDs with the tailing '==' removed.
  */
 public class BarcodeGenerator implements BarcodeGeneratorInterface{
 
@@ -20,7 +20,7 @@ public class BarcodeGenerator implements BarcodeGeneratorInterface{
     }
 
     /**
-     * @return A 128-code barcode.
+     * @return A 128-code Barcode.
      * @throws IOException
      */
     public Barcode generateBarcode() throws IOException {
@@ -31,7 +31,7 @@ public class BarcodeGenerator implements BarcodeGeneratorInterface{
         final int dpi = 500;
 
         //Configure barcode generator.
-        //Set width an enable quiet zone.
+        //Set width and enable quiet zone.
         barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
         barcode128Bean.doQuietZone(true);
 

@@ -15,6 +15,7 @@ import javax.ejb.MessageDriven;
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 public class RequestBarcodeMDB extends BaseMDB {
     /**
+     * Uses the BarcodeMessageHandler's createBarcode method to create a barcode
      * @param receivedText JSON received from RequestBarcodeQueue.
      * @return new barcode uuid if successful, otherwise relevant error message.
      */
