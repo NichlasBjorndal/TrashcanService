@@ -5,7 +5,8 @@ import java.util.Base64;
 import java.util.UUID;
 
 /**
- * Generates UUIDs to be used when generating barcodes.
+ * Generates Base64 encoded UUIDs to be used when generating barcodes. Base64 encoding is used to reduce the length
+ * of the Barcode UUID from 36 to 22 chars
  */
 public class UniqueIDGenerator {
 
@@ -13,6 +14,7 @@ public class UniqueIDGenerator {
      * @return Returns a UUID encoded using Base64 which will be used when generating barcodes.
      */
     String generateUUIDToBase64() {
+        // Generates a 128 bit UUID
         UUID uuid = UUID.randomUUID();
 
         Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -22,7 +24,7 @@ public class UniqueIDGenerator {
         bb.putLong(uuid.getMostSignificantBits());
         bb.putLong(uuid.getLeastSignificantBits());
 
-        //Encode UUID array to string.
+        //Removes tailing '==' characters and encodes UUID array to string.
         return encoder.withoutPadding().encodeToString(bb.array());
     }
 }
