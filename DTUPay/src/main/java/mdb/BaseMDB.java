@@ -16,12 +16,15 @@
  */
 package mdb;
 
-import dtu.ws.fastmoney.BankServiceException_Exception;
 import mdb.utils.OnMessageUtil;
-import org.junit.rules.ExternalResource;
 
-import javax.jms.*;
+import javax.jms.Message;
+import javax.jms.MessageListener;
 
+/**
+ * This class contains the base implementation for our MessageDrivenBeanClasses.
+ * BaseMDB takes care of receiving, processing and responding to JMS messages.
+ */
 public abstract class BaseMDB implements MessageListener {
 
     /**
@@ -30,13 +33,16 @@ public abstract class BaseMDB implements MessageListener {
     public void onMessage(Message rcvMessage) {
         String receivedText = OnMessageUtil.getTextFromMessage(rcvMessage);
         String responseMessageText = null;
-        try {
-            responseMessageText = processMessage(receivedText);
-        } catch (BankServiceException_Exception e) {
-            e.printStackTrace();
-        }
+        responseMessageText = processMessage(receivedText);
         OnMessageUtil.Reply(rcvMessage, responseMessageText);
     }
 
-    protected abstract String processMessage(String receivedText) throws BankServiceException_Exception;
+
+    /**
+     * This method must be overloaded for every implementation of MBD classes.
+     * This method is where a messages consumed from the JMS queue is processed before sending a response.
+     * @param receivedText The received JMS message in JSON format
+     * @return The reply to the received JMS message in JSON format.
+     */
+    protected abstract String processMessage(String receivedText);
 }

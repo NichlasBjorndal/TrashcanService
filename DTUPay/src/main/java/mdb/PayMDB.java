@@ -36,7 +36,7 @@ public class PayMDB extends BaseMDB {
      * @throws BankServiceException_Exception
      */
     @Override
-    protected String processMessage(String receivedText) throws BankServiceException_Exception {
+    protected String processMessage(String receivedText) {
         Transaction transaction = (Transaction) GsonWrapper.fromJson(receivedText, Transaction.class);
 
         //Lookup customer CPR from barcode
