@@ -5,11 +5,15 @@ import mdb.utils.JMSSessionFactory;
 
 import javax.jms.*;
 import java.util.Random;
+import java.util.concurrent.TimeoutException;
 
 /**
  * A wrapper for sending messages over JMS.
  */
 public class JmsProvider {
+
+    public static final String TIMEOUT_ERROR = "JMS communication failed, a timeout limit was reached.";
+    public static final String JMS_ERROR = "JMS communication failed.";
 
     private Session session;
 
@@ -24,7 +28,7 @@ public class JmsProvider {
      * @return The reply from the consumer in JSON format.
      * @throws Exception Thrown if the timeout limit is exceeded.
      */
-    public String sendMessage(String queueName, String msg, int timeout) throws Exception {
+    public String sendMessage(String queueName, String msg, int timeout) throws TimeoutException,JMSException {
         Destination dest = session.createQueue(queueName);
 
         Destination tempDest = session.createTemporaryQueue();
@@ -33,8 +37,6 @@ public class JmsProvider {
         String correlationID = createRandomString();
 
         TextMessage message = session.createTextMessage();
-
-        //String jsonMsg = GsonWrapper.toJson(msg)
 
         message.setText(msg);
         message.setJMSReplyTo(tempDest);
@@ -47,7 +49,7 @@ public class JmsProvider {
         Message receive = responseConsumer.receive(timeout);
 
         if (receive == null)
-            throw new Exception("No message received. Timeout limit reached.");
+            throw new TimeoutException();
 
         return getTextFromReceivedMessage(receive);
     }
@@ -59,7 +61,7 @@ public class JmsProvider {
      * @return The reply from the consumer in JSON format.
      * @throws Exception Thrown if the timeout limit is exceeded.
      */
-    public String sendMessage(String queueName, String msg) throws Exception {
+    public String sendMessage(String queueName, String msg) throws TimeoutException,JMSException {
         return sendMessage(queueName,msg,5000);
     }
 
@@ -70,7 +72,7 @@ public class JmsProvider {
      * @return The reply from the consumer in JSON format.
      * @throws Exception Thrown if the timeout limit is exceeded.
      */
-    public String sendMessage(String queueName, Object msgObj) throws Exception {
+    public String sendMessage(String queueName, Object msgObj) throws TimeoutException,JMSException {
         String jsonString = GsonWrapper.toJson(msgObj);
         return sendMessage(queueName,jsonString,5000);
     }
