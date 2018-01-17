@@ -1,6 +1,7 @@
-package mdb.utils;
+package core.utils;
 
 import core.FastMoneyTransaction;
+import core.utils.BankServerUtil;
 import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceException_Exception;
 import dtu.ws.fastmoney.User;

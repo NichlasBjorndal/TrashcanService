@@ -2,8 +2,8 @@ package mdb;
 
 import core.FastMoneyTransaction;
 import dtu.ws.fastmoney.BankServiceException_Exception;
-import mdb.utils.BankServerUtil;
-import mdb.utils.GsonWrapper;
+import core.utils.BankServerUtil;
+import core.utils.GsonWrapper;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -14,10 +14,14 @@ import javax.ejb.MessageDriven;
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 
 /**
- * Message driven bean for transactions in the FastMoney Bank.
+ * Message driven bean for transactions in the FastMoney Bank. Listens to the FastMoneyBankTransactionQueue.
  */
 public class TransferMoneyMDB extends BaseMDB {
 
+    /**
+     * @param receivedText JSON object of a FastMoneyTransaction to be performed.
+     * @return Transaction message if successful, otherwise exception thrown by bank.
+     */
     @Override
     protected String processMessage(String receivedText) {
         FastMoneyTransaction transaction = (FastMoneyTransaction) GsonWrapper.fromJson(receivedText, FastMoneyTransaction.class);

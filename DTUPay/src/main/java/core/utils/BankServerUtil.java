@@ -1,4 +1,4 @@
-package mdb.utils;
+package core.utils;
 
 import core.FastMoneyTransaction;
 import dtu.ws.fastmoney.Account;
@@ -43,7 +43,6 @@ public class BankServerUtil {
         try {
             accountByIdentifier = server.getAccountByCprNumber(cpr);
         } catch (BankServiceException_Exception e) {
-            e.printStackTrace();
         }
 
         return accountByIdentifier != null;

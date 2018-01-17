@@ -7,7 +7,7 @@ import io.swagger.model.Customer;
 
 import io.swagger.api.NotFoundException;
 import jsmprovider.JmsProvider;
-import mdb.utils.GsonWrapper;
+import core.utils.GsonWrapper;
 
 import javax.ejb.Stateless;
 import javax.jms.JMSDestinationDefinition;
@@ -44,13 +44,14 @@ public class CustomerApiServiceImpl extends CustomerApiService {
         String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
 
         Response httpRes;
-        if (parsedResponse.equals("accountExistsError")) {
-            httpRes = Response.status(400).build();
+        if (parsedResponse.equals(CustomerResponse.ALREADY_EXISTS.getValue())) {
+            httpRes = Response.status(400).entity(parsedResponse).build();
         }
-        else if (parsedResponse.equals("noBankAccountError")) {
-            httpRes = Response.status(403).build();
-        } else if (parsedResponse.equals("invalidInput")) {
-            httpRes = Response.status(405).build();
+        else if (parsedResponse.equals(CustomerResponse.NO_BANK_ACCOUNT.getValue())) {
+            httpRes = Response.status(403).entity(parsedResponse).build();
+        }
+        else if (parsedResponse.equals(CustomerResponse.INVALID_INPUT.getValue())) {
+            httpRes = Response.status(405).entity(parsedResponse).build();
         }
         else {
             httpRes = Response.status(201).entity(response).build();

@@ -1,53 +1,29 @@
 package mdb;
 
 import core.user.Customer;
-import dtu.ws.fastmoney.Account;
-import dtu.ws.fastmoney.BankService;
-import dtu.ws.fastmoney.BankServiceException_Exception;
-import mdb.utils.BankServerUtil;
-import mdb.utils.GsonWrapper;
-import core.persistence.CustomerStore;
+import core.utils.GsonWrapper;
+import mdb.utils.CustomerMessageHandler;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 
+/**
+ * Message Driven Bean for creating new customers. Listens to the CreateCustomerQueue.
+ */
 @MessageDriven(name = "CreateCustomerMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CreateCustomerQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 public class CreateCustomerMDB extends BaseMDB {
+    /**
+     * @param receivedText JSON received from CreateCustomerQueue.
+     * @return new customer id if successful, otherwise relevant error message.
+     */
     @Override
     protected String processMessage(String receivedText) {
         Customer customer = (Customer) GsonWrapper.fromJson(receivedText, Customer.class);
+        String response = CustomerMessageHandler.createCustomer(customer);
 
-        CustomerStore instance = CustomerStore.getInstance();
-
-        String response;
-
-        //Checks if input it valid
-        if(!isValidInput(customer)){
-            response = "invalidInput";
-        }
-
-        //Checks if an account already exists
-        else if(instance.cprExists(customer)){
-            response = "accountExistsError";
-        }
-
-        //Checks if the customer doesn't have a bank account
-        else if(!BankServerUtil.checkIfBankAccountExistsById(customer.getCpr())){
-            response = "noBankAccountError";
-        } else {
-            instance.saveCustomer(customer);
-            response = customer.getUserID().toString();
-        }
         return GsonWrapper.toJson(response);
-    }
-
-    private boolean isValidInput(Customer customer) {
-
-        boolean isValidName = !(customer.getFirstName() == null || customer.getFirstName().isEmpty() || customer.getLastName() == null || customer.getLastName().isEmpty());
-        boolean isValidCpr = customer.getCpr().length() == 10 && customer.getCpr().matches("[0-9]+");
-        return isValidCpr && isValidName;
     }
 }
