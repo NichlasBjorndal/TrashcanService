@@ -62,7 +62,7 @@ Feature: Pay at merchant
    And Flemming Jensen is customer in DTUPay with CPR number 6523254577
    And the customer requests and receives a barcode
    When A merchant scans the barcode and sends an invoice for a payment of 300
-   Then the transfer is denied with response code 405
+   Then the transfer is denied with response code 403
    And then balance is 9999 on the customers account
 
   # egentlig fejlkode 433, da det er last "else" ...men bør vi også have en for not created customer??? vi har jo ikke den for user, da man kan tjekke på barcode

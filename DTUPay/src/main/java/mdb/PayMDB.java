@@ -3,7 +3,9 @@ package mdb;
 import core.barcode.Model.Barcode;
 import core.persistence.BarcodeStore;
 import core.persistence.CustomerStore;
+import core.persistence.MerchantStore;
 import core.user.Customer;
+import core.user.Merchant;
 import core.utils.BankServerUtil;
 import core.utils.GsonWrapper;
 import dtu.ws.fastmoney.BankService;
@@ -27,13 +29,14 @@ public class PayMDB extends BaseMDB {
         Transaction transaction = (Transaction) GsonWrapper.fromJson(receivedText, Transaction.class);
 
         String customerCPR = getCostumer(transaction.getBarcode());
+        boolean validMerchant = validateMerchant(transaction.getReceiverCVR());
 
         BankService server = BankServerUtil.getServer();
         String response;
 
         if (customerCPR.equals("")) {
             response = PayResponse.INVALID_BARCODE.getValue();
-        } else {
+        } else if (validMerchant) {
             try {
                 String senderAccountId = server.getAccountByCprNumber(customerCPR).getId();
                 String receiverAccountId = server.getAccountByCprNumber(transaction.getReceiverCVR()).getId();
@@ -47,8 +50,21 @@ public class PayMDB extends BaseMDB {
                     response = PayResponse.UNEXPECTED.getValue();
                 }
             }
+        } else {
+            response = PayResponse.INVALID_MERCHANT.getValue();
         }
         return GsonWrapper.toJson(response);
+    }
+
+    private boolean validateMerchant(String receiverCVR) {
+        MerchantStore merchantStore = MerchantStore.getInstance();
+        Merchant merchant = merchantStore.getMerchant(receiverCVR);
+        if (merchant == null) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     private void removeBarcode(String barcode) {
