@@ -4,6 +4,10 @@ import core.user.Customer;
 
 import java.util.*;
 
+/**
+ * Class to model a "store" of all the customers in the DTU-Pay-system
+ * All Customer accounts are put in a HashMap uniquely identified by their UUID
+ */
 public class CustomerStore {
     private Map<UUID, Customer> customers;
 
@@ -22,7 +26,7 @@ public class CustomerStore {
 
     /**
      * Stores the customer in a hashmap
-     * @param customer The customer to be saved in a map
+     * @param customer The customer account to be saved in a map
      */
     public void saveCustomer(Customer customer){
         customers.put(customer.getUserID(), customer);
@@ -30,7 +34,7 @@ public class CustomerStore {
 
 
     /**
-     * @param uuid
+     * @param uuid gets a specific customer from his UUID
      * @return
      */
     public Customer getCustomer(UUID uuid){
@@ -39,11 +43,12 @@ public class CustomerStore {
 
 
     /**
-     * @return
+     * @return the Map of all customers in the system
      */
     public Map<UUID, Customer> getCustomers(){
         return customers;
     }
+
     /**
      * Deletes all users from the store
      */
@@ -53,12 +58,13 @@ public class CustomerStore {
 
 
     /**
-     * @param customer
-     * @return Whether a user with a cpr number already exists in the userstore
+     * @param customer The customer account to be investigated
+     * @return Whether a customer with a cpr number already exists in the CustomerStore
      */
     public boolean cprExists(Customer customer){
         HashSet<String> cprNumbers = new HashSet<>();
 
+        // All CPR-numbers in the CustomerStore are gathered
         for (UUID key: customers.keySet()) {
             cprNumbers.add(customers.get(key).getCpr());
         }

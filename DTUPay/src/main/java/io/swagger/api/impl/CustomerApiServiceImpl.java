@@ -17,6 +17,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * A class used to forward requests to a bean and handle its responses by generating response codes for the API
+ */
+
+// A JMS Queue used to send messages to the responsible bean
 @Stateless
 @JMSDestinationDefinitions(
         value = {
@@ -32,6 +37,11 @@ public class CustomerApiServiceImpl extends CustomerApiService {
 
     private static final String CREATE_CUSTOMER_QUEUE = "CreateCustomerQueue";
 
+    /**
+     * @param body A model of the customer account to be created
+     * @return a HTTP response code with the status of the issued operation
+     * @throws NotFoundException
+     */
     @Override
     public Response createCustomer(Customer body, SecurityContext securityContext) throws NotFoundException {
         JmsProvider jmsProvider = new JmsProvider();
@@ -47,6 +57,7 @@ public class CustomerApiServiceImpl extends CustomerApiService {
 
         String parsedResponse = (String) GsonWrapper.fromJson(response, String.class);
 
+        // Generates the correct response code based on the enum-value sent back from the bean
         Response httpRes;
         if (parsedResponse.equals(CustomerResponse.ALREADY_EXISTS.getValue())) {
             httpRes = Response.status(400).entity(parsedResponse).build();
