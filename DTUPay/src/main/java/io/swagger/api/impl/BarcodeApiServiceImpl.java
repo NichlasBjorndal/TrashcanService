@@ -17,6 +17,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author Mikkel Brusen
+ * A class used to forward requests to a bean and handle its responses by generating response codes for the API
  */
 @Stateless
 @JMSDestinationDefinitions(
@@ -32,6 +33,12 @@ import java.util.concurrent.TimeoutException;
 public class BarcodeApiServiceImpl extends BarcodeApiService {
     private static final String REQUEST_BARCODE_QUEUE = "RequestBarcodeQueue";
 
+    /**
+     * @param uuid The string representation of the UUID for the customer who request a barcode
+     * @param securityContext 
+     * @return a HTTP response code with the status of the issued operation
+     * @throws NotFoundException
+     */
     @Override
     public Response getCustomerBarcode(String uuid, SecurityContext securityContext) throws NotFoundException {
         JmsProvider jmsProvider = new JmsProvider();
