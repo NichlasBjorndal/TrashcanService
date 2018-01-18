@@ -7,7 +7,7 @@ Feature: Pay at merchant
     And Jane Doe with CVR number 67184597 has an account in FastMoney Bank with balance 500
     And Jane Doe is merchant in DTUPay with CVR number 67184597
     And the customer requests and receives a barcode
-    When A merchant scans the barcode and sends an invoice for a payment of 500
+    When A merchant scans the barcode and sends an invoice for a payment of 400
     Then the transfer is accepted with response code 201
     And then balance is 0 on the customers account and the balance is 1000 on the merchant's account
 
